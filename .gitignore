@@ -4,6 +4,7 @@
 #my own
 *.sln
 *.vcxproj
+*.vcxproj.filters
 
 # User-specific files
 *.suo
