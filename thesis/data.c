@@ -22,7 +22,7 @@ int main(){
 
 	front = 0 ;
 	back = 0;
-	queue = (struct ndoe**)malloc(sizeof(struct node*)*N);
+	queue = (struct node**)malloc(sizeof(struct node*)*N);
 
 	srand(time(NULL));
 
