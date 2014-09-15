@@ -22,13 +22,14 @@ int main(){
 
 	front = 0 ;
 	back = 0;
+	
 	queue = (struct node**)malloc(sizeof(struct node*)*N);
 
 	srand(time(NULL));
 
-	N--;
 	root = makenode();
 	iterator = root;
+	N--;
 	
 	while( N > 0 ){
 		
