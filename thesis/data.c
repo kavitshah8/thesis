@@ -38,6 +38,7 @@ int main(){
 		N = N - ( iterator->num_children );
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
 		for( i=0; i<iterator->num_children; i++ ){
+			iterator->arr[i] = (struct node*)malloc( sizeof(struct node) ) ;
 			queue[back] = iterator->arr[i];
 			back++;
 		}
