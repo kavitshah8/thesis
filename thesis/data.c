@@ -4,7 +4,7 @@
 
 struct node{
 	int num_children;
-	// To store the address of (struct node) but malloc returns (struct node**)
+	// To store the address of (struct node) but malloc returns (struct node*)
 	struct node** arr;
 };
 
