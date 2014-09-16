@@ -27,9 +27,11 @@ int main(){
 
 	srand(time(NULL));
 
-	N--;
+	// makenode() retuens a pointer to the ( struct node ), root is pointing to that pointer.
+	// root is not directly pointing to ( struct node )
 	root = makenode();
 	iterator = root;
+	N--;	
 	
 	while( N > 0 ){
 		iterator->num_children = rand() % ( N + 1 );
