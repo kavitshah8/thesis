@@ -108,7 +108,7 @@ void printTree(struct node** ar, int total){
 
 	depth = ar[0]->depth;
 
-	for( i=0; i < 12; i++ ){
+	for( i=1; i < 12; i++ ){
 		
 		temp = ar[i]->depth;
 		
@@ -117,7 +117,11 @@ void printTree(struct node** ar, int total){
 			printf("\n \n");
 		}
 		
-		printf("( Index %d ) depth = %d num_children = %d Node's id = %d || ", i, ar[i]->depth, ar[i]->num_children, ar[i]->id );
+		if( depth == 0 ){
+				printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent's_id = %d || ", i,  ar[i]->id, ar[i]->depth, ar[i]->num_children, ar[i]->parent->id  );
+		}else{
+				printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent's_id = %d || ", i,  ar[i]->id, ar[i]->depth, ar[i]->num_children, ar[i]->parent->id  );
+		}
 
 	}
 
