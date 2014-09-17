@@ -9,6 +9,8 @@ struct node{
 	struct node** arr;
 };
 
+void printTree(struct node**, int);
+
 struct node* makenode(){
 	return (struct node*)malloc(sizeof(struct node));
 };
@@ -74,6 +76,30 @@ int main(){
 	
 	}
 
+	printTree(queue, N);
+	printf("\n\n");
+
 //	free(root->arr);
 	return 0;
+}
+
+void printTree(struct node** ar, int total){
+	
+	int i, temp, depth;
+
+	depth = ar[0]->depth;
+
+	for( i=0; i < 12; i++ ){
+		
+		temp = ar[i]->depth;
+		
+		if( temp != depth ){
+			depth = temp;
+			printf("\n \n");
+		}
+		
+		printf("( Index %d ) depth = %d num_children = %d || ",i,ar[i]->depth, ar[i]->num_children);
+
+	}
+
 }
