@@ -19,6 +19,7 @@ struct node* makenode(){
 
 int main(){
 	int N = 12;
+	int NN = N;
 
 	struct node* root;
 	struct node* iterator;
@@ -95,7 +96,7 @@ int main(){
 	
 	}
 
-	printTree(queue, N);
+	printTree(queue, NN);
 	printf("\n\n");
 
 //	free(root->arr);
@@ -108,7 +109,7 @@ void printTree(struct node** ar, int total){
 
 	depth = ar[0]->depth;
 
-	for( i=1; i < 12; i++ ){
+	for( i=1; i < total; i++ ){
 		
 		temp = ar[i]->depth;
 		
