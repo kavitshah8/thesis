@@ -5,7 +5,6 @@
 struct node{
 	int num_children;
 	int depth;
-	// To store the address of (struct node) and malloc returns (struct node*) which is address of (struct node)
 	struct node** arr;
 };
 
@@ -32,18 +31,9 @@ int main(){
 
 	srand(time(NULL));
 
-	/* makenode() returns a pointer to the ( struct node ), root is pointing to that pointer.
-		---------------------------------------------------
-		|ADDRESS| NAME | VALUE|     |ADDRESS| NAME | VALUE|
-		| 6001  | root | 3001 | 	| 3001  | ???? | ???? | 
-		----------------------------------------------------
-	*/
-		
 	root = makenode();
 	iterator = root;
-	//(*iterator).depth = iterator->depth ( direct = indirect component selection )
 	iterator->depth = 0;
-	// queue is an array and you can store (struct node*) in it
 	queue[back] = iterator;
 	back++;
 	N--;	
