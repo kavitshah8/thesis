@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 struct node{
 	int num_children;
@@ -16,15 +16,16 @@ struct node* makenode(){
 };
 
 int main(){
-	int N = 123;
-	int NN = N;
-
+	
+	int N, NN; // N is total number of nodes in the aggregation tree
+	int i, j;
+	int front, back;
 	struct node* root;
 	struct node* iterator;
 	struct node** queue;
-	int i,j;
-	int front, back;
-
+	
+	N = 1234;
+	N = NN;
 	front = 0;
 	back = 0;
 	queue = (struct node**)malloc(sizeof(struct node*)*N);
@@ -37,6 +38,7 @@ int main(){
 		| 6001  | root | 3001 | 	| 3001  | ???? | ???? | 
 		----------------------------------------------------
 	*/
+		
 	root = makenode();
 	iterator = root;
 	//(*iterator).depth = iterator->depth ( direct = indirect component selection )
@@ -45,7 +47,7 @@ int main(){
 	queue[back] = iterator;
 	back++;
 	N--;	
-	
+
 	while( N > 0 ){
 
 		iterator->num_children = rand() % ( N + 1 );
