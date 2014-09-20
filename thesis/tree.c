@@ -15,26 +15,23 @@ void printTree(struct node**, int);
 int main(){
 
 	int N, NN; // N is total number of nodes in the aggregation tree
-	int id_count; // id_count will assign unique id to each node
 	int i, j;
 	int front, back;
 	struct node* root;
 	struct node* iterator;
 	struct node** queue;
 
-	N = NN = 12;
-	id_count = front = 	back = 0;
+	N = NN = 120;
+	front =	back = 0;
 	queue = (struct node**)malloc(sizeof(struct node*) * N );
 
 	srand(time(NULL));
 
-	root = (struct node*)malloc(sizeof(struct node));
-	iterator = queue[back]= root;
-	iterator->id = id_count;
+	root = iterator = queue[back] = (struct node*)malloc(sizeof(struct node));
+	iterator->id = back;
 	iterator->depth = 0;
 	iterator->parent = NULL;
 
-	id_count++;
 	back++;
 	N--;	
 	
@@ -53,14 +50,12 @@ int main(){
 		for( i=0; i < iterator->num_children; i++ ){
 			
 			iterator->arr[i] = (struct node*)malloc( sizeof(struct node) ) ;
-
-			iterator->arr[i]->id = id_count;
+			iterator->arr[i]->id = back;
 			iterator->arr[i]->depth = iterator->depth + 1;
 			iterator->arr[i]->parent = iterator;
 
 			queue[back] = iterator->arr[i];
 			
-			id_count++;
 			back++;	
 		}
 		
