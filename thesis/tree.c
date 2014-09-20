@@ -97,7 +97,7 @@ void printTree(struct node** arr, int total){
 		}
 		
 		if( depth == 0 ){
-				printf("( Index %d ) Node's id = %d depth = %d num_children = %d || ", i,  arr[i]->id, arr[i]->depth, arr[i]->num_children );
+				printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent = NULL || ", i,  arr[i]->id, arr[i]->depth, arr[i]->num_children );
 		}else{
 				printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent's_id = %d || ", i,  arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
 		}
