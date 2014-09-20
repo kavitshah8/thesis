@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 struct node{
 	int id;
@@ -87,9 +87,7 @@ void printTree(struct node** arr, int total){
 
 	depth = arr[0]->depth;
 
-	//root's parent->id is undefined; so starting from index of 1
-
-	for( i=1; i < total; i++ ){
+	for( i=0; i < total; i++ ){
 		
 		temp = arr[i]->depth;
 		
@@ -99,7 +97,7 @@ void printTree(struct node** arr, int total){
 		}
 		
 		if( depth == 0 ){
-				printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent's_id = %d || ", i,  arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
+				printf("( Index %d ) Node's id = %d depth = %d num_children = %d || ", i,  arr[i]->id, arr[i]->depth, arr[i]->num_children );
 		}else{
 				printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent's_id = %d || ", i,  arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
 		}
