@@ -13,33 +13,29 @@ struct vertex{
 /*finds and returns the index of first smallest sub-tree in the forest*/
 int findSmaller (struct vertex *array[], int differentFrom){
 
-    int smaller,i;
+  int smaller,i;
     
-    i = 0;
-
-    while ( array[i]->count == -1 )
-        i++;
-    
+  i = 0;
+  while ( array[i]->count == -1 ){i++;}
 	smaller = i;
     
 	if ( i == differentFrom ){
-        i++;
-        while ( array[i]->count == -1 )
-            i++;
-        smaller=i;
-    }
+    i++;
+    while ( array[i]->count == -1 ){i++;}
+    smaller=i;
+  }
 
-    for ( i=1; i < NODES; i++ ){
-        if (array[i]->count == -1 )
-            continue;
-        if ( i == differentFrom )
-            continue;
-        if ( array[i]->count < array[smaller]->count )
-            // saving the index of smaller one
-			smaller = i;
+  for ( i=1; i < NODES; i++ ){
+    if (array[i]->count == -1 )
+      continue;
+    if ( i == differentFrom )
+      continue;
+    if ( array[i]->count < array[smaller]->count ){
+      // saving the index of smaller one
+      smaller = i;
     }
-
-    return smaller;
+  }
+  return smaller;
 }
 
 /*builds the commitment tree and returns its address by reference*/
