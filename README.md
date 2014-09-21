@@ -11,6 +11,10 @@ Thesis
 * To simulate ACK, NACK trees from given commitment trees & run verification algorithm.
 * To create all possible commitment trees from given aggregation tree.
 
-#### Latest
+#### Misc
+* Change N, NN to global constant NODES
+
+#### Development
 
 * Development is done on kavitdev branch and after manual testing it is pushed to master branch. Checkout kavitdev branch for latest version.
+
