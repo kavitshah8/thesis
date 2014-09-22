@@ -14,6 +14,8 @@ struct node{
 	struct label* label;
 };
 
+int countTree(struct node *head);
+
 void printTree(struct node**, int);
 
 int main(){
@@ -28,12 +30,12 @@ int main(){
 	struct node** queue;
 
 
-	N = NN = 50;
+	N = NN = 100;
 
 	front =	back = 0;
 	queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
 
-	srand(time(NULL));
+	// srand(time(NULL));
 
 	root = iterator = queue[back] = (struct node*)malloc(sizeof(struct node));
 	iterator->id = back;
@@ -77,7 +79,9 @@ int main(){
 	
 	}
 
-	printTree(queue, NN);
+	// printTree(queue, NN);
+	printf("%d",countTree(queue[0]));
+	
 	printf("\n");
 
 	//	free(root->arr);
@@ -109,3 +113,27 @@ void printTree(struct node** arr, int total){
 
 }
 
+int countTree(struct node *head)
+{
+	//count number of nodes in tree and return
+	int i, sum;
+	int num_children = head->num_children;
+	
+	if(!num_children)
+	{
+		return 0;
+	}
+	else
+	{
+		sum = 1;
+	}
+
+	for( i = 0; i < num_children; i++ )
+	{
+		if(head->arr[i]->num_children!=0)
+		{
+			sum += countTree(head->arr[i]);	
+		}
+	}	 
+	return sum;
+}
