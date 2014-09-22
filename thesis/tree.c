@@ -30,7 +30,7 @@ int main(){
 	struct node** queue;
 
 
-	N = NN = 100;
+	N = NN = 200;
 
 	front =	back = 0;
 	queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
@@ -80,7 +80,7 @@ int main(){
 	}
 
 	// printTree(queue, NN);
-	printf("%d",countTree(queue[0]));
+	printf("Number of nodes in tree = %d",countTree(queue[0]));
 	
 	printf("\n");
 
@@ -118,22 +118,14 @@ int countTree(struct node *head)
 	//count number of nodes in tree and return
 	int i, sum;
 	int num_children = head->num_children;
-	
-	if(!num_children)
-	{
-		return 0;
-	}
-	else
-	{
-		sum = 1;
-	}
 
-	for( i = 0; i < num_children; i++ )
-	{
-		if(head->arr[i]->num_children!=0)
-		{
-			sum += countTree(head->arr[i]);	
-		}
-	}	 
-	return sum;
+	// printf("%d\n",num_children);
+
+	sum = 1;
+
+  for( i=0; i < num_children; i++)
+  {
+    sum += countTree(head->arr[i]);
+  }
+  return sum;
 }
