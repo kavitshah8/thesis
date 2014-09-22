@@ -21,11 +21,11 @@ int main(){
 	struct node* iterator;
 	struct node** queue;
 
-	N = NN = 120;
+	N = NN = 1234;
 	front =	back = 0;
 	queue = (struct node**)malloc(sizeof(struct node*) * N );
 
-	srand(time(NULL));
+	// srand(time(NULL));
 
 	root = iterator = queue[back] = (struct node*)malloc(sizeof(struct node));
 	iterator->id = back;
@@ -37,7 +37,7 @@ int main(){
 	
 	while( N > 0 ){
 
-		iterator->num_children = rand() % ( N + 1 );
+		iterator->num_children = rand() % 4;
 		
 		if( iterator == root && iterator->num_children == 0 ){
 			iterator->num_children = 1;
@@ -47,7 +47,7 @@ int main(){
 		
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
 		
-		for( i=0; i < iterator->num_children; i++ ){
+		for( i = 0; i < iterator->num_children; i++ ){
 			
 			iterator->arr[i] = (struct node*)malloc( sizeof(struct node) ) ;
 			iterator->arr[i]->id = back;
