@@ -3,8 +3,6 @@
 #include <time.h>
 #include <math.h>
 
-#define NODES 150
-
 struct node{
 	int id;
 	int depth;
@@ -15,10 +13,11 @@ struct node{
 };
 
 int countTree(struct node *head);
-
+int depthOfNode(struct node *head, struct node *ptr);
 void printTree(struct node**, int);
 
-int main(){
+int main()
+{
 
 	int N, NN; // N is total number of nodes in the aggregation tree
 	int i, j;
@@ -29,8 +28,7 @@ int main(){
 	struct vertex* commitmentTree;
 	struct node** queue;
 
-
-	N = NN = 200;
+	N = NN = 20000;
 
 	front =	back = 0;
 	queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
@@ -80,15 +78,23 @@ int main(){
 	}
 
 	// printTree(queue, NN);
-	printf("Number of nodes in tree = %d",countTree(queue[0]));
+	
+	printf("Number of nodes in tree = %d\n",countTree(queue[0]));
+	
+	for(i=0;i<NN;i++){
+		printf("Depth of the node %d = %d\n",queue[i]->id,depthOfNode(queue[0],queue[i]));
+	}	
 	
 	printf("\n");
 
 	//	free(root->arr);
+
 	return 0;
+
 }
 
-void printTree(struct node** arr, int total){
+void printTree(struct node** arr, int total)
+{
 	
 	int i, temp, depth;
 
@@ -128,4 +134,17 @@ int countTree(struct node *head)
     sum += countTree(head->arr[i]);
   }
   return sum;
+}
+
+int depthOfNode(struct node *head, struct node *ptr)
+{
+	int dep=0;
+	
+	while(ptr!=head)
+	{
+		ptr=ptr->parent;
+		dep++;
+	}
+
+	return dep;
 }
