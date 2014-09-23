@@ -1,3 +1,5 @@
+// This file contains the necessary data structure which will help us creating a commitment forest
+
 	//  Given depth, assuming max num children are 3 as we do mod 4
 	// 	Max number of nodes in a tree will be (3^N+1)/(3-1) [geometric series]
 	
