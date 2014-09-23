@@ -16,5 +16,5 @@ Thesis
 
 #### Development
 
-* Development is done on kavitdev branch and after manual testing it is pushed to master branch. Checkout kavitdev branch for latest version.
+* Development is done on kavitdev branch and after manual testing it is merged to master branch. Checkout kavitdev branch for latest version.
 
