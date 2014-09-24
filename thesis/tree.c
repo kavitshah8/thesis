@@ -22,12 +22,13 @@ int main()
 
 	int val=time(NULL);
 	//int MM;
-	//srand(val);
+	srand(val);
 	//for(MM=0;MM<5; MM++)
 	//{
 	int N, NN; // N is total number of nodes in the aggregation tree
 	int i, j;
 	int front, back;
+	int num_children;
 	int max_nodes;
 	struct node* root;
 	struct node* iterator;
@@ -50,7 +51,18 @@ int main()
 	while( front<NN )
 	{
 		
-		iterator->num_children = rand() % ( 4 );
+		num_children = rand() % 4;
+
+		// Creates a palm tree
+		// if( N - num_children  < 0)
+		// {
+		// 	iterator->num_children = num_children;
+		// 	break;
+		// }
+
+		if( back < NN ){
+			iterator->num_children = num_children;
+		}
 		
 		// printf("root depth %d  %p %p\n", root->depth, root, queue[0]);
 		
@@ -78,7 +90,7 @@ int main()
 					tt++;
 				}
 				if(!sum)
-							iterator->num_children = 1;
+					iterator->num_children = 1;
 			}
 		}
 
