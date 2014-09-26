@@ -42,10 +42,10 @@ struct horizontal
 };
 
 
-struct comOne
+struct vertical
 {
 	int depth;
-	struct comOne *next;
+	struct vertical *next;
 	struct horizontal *list;
 };
 
@@ -54,13 +54,13 @@ int main()
 	return 1;
 }
 
-struct comOne * createDataStr(struct node *head)
+struct vertical* createDataStr(struct node *head)
 {
 
-	struct comOne* top=NULL;
+	struct vertical *top=NULL;
 	struct horizontal *temphorizontal;
-	struct comOne *tempcomOne;
-	struct comOne *mover;
+	struct vertical *tempvertical;
+	struct vertical *mover;
 	int dep;
 
 	struct node *ptr;
@@ -69,71 +69,59 @@ struct comOne * createDataStr(struct node *head)
 	{
 	//write a loop to visit ech node in tree
 
-		dep=depthOfNode(head, ptr);
-		if(top==NULL)
+		dep = depthOfNode(head, ptr);
+
+		if( top == NULL)
 		{
-				top = (struct comOne*)malloc(sizeof(struct comOne) );
-				top->list=(struct horizontal*)malloc(sizeof(struct horizontal) );
-				top->list->ptr=ptr;
-				top->depth=dep;
-				top->next=NULL;
+				top = (struct vertical*)malloc(sizeof(struct vertical) );
+				top->depth = dep;
+				top->next = NULL;
+				top->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				top->list->ptr = ptr;
 				continue;
-
-
 		}
 		else
 		{
-			mover=top;
-			while(mover->depth>dep)
+			mover = top;
+			
+			while(mover->depth > dep)
 			{  
-				mover =mover->next;
+				mover = mover->next;
 				if(!mover)
 					break;
 			}
 
 			if(!mover)
 			{
-				tempcomOne=(struct comOne*)malloc(sizeof(struct comOne) );
-				tempcomOne->depth=dep;
-				temphorizontal=(struct horizontal*)malloc(sizeof(struct horizontal) );
-				temphorizontal->ptr=ptr;
-				temphorizontal->nextnode=NULL;
+				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
+				tempvertical->depth = dep;
+				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr = ptr;
+				temphorizontal->nextnode = NULL;
 
-				//insert tempcomOne a end of vertical link list
+				//insert tempvertical a end of vertical link list
 
 			}
-			else if(mover->depth==dep)
+			else if(mover->depth == dep)
 			{
-				temphorizontal=(struct horizontal*)malloc(sizeof(struct horizontal) );
-				temphorizontal->ptr=ptr;
-				temphorizontal->nextnode=mover->list;
-				mover->list=temphorizontal;
+				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr = ptr;
+				temphorizontal->nextnode = mover->list;
+				mover->list = temphorizontal;
 
 			}
 			else
 			{
-				//mover->depth<dep
-				tempcomOne=(struct comOne*)malloc(sizeof(struct comOne) );
-				tempcomOne->depth=dep;
-				temphorizontal=(struct horizontal*)malloc(sizeof(struct horizontal) );
-				temphorizontal->ptr=ptr;
-				temphorizontal->nextnode=NULL;
+				//mover->depth < dep
+				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
+				tempvertical->depth = dep;
+				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr = ptr;
+				temphorizontal->nextnode = NULL;
 
-				//insert tempcomOne infrot of mover in vertical link list
-
-
+				//insert tempvertical infrot of mover in vertical link list
 			}
-
-
-
-
 		}
-
-
-
 	}
-
-
-
 	return top;
 }
