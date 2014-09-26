@@ -32,13 +32,13 @@ struct vertex
 	struct vertex* left;
 	struct vertex* right;
 	struct node* aggNode;
-}
+};
 
 
-struct comTwo
-{ // horizontal
+struct horizontal
+{ 
 	struct node *ptr;
-	struct comTwo *nextnode;
+	struct horizontal *nextnode;
 };
 
 
@@ -46,7 +46,7 @@ struct comOne
 {
 	int depth;
 	struct comOne *next;
-	struct comTwo *list;
+	struct horizontal *list;
 };
 
 int main()
@@ -58,7 +58,7 @@ struct comOne * createDataStr(struct node *head)
 {
 
 	struct comOne* top=NULL;
-	struct comTwo *tempcomTwo;
+	struct horizontal *temphorizontal;
 	struct comOne *tempcomOne;
 	struct comOne *mover;
 	int dep;
@@ -73,7 +73,7 @@ struct comOne * createDataStr(struct node *head)
 		if(top==NULL)
 		{
 				top = (struct comOne*)malloc(sizeof(struct comOne) );
-				top->list=(struct comTwo*)malloc(sizeof(struct comTwo) );
+				top->list=(struct horizontal*)malloc(sizeof(struct horizontal) );
 				top->list->ptr=ptr;
 				top->depth=dep;
 				top->next=NULL;
@@ -95,19 +95,19 @@ struct comOne * createDataStr(struct node *head)
 			{
 				tempcomOne=(struct comOne*)malloc(sizeof(struct comOne) );
 				tempcomOne->depth=dep;
-				tempcomTwo=(struct comTwo*)malloc(sizeof(struct comTwo) );
-				tempcomTwo->ptr=ptr;
-				tempcomTwo->nextnode=NULL;
+				temphorizontal=(struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr=ptr;
+				temphorizontal->nextnode=NULL;
 
 				//insert tempcomOne a end of vertical link list
 
 			}
 			else if(mover->depth==dep)
 			{
-				tempcomTwo=(struct comTwo*)malloc(sizeof(struct comTwo) );
-				tempcomTwo->ptr=ptr;
-				tempcomTwo->nextnode=mover->list;
-				mover->list=tempcomTwo;
+				temphorizontal=(struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr=ptr;
+				temphorizontal->nextnode=mover->list;
+				mover->list=temphorizontal;
 
 			}
 			else
@@ -115,9 +115,9 @@ struct comOne * createDataStr(struct node *head)
 				//mover->depth<dep
 				tempcomOne=(struct comOne*)malloc(sizeof(struct comOne) );
 				tempcomOne->depth=dep;
-				tempcomTwo=(struct comTwo*)malloc(sizeof(struct comTwo) );
-				tempcomTwo->ptr=ptr;
-				tempcomTwo->nextnode=NULL;
+				temphorizontal=(struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr=ptr;
+				temphorizontal->nextnode=NULL;
 
 				//insert tempcomOne infrot of mover in vertical link list
 
