@@ -21,10 +21,10 @@ int main()
 {
 
 	int val=time(NULL);
-	//int MM;
+	int MM;
 	srand(val);
-	//for(MM=0;MM<5; MM++)
-	//{
+	for(MM=0;MM<5; MM++)
+{
 	int N, NN; // N is total number of nodes in the aggregation tree
 	int i, j;
 	int front, back;
@@ -35,7 +35,7 @@ int main()
 	struct vertex* commitmentTree;
 	struct node* queue[10000];
 
-	N = NN = 29;
+	N = NN = 200;
 	front =	back = 0;
 	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
 
@@ -127,21 +127,21 @@ int main()
 	
 	}
 
-	printTree(queue, back);
+	// printTree(queue, back);
 	
 	printf("\n\nNumber of nodes in tree = %d\n",countTree(queue[0]));
 	
-	for(i=0;i<back;i++)
-	{
-		// printf("Depth of the node %d = %d\n",queue[i]->id,depthOfNode(queue[0],queue[i]));
-	}	
+	// for(i=0;i<back;i++)
+	// {
+	// 	// printf("Depth of the node %d = %d\n",queue[i]->id,depthOfNode(queue[0],queue[i]));
+	// }	
 	
 	printf("\nfront %d   %d\n", front, back);
 	// free(root->arr);
 	
-	//}
-    //
-	//printf("%d times ok", MM);
+}
+    
+	printf("%d times ok", MM);
 	
 	return 0;
 }

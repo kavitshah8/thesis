@@ -51,6 +51,22 @@ struct vertical
 
 int main()
 {
+	front = back = 0;
+
+	while( front < NODES )
+	{
+		start = queue->arr[front];
+
+		for(i = 0; i < start->num_children; i++)
+		{
+			temp = start->arr[i];
+			createDataStr(temp);
+			back++;
+		}
+		
+		front++;
+	}
+
 	return 1;
 }
 
@@ -64,8 +80,10 @@ struct vertical* createDataStr(struct node *head)
 	int dep;
 
 	struct node *ptr;
-	
-	while(1)
+	struct node *start;
+	struct node *temp;
+
+	while( 1 )
 	{
 	//write a loop to visit ech node in tree
 
