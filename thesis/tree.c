@@ -19,65 +19,42 @@ void printTree(struct node**, int);
 
 int main()
 {
-
-	int val=time(NULL);
-	int MM;
-	srand(val);
-	// for(MM=0;MM<5; MM++)
-// {
 	int N, NN; // NN is total number of nodes in the aggregation tree
 						// N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
 	int front, back;
-	int num_children;
-	int max_nodes;
 	struct node* root;
 	struct node* iterator;
 	struct vertex* commitmentTree;
 	struct node* queue[10000];
 	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
 
+	srand(time(NULL));
+
 	N = NN = 200;
 	front =	back = 0;
 
-	// printf("time was %d\n\n", val);
-	
+	// Handling the root seperately 
 	root = iterator = queue[back] = (struct node*)malloc(sizeof(struct node));
 	iterator->id = back;
 	iterator->depth = 0;
 	iterator->parent = NULL;
 	back++;
 	N--;	
-	int count = 0;
 
 	while( front < NN )
 	{
-
-		start:
-			num_children = rand() % 4;
-
-		if( N  < num_children ){
-			printf("%d\n",count);
-			// printf("Trying to exceed total number of nodes in an aggregation tree\n");
-			count++;
-			goto start;
+	
+		if( back < NN )
+		{
+			iterator->num_children = rand() % 4;
 		}
-		
-		iterator->num_children = num_children;
+		else
+		{
+			iterator->num_children = 0;	
+		}
 
-		// Creates a palm tree
-		// if( N - num_children  < 0)
-		// {
-		// 	iterator->num_children = num_children;
-		// 	break;
-		// }
 
-		// if( back < NN ){
-		// 	iterator->num_children = num_children;
-		// }
-		
-		// printf("root depth %d  %p %p\n", root->depth, root, queue[0]);
-		
 		// Gives you a tree
 		if( iterator == root && iterator->num_children == 0 )
 		{
@@ -105,16 +82,14 @@ int main()
 					iterator->num_children = 1;
 			}
 		}
-
-		
-		if( ( ( N -  iterator->num_children ) < 0 ) && ( N == 0 ) )
-		{
-			// printf("Ass hole");
-			// continue;			
+	
+		if( N > 0 )
+		{		
+			N = N - iterator->num_children;
 		}
 		else
 		{
-			N = N - ( iterator->num_children );		
+			printf("Back is getting outside range\n");
 		}
 		
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
@@ -127,10 +102,9 @@ int main()
 			iterator->arr[i]->parent = iterator;
 			iterator->arr[i]->num_children=0;
 			iterator->arr[i]->arr=NULL;
-
 			queue[back] = iterator->arr[i];
-			back++;	
-		}
+			back++;
+		}				
 		
 		if( front > back )
 		{
@@ -142,23 +116,12 @@ int main()
 		front++;
 		iterator = queue[front];
 		
-		}
+	}
 
-		// printTree(queue, back);
-		
-		printf("\n\nNumber of nodes in tree = %d\n",countTree(queue[0]));
-		
-		// for(i=0;i<back;i++)
-		// {
-		// 	// printf("Depth of the node %d = %d\n",queue[i]->id,depthOfNode(queue[0],queue[i]));
-		// }	
-		
-		printf("\nfront %d   %d\n", front, back);
-		// free(root->arr);
-	
-// }
-    
-	printf("%d times ok", MM);
+	printTree(queue,front);
+	printf("\n Number of nodes in tree = %d\n",countTree(queue[0]));
+	printf("\n front %d   %d\n", front, back);
+	// free(root->arr);
 	
 	return 0;
 }
