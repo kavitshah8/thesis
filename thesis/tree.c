@@ -15,15 +15,15 @@ struct node
 
 struct horizontal
 { 
-	struct node *ptr;
-	struct horizontal *nextnode;
+	struct node* ptr;
+	struct horizontal* nextnode;
 };
 
 struct vertical
 {
 	int depth;
-	struct vertical *next;
-	struct horizontal *list;
+	struct vertical* next;
+	struct horizontal* list;
 };
 
 int countTree(struct node*);
@@ -272,6 +272,8 @@ struct vertical* createDataStr(struct node **queue, int nodes)
 				temphorizontal->nextnode = NULL;
 
 				//insert tempvertical infrot of mover in vertical link list
+				mover->next = tempvertical;
+				mover = tempvertical;
 			}
 		}
 	}
