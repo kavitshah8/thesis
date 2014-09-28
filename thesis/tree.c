@@ -42,6 +42,7 @@ int main()
 	back++;
 	N--;	
 
+	// while( N > 0 )
 	while( front < NN )
 	{
 	
@@ -61,7 +62,7 @@ int main()
 			iterator->num_children = 1;
 		}
 		else
-		{
+		{ // make sure left most child doesnot have 0 children and that make sure your tree does not break
 			if( iterator != root  && iterator->num_children == 0 )
 			{
 				int dep = 1 + (iterator->parent->depth);
@@ -83,6 +84,7 @@ int main()
 			}
 		}
 	
+		// malloc(0) should return NULL; 
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
 		
 		for( i=0; i < iterator->num_children; i++ )
@@ -91,8 +93,8 @@ int main()
 			iterator->arr[i]->id = back;
 			iterator->arr[i]->depth = iterator->depth + 1;
 			iterator->arr[i]->parent = iterator;
-			iterator->arr[i]->num_children=0;
-			iterator->arr[i]->arr=NULL;
+			iterator->arr[i]->num_children = 0;
+			iterator->arr[i]->arr = NULL;
 			queue[back] = iterator->arr[i];
 			back++;
 			N--;
@@ -110,8 +112,9 @@ int main()
 		
 	}
 
-	printTree(queue,front);
-	printf("\n Number of nodes in tree = %d\n",countTree(queue[0]));
+	printTree(queue,front); 
+	// printTree(queue,back); while( N > 0)
+	printf("\n Number of nodes in tree = %d\n",countTree(root));
 	printf("\n front = %d  back = %d N = %d\n", front, back, N);
 	// free(root->arr);
 	
