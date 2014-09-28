@@ -31,7 +31,7 @@ int main()
 
 	srand(time(NULL));
 
-	N = NN = 200;
+	N = NN = 20;
 	front =	back = 0;
 
 	// Handling the root seperately 
@@ -83,15 +83,6 @@ int main()
 			}
 		}
 	
-		if( N > 0 )
-		{		
-			N = N - iterator->num_children;
-		}
-		else
-		{
-			printf("Back is getting outside range\n");
-		}
-		
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
 		
 		for( i=0; i < iterator->num_children; i++ )
@@ -104,6 +95,7 @@ int main()
 			iterator->arr[i]->arr=NULL;
 			queue[back] = iterator->arr[i];
 			back++;
+			N--;
 		}				
 		
 		if( front > back )
@@ -120,7 +112,7 @@ int main()
 
 	printTree(queue,front);
 	printf("\n Number of nodes in tree = %d\n",countTree(queue[0]));
-	printf("\n front %d   %d\n", front, back);
+	printf("\n front = %d  back = %d N = %d\n", front, back, N);
 	// free(root->arr);
 	
 	return 0;
