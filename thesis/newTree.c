@@ -37,78 +37,68 @@ struct vertex
 
 struct horizontal
 { 
-	struct node *ptr;
-	struct horizontal *nextnode;
+	struct node* ptr;
+	struct horizontal* nextnode;
 };
 
 
 struct vertical
 {
 	int depth;
-	struct vertical *next;
-	struct horizontal *list;
+	struct vertical* next;
+	struct horizontal* list;
 };
 
 int main()
 {
-	front = back = 0;
-
-	while( front < NODES )
-	{
-		start = queue->arr[front];
-
-		for(i = 0; i < start->num_children; i++)
-		{
-			temp = start->arr[i];
-			createDataStr(temp);
-			back++;
-		}
-		
-		front++;
-	}
-
 	return 1;
 }
 
-struct vertical* createDataStr(struct node *head)
+struct vertical* createDataStr(struct node **queue, int nodes)
 {
 
-	struct vertical *top=NULL;
-	struct horizontal *temphorizontal;
-	struct vertical *tempvertical;
-	struct vertical *mover;
 	int dep;
+	int front;
+	
+	struct vertical* top = NULL;
+	struct vertical* tempvertical;
+	struct vertical* mover;
+	
+	struct horizontal* temphorizontal;
 
-	struct node *ptr;
-	struct node *start;
-	struct node *temp;
+	struct node* ptr;
+	struct node* head; 
 
-	while( 1 )
+	front = 0;
+	head = queue[front];
+
+	while(front < nodes)
 	{
-	//write a loop to visit ech node in tree
+		// ptr will be pointing to aggregation tree
+		ptr = queue[front];
+		front++;
 
 		dep = depthOfNode(head, ptr);
-
+		
 		if( top == NULL)
 		{
-				top = (struct vertical*)malloc(sizeof(struct vertical) );
+				top = (struct vertical*)malloc(sizeof(struct vertical));
 				top->depth = dep;
 				top->next = NULL;
 				top->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
 				top->list->ptr = ptr;
+				top->list->nextnode = NULL;
 				continue;
 		}
 		else
 		{
 			mover = top;
-			
 			while(mover->depth > dep)
 			{  
 				mover = mover->next;
 				if(!mover)
 					break;
 			}
-
 			if(!mover)
 			{
 				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
@@ -118,7 +108,6 @@ struct vertical* createDataStr(struct node *head)
 				temphorizontal->nextnode = NULL;
 
 				//insert tempvertical a end of vertical link list
-
 			}
 			else if(mover->depth == dep)
 			{
@@ -126,7 +115,6 @@ struct vertical* createDataStr(struct node *head)
 				temphorizontal->ptr = ptr;
 				temphorizontal->nextnode = mover->list;
 				mover->list = temphorizontal;
-
 			}
 			else
 			{
@@ -138,6 +126,8 @@ struct vertical* createDataStr(struct node *head)
 				temphorizontal->nextnode = NULL;
 
 				//insert tempvertical infrot of mover in vertical link list
+				mover->next = tempvertical;
+				mover = tempvertical;
 			}
 		}
 	}
