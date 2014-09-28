@@ -13,9 +13,23 @@ struct node
 	// struct label* label;
 };
 
-int countTree(struct node *head);
-int depthOfNode(struct node *head, struct node *ptr);
+struct horizontal
+{ 
+	struct node *ptr;
+	struct horizontal *nextnode;
+};
+
+struct vertical
+{
+	int depth;
+	struct vertical *next;
+	struct horizontal *list;
+};
+
+int countTree(struct node*);
+int depthOfNode(struct node*, struct node*);
 void printTree(struct node**, int);
+struct vertical* createDataStr(struct node**, int);
 
 int main()
 {
@@ -118,6 +132,8 @@ int main()
 	printf("\n front = %d  back = %d N = %d\n", front, back, N);
 	// free(root->arr);
 	
+	// createDataStr(queue, front);
+
 	return 0;
 }
 
