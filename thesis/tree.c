@@ -199,3 +199,81 @@ int depthOfNode(struct node *head, struct node *ptr)
 	
 	return dep;
 }
+
+struct vertical* createDataStr(struct node **queue, int nodes)
+{
+
+	int dep;
+	int front;
+	
+	struct vertical* top = NULL;
+	struct vertical* tempvertical;
+	struct vertical* mover;
+	
+	struct horizontal* temphorizontal;
+
+	struct node* ptr;
+	struct node* head; 
+
+	front = 0;
+	head = queue[front];
+
+	while(front < nodes)
+	{
+		// ptr will be pointing to aggregation tree
+		ptr = queue[front];
+		front++;
+
+		dep = depthOfNode(head, ptr);
+		
+		if( top == NULL)
+		{
+				top = (struct vertical*)malloc(sizeof(struct vertical) );
+				top->depth = dep;
+				top->next = NULL;
+				top->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				top->list->ptr = ptr;
+				top->list->nextnode = NULL;
+				continue;
+		}
+		else
+		{
+			mover = top;
+			while(mover->depth > dep)
+			{  
+				mover = mover->next;
+				if(!mover)
+					break;
+			}
+			if(!mover)
+			{
+				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
+				tempvertical->depth = dep;
+				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr = ptr;
+				temphorizontal->nextnode = NULL;
+
+				//insert tempvertical a end of vertical link list
+			}
+			else if(mover->depth == dep)
+			{
+				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr = ptr;
+				temphorizontal->nextnode = mover->list;
+				mover->list = temphorizontal;
+			}
+			else
+			{
+				//mover->depth < dep
+				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
+				tempvertical->depth = dep;
+				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal->ptr = ptr;
+				temphorizontal->nextnode = NULL;
+
+				//insert tempvertical infrot of mover in vertical link list
+			}
+		}
+	}
+	return top;
+}
