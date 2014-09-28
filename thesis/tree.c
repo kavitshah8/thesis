@@ -10,7 +10,7 @@ struct node
 	int num_children;
 	struct node* parent;
 	struct node** arr;
-	struct label* label;
+	// struct label* label;
 };
 
 int countTree(struct node *head);
@@ -23,9 +23,10 @@ int main()
 	int val=time(NULL);
 	int MM;
 	srand(val);
-	for(MM=0;MM<5; MM++)
-{
-	int N, NN; // N is total number of nodes in the aggregation tree
+	// for(MM=0;MM<5; MM++)
+// {
+	int N, NN; // NN is total number of nodes in the aggregation tree
+						// N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
 	int front, back;
 	int num_children;
@@ -34,10 +35,10 @@ int main()
 	struct node* iterator;
 	struct vertex* commitmentTree;
 	struct node* queue[10000];
+	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
 
 	N = NN = 200;
 	front =	back = 0;
-	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
 
 	// printf("time was %d\n\n", val);
 	
@@ -47,11 +48,22 @@ int main()
 	iterator->parent = NULL;
 	back++;
 	N--;	
+	int count = 0;
 
-	while( front<NN )
+	while( front < NN )
 	{
+
+		start:
+			num_children = rand() % 4;
+
+		if( N  < num_children ){
+			printf("%d\n",count);
+			// printf("Trying to exceed total number of nodes in an aggregation tree\n");
+			count++;
+			goto start;
+		}
 		
-		num_children = rand() % 4;
+		iterator->num_children = num_children;
 
 		// Creates a palm tree
 		// if( N - num_children  < 0)
@@ -60,86 +72,91 @@ int main()
 		// 	break;
 		// }
 
-		if( back < NN ){
-			iterator->num_children = num_children;
-		}
+		// if( back < NN ){
+		// 	iterator->num_children = num_children;
+		// }
 		
 		// printf("root depth %d  %p %p\n", root->depth, root, queue[0]);
 		
+		// Gives you a tree
 		if( iterator == root && iterator->num_children == 0 )
 		{
 			iterator->num_children = 1;
 		}
 		else
 		{
-			if(iterator !=root  && iterator->num_children == 0 )
+			if( iterator != root  && iterator->num_children == 0 )
 			{
-				int dep=1+iterator->parent->depth;
-				int sum=0;
-				int tt=0;
-		
-				while(tt<back)
+				int dep = 1 + (iterator->parent->depth);
+				int sum = 0;
+				int tt = 0;
+				while( tt < back )
 				{
-					if(queue[tt]->depth==dep)
+					if( queue[tt]->depth == dep )
 						break;
 					tt++;
 				}
-				while(tt<back)
+				while( tt < back )
 				{
-					sum+=queue[tt]->num_children;
+					sum += queue[tt]->num_children;
 					tt++;
 				}
-				if(!sum)
+				if( !sum ) 
 					iterator->num_children = 1;
 			}
 		}
 
-	if( N - ( iterator->num_children ) < 0)
-	{
-		N = N - ( iterator->num_children );
-		printf("Trying to exceed total number of nodes in an aggregation tree");
-	}
-	
-	iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
-	
-	for( i=0; i < iterator->num_children; i++ )
-	{
-		iterator->arr[i] = (struct node*)malloc( sizeof(struct node) ) ;
-		iterator->arr[i]->id = back;
-		iterator->arr[i]->depth = iterator->depth + 1;
-		iterator->arr[i]->parent = iterator;
-		iterator->arr[i]->num_children=0;
-		iterator->arr[i]->arr=NULL;
+		
+		if( ( ( N -  iterator->num_children ) < 0 ) && ( N == 0 ) )
+		{
+			// printf("Ass hole");
+			// continue;			
+		}
+		else
+		{
+			N = N - ( iterator->num_children );		
+		}
+		
+		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
+		
+		for( i=0; i < iterator->num_children; i++ )
+		{
+			iterator->arr[i] = (struct node*)malloc( sizeof(struct node) ) ;
+			iterator->arr[i]->id = back;
+			iterator->arr[i]->depth = iterator->depth + 1;
+			iterator->arr[i]->parent = iterator;
+			iterator->arr[i]->num_children=0;
+			iterator->arr[i]->arr=NULL;
 
-		queue[back] = iterator->arr[i];
-		back++;	
-	}
-	
-	if( front > back )
-	{
-		printf("Queue is not working as supposed to \n");
-		break;
-	}
-	
-	// printf("%p\n", queue[front]);
-	front++;
-	iterator = queue[front];
-	
-	}
+			queue[back] = iterator->arr[i];
+			back++;	
+		}
+		
+		if( front > back )
+		{
+			printf("Queue is not working as supposed to \n");
+			break;
+		}
+		
+		// printf("%p\n", queue[front]);
+		front++;
+		iterator = queue[front];
+		
+		}
 
-	// printTree(queue, back);
+		// printTree(queue, back);
+		
+		printf("\n\nNumber of nodes in tree = %d\n",countTree(queue[0]));
+		
+		// for(i=0;i<back;i++)
+		// {
+		// 	// printf("Depth of the node %d = %d\n",queue[i]->id,depthOfNode(queue[0],queue[i]));
+		// }	
+		
+		printf("\nfront %d   %d\n", front, back);
+		// free(root->arr);
 	
-	printf("\n\nNumber of nodes in tree = %d\n",countTree(queue[0]));
-	
-	// for(i=0;i<back;i++)
-	// {
-	// 	// printf("Depth of the node %d = %d\n",queue[i]->id,depthOfNode(queue[0],queue[i]));
-	// }	
-	
-	printf("\nfront %d   %d\n", front, back);
-	// free(root->arr);
-	
-}
+// }
     
 	printf("%d times ok", MM);
 	
