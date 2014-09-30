@@ -2,16 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-
-struct node
-{
-	int id;
-	int depth;
-	int num_children;
-	struct node* parent;
-	struct node** arr;
-	// struct label* label;
-};
+#include "../lib/util.h"
 
 struct horizontal
 { 
@@ -26,7 +17,6 @@ struct vertical
 	struct horizontal* list;
 };
 
-int countTree(struct node*);
 int depthOfNode(struct node*, struct node*);
 void printTree(struct node**, int);
 struct vertical* createDataStr(struct node**, int);
@@ -162,29 +152,6 @@ void printTree(struct node** arr, int total)
 			printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent's_id = %d || ", i, arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
 		}
 	}
-}
-
-int countTree(struct node *head)
-{
-	//count number of nodes in tree and return
-	int i, sum;
-	int num_children;
-
-	// printf("smiale\n");
-	// printf("%d\n",num_children);
-	sum = 1;
-	
-	if(!head)
-		return 0;
-
-	num_children = head->num_children;
-
-	for( i=0; i < num_children; i++)
-	{
-		sum += countTree(head->arr[i]);
-	}
-	
-	return sum;
 }
 
 int depthOfNode(struct node *head, struct node *ptr)
