@@ -4,25 +4,7 @@
 #include <math.h>
 #include "../lib/util.h"
 
-struct horizontal
-{ 
-	struct node* ptr;
-	struct horizontal* nextnode;
-};
-
-struct vertical
-{
-	int depth;
-	struct vertical* next;
-	struct horizontal* list;
-};
-
-int depthOfNode(struct node*, struct node*);
-void printTree(struct node**, int);
-struct vertical* createDataStr(struct node**, int);
-
-int main()
-{
+int main () {
 	int N, NN; // NN is total number of nodes in the aggregation tree
 						// N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
@@ -30,10 +12,11 @@ int main()
 	struct node* root;
 	struct node* iterator;
 	struct vertex* commitmentTree;
+	struct vertical* top;
 	struct node* queue[10000];
 	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
 
-	srand(time(NULL));
+	// srand(time(NULL));
 
 	N = NN = 20;
 	front =	back = 0;
@@ -122,127 +105,9 @@ int main()
 	printf("\n front = %d  back = %d N = %d\n", front, back, N);
 	// free(root->arr);
 	
-	// createDataStr(queue, front);
+	top = createDataStr(queue, front);
+	printDataStr(top);
+	printf("\n");
 
 	return 0;
-}
-
-void printTree(struct node** arr, int total)
-{
-	int i, temp, depth;
-	
-	depth = arr[0]->depth;
-	
-	for( i=0; i < total; i++ ){
-	
-		temp = arr[i]->depth;
-	
-		if( temp != depth )
-		{
-			depth = temp;
-			printf("\n \n");
-		}
-	
-		if( depth == 0 )
-		{
-			printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent = NULL || ", i, arr[i]->id, arr[i]->depth, arr[i]->num_children );
-		}
-		else
-		{
-			printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent's_id = %d || ", i, arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
-		}
-	}
-}
-
-int depthOfNode(struct node *head, struct node *ptr)
-{
-	int dep=0;
-	
-	while(ptr!=head)
-	{
-		ptr=ptr->parent;
-		dep++;
-	}
-	
-	return dep;
-}
-
-struct vertical* createDataStr(struct node **queue, int nodes)
-{
-
-	int dep;
-	int front;
-	
-	struct vertical* top = NULL;
-	struct vertical* tempvertical;
-	struct vertical* mover;
-	
-	struct horizontal* temphorizontal;
-
-	struct node* ptr;
-	struct node* head; 
-
-	front = 0;
-	head = queue[front];
-
-	while(front < nodes)
-	{
-		// ptr will be pointing to aggregation tree
-		ptr = queue[front];
-		front++;
-
-		dep = depthOfNode(head, ptr);
-		
-		if( top == NULL)
-		{
-				top = (struct vertical*)malloc(sizeof(struct vertical) );
-				top->depth = dep;
-				top->next = NULL;
-				top->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
-				top->list->ptr = ptr;
-				top->list->nextnode = NULL;
-				continue;
-		}
-		else
-		{
-			mover = top;
-			while(mover->depth > dep)
-			{  
-				mover = mover->next;
-				if(!mover)
-					break;
-			}
-			if(!mover)
-			{
-				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
-				tempvertical->depth = dep;
-				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
-				temphorizontal->ptr = ptr;
-				temphorizontal->nextnode = NULL;
-
-				//insert tempvertical a end of vertical link list
-			}
-			else if(mover->depth == dep)
-			{
-				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
-				temphorizontal->ptr = ptr;
-				temphorizontal->nextnode = mover->list;
-				mover->list = temphorizontal;
-			}
-			else
-			{
-				//mover->depth < dep
-				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
-				tempvertical->depth = dep;
-				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
-				temphorizontal->ptr = ptr;
-				temphorizontal->nextnode = NULL;
-
-				//insert tempvertical infrot of mover in vertical link list
-				mover->next = tempvertical;
-				mover = tempvertical;
-			}
-		}
-	}
-	return top;
 }
