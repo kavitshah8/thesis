@@ -4,7 +4,7 @@ Thesis
 #### Current
 
 * To generate commitment tree from given aggregation tree.
-* To use better distribution funciton for assigining children to parents as rand in C is highly biased.
+* To control the way back works, and make sure you do not generate more than N children.
 
 #### Future
 
