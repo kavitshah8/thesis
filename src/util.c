@@ -94,10 +94,10 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 		
 		if (top == NULL)
 		{
-				top = (struct vertical*)malloc(sizeof(struct vertical) );
+				top = (struct vertical*)malloc(sizeof(struct vertical));
 				top->depth = dep;
 				top->next = NULL;
-				top->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				top->list = (struct horizontal*)malloc(sizeof(struct horizontal));
 				top->list->ptr = ptr;
 				top->list->next = NULL;
 				continue;
@@ -106,9 +106,9 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 		{
 			if (top->depth < dep)
 			{
-				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
+				tempvertical = (struct vertical*)malloc(sizeof(struct vertical));
 				tempvertical->depth = dep;
-				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal));
 				tempvertical->list->ptr = ptr;
 				tempvertical->list->next = NULL;
 				tempvertical->next = top;
@@ -124,9 +124,9 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 			}
 			if (!mover)
 			{
-				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
+				tempvertical = (struct vertical*)malloc(sizeof(struct vertical));
 				tempvertical->depth = dep;
-				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal));
 				tempvertical->list->ptr = ptr;
 				tempvertical->list->next = NULL;
 
@@ -136,7 +136,7 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 			}
 			else if (mover->depth == dep)
 			{
-				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal));
 				temphorizontal->ptr = ptr;
 				temphorizontal->next = mover->list;
 				mover->list = temphorizontal;
@@ -146,15 +146,15 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 			{	
 				struct vertical* previous;
 				//mover->depth < dep
-				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
+				tempvertical = (struct vertical*)malloc(sizeof(struct vertical));
 				tempvertical->depth = dep;
-				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
+				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal));
 				tempvertical->list->ptr = ptr;
 				tempvertical->list->next = NULL;
 
 				//insert tempvertical infrot of mover in vertical link list
 				tempvertical->next = mover;
-				previous = findPrevious(top,mover);				
+				previous = findPrevious(top, mover);				
 				previous->next = tempvertical;
 			}
 		}
