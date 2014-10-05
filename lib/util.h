@@ -1,6 +1,7 @@
 #pragma once
 
-struct node {
+struct node 
+{
 	int id;
 	int depth;
 	int num_children;
@@ -9,12 +10,14 @@ struct node {
 	// struct label* label;
 };
 
-struct horizontal { 
+struct horizontal 
+{ 
 	struct node* ptr;
-	struct horizontal* nextnode;
+	struct horizontal* next;
 };
 
-struct vertical {
+struct vertical 
+{
 	int depth;
 	struct vertical* next;
 	struct horizontal* list;

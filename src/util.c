@@ -1,7 +1,7 @@
 #include "../lib/util.h"
 #include <stdio.h>
 
-int countTree(struct node *head)
+int countTree (struct node *head)
 {
 	//count number of nodes in tree and return
 	int i, sum;
@@ -24,11 +24,11 @@ int countTree(struct node *head)
 	return sum;
 }
 
-int depthOfNode(struct node *head, struct node *ptr)
+int depthOfNode (struct node *head, struct node *ptr)
 {
 	int dep=0;
 	
-	while(ptr!=head)
+	while (ptr != head)
 	{
 		ptr=ptr->parent;
 		dep++;
@@ -37,23 +37,26 @@ int depthOfNode(struct node *head, struct node *ptr)
 	return dep;
 }
 
-void printTree(struct node** arr, int total)
+void printTree (struct node** arr, int total)
 {
 	int i, temp, depth;
 	
+	printf("\n\nPrinting aggregationTree : \n\n");
+
 	depth = arr[0]->depth;
 	
-	for( i=0; i < total; i++ ){
+	for (i=0; i < total; i++)
+	{
 	
 		temp = arr[i]->depth;
 	
-		if( temp != depth )
+		if (temp != depth)
 		{
 			depth = temp;
 			printf("\n \n");
 		}
 	
-		if( depth == 0 )
+		if (depth == 0)
 		{
 			printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent = NULL || ", i, arr[i]->id, arr[i]->depth, arr[i]->num_children );
 		}
@@ -81,7 +84,7 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 	front = 0;
 	head = queue[front];
 
-	while(front < nodes)
+	while (front < nodes)
 	{
 		// ptr will be pointing to aggregation tree
 		ptr = queue[front];
@@ -89,53 +92,53 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 
 		dep = depthOfNode(head, ptr);
 		
-		if( top == NULL)
+		if (top == NULL)
 		{
 				top = (struct vertical*)malloc(sizeof(struct vertical) );
 				top->depth = dep;
 				top->next = NULL;
 				top->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
 				top->list->ptr = ptr;
-				top->list->nextnode = NULL;
+				top->list->next = NULL;
 				continue;
 		}
 		else
 		{
-			if( top->depth < dep )
+			if (top->depth < dep)
 			{
 				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
 				tempvertical->depth = dep;
 				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
 				tempvertical->list->ptr = ptr;
-				tempvertical->list->nextnode = NULL;
+				tempvertical->list->next = NULL;
 				tempvertical->next = top;
 				top = tempvertical;
 				continue;
 			}
 			mover = top;
-			while(mover->depth > dep)
+			while (mover->depth > dep)
 			{  
 				mover = mover->next;
-				if(!mover)
+				if (!mover)
 					break;
 			}
-			if(!mover)
+			if (!mover)
 			{
 				tempvertical = (struct vertical*)malloc(sizeof(struct vertical) );
 				tempvertical->depth = dep;
 				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
 				tempvertical->list->ptr = ptr;
-				tempvertical->list->nextnode = NULL;
+				tempvertical->list->next = NULL;
 
 				//insert tempvertical a end of vertical link list
 				tempvertical->next = mover->next;
 				mover->next = tempvertical;
 			}
-			else if(mover->depth == dep)
+			else if (mover->depth == dep)
 			{
 				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal) );
 				temphorizontal->ptr = ptr;
-				temphorizontal->nextnode = mover->list;
+				temphorizontal->next = mover->list;
 				mover->list = temphorizontal;
 
 			}
@@ -147,7 +150,7 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 				tempvertical->depth = dep;
 				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal) );
 				tempvertical->list->ptr = ptr;
-				tempvertical->list->nextnode = NULL;
+				tempvertical->list->next = NULL;
 
 				//insert tempvertical infrot of mover in vertical link list
 				tempvertical->next = mover;
@@ -159,30 +162,32 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 	return top;
 }
 
-struct vertical* findPrevious(struct vertical* head, struct vertical* target)
+struct vertical* findPrevious (struct vertical* head, struct vertical* target)
 {
 	struct vertical* walker;
 
 	walker = head;
 	
-	while(walker->next != target)
+	while (walker->next != target)
 	{
 		walker = walker->next;
 	}
 	return walker;
 }
 
-void printDataStr(struct vertical* top)
+void printDataStr (struct vertical* top)
 {
 	struct horizontal* temp;
 
-	while(top!=NULL)
+	printf("\n\nPrinting createDataStr : \n\n");
+
+	while (top != NULL)
 	{
 		temp = top->list;
-		while( temp != NULL)
+		while (temp != NULL)
 		{
 			printf("depth = %d num_children = %d \t",temp->ptr->depth, temp->ptr->num_children);
-			temp = temp->nextnode;
+			temp = temp->next;
 		}
 		printf("\n");
 		top = top->next;
