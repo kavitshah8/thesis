@@ -58,11 +58,11 @@ void printTree (struct node** arr, int total)
 	
 		if (depth == 0)
 		{
-			printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent = NULL || ", i, arr[i]->id, arr[i]->depth, arr[i]->num_children );
+			printf("Node's id = %d depth = %d num_children = %d parent = NULL || ", arr[i]->id, arr[i]->depth, arr[i]->num_children );
 		}
 		else
 		{
-			printf("( Index %d ) Node's id = %d depth = %d num_children = %d parent's_id = %d || ", i, arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
+			printf("Node's id = %d depth = %d num_children = %d parent's_id = %d || ", arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
 		}
 	}
 }
@@ -189,7 +189,7 @@ void printDataStr (struct vertical* top)
 			printf("depth = %d num_children = %d \t",temp->ptr->depth, temp->ptr->num_children);
 			temp = temp->next;
 		}
-		printf("\n");
+		printf("\n\n");
 		top = top->next;
 	}
 }

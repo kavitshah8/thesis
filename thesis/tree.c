@@ -10,7 +10,7 @@ int main ()
 	int N, NN; // NN is total number of nodes in the aggregation tree
 						// N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
-	int front, back;
+	int front, back, middle;
 	struct node* root;
 	struct node* iterator;
 	struct vertex* commitmentTree;
@@ -20,8 +20,8 @@ int main ()
 
 	srand(time(NULL));
 
-	N = NN = 20;
-	front =	back = 0;
+	N = NN = 200;
+	front =	back = middle = 0;
 
 	// Handling the root seperately 
 	root = iterator = queue[back] = (struct node*)malloc(sizeof(struct node));
@@ -35,7 +35,7 @@ int main ()
 	while (front < NN)
 	{
 	
-		if (back < NN)
+		if (middle < NN)
 		{
 			iterator->num_children = rand() % 4;
 		}
@@ -73,11 +73,19 @@ int main ()
 				}
 				if (!sum)
 				{
-					iterator->num_children = 1;					
+					if (middle < NN)
+					{
+						iterator->num_children = 1;							
+					}
 				} 
 			}
 		}
 	
+		for (i = 0; i < iterator->num_children; i++)
+		{
+			middle++;
+		}
+
 		// malloc(0) should return NULL; 
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
 		
