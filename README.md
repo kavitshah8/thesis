@@ -1,6 +1,13 @@
 Thesis
 =====
 
+#### Execute files
+```
+cd thesis
+gcc tree.c ../src/util.c
+./a.out
+```
+
 #### Current
 
 * To generate commitment tree from given aggregation tree.
