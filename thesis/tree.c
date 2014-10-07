@@ -77,7 +77,7 @@ int main ()
 				} 
 			}
 		}
-	
+		
 		// malloc(0) should return NULL; 
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
 		
