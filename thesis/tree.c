@@ -77,6 +77,7 @@ int main ()
 					{
 						iterator->num_children = 1;							
 					}
+
 				} 
 			}
 		}
