@@ -8,17 +8,16 @@ int main ()
 {
 	
 	int N, NN; // NN is total number of nodes in the aggregation tree
-						// N is the toal number of remaining nodes in the aggregation tree generation
+			   // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
 	int front, back, middle;
 	struct node* root;
 	struct node* iterator;
-	struct vertex* commitmentTree;
-	struct vertical* top;
 	struct node* queue[10000];
 	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
+	struct vertical* top;
 
-	srand(time(NULL));
+	// srand(time(NULL));
 
 	N = NN = 20;
 	front =	back = middle = 0;
