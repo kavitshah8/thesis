@@ -23,6 +23,12 @@ struct vertical
 	struct horizontal* list;
 };
 
+struct commitmentTreeNode
+{
+	int height;
+	struct node* ptr;	 
+};
+
 int countTree (struct node*);
 int depthOfNode (struct node*, struct node*);
 void printTree (struct node**, int);

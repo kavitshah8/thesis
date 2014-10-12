@@ -20,7 +20,7 @@ int main ()
 
 	srand(time(NULL));
 
-	N = NN = 200;
+	N = NN = 20;
 	front =	back = middle = 0;
 
 	// Handling the root seperately 

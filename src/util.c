@@ -11,12 +11,12 @@ int countTree (struct node *head)
 	// printf("%d\n",num_children);
 	sum = 1;
 	
-	if(!head)
+	if (!head)
 		return 0;
 
 	num_children = head->num_children;
 
-	for( i=0; i < num_children; i++)
+	for ( i=0; i < num_children; i++)
 	{
 		sum += countTree(head->arr[i]);
 	}
@@ -26,11 +26,11 @@ int countTree (struct node *head)
 
 int depthOfNode (struct node *head, struct node *ptr)
 {
-	int dep=0;
+	int dep = 0;
 	
 	while (ptr != head)
 	{
-		ptr=ptr->parent;
+		ptr = ptr->parent;
 		dep++;
 	}
 	
