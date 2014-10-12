@@ -2,12 +2,21 @@ Thesis
 =====
 
 #### Execute files
+Single step compilation
 ```
 cd thesis
 gcc tree.c ../src/util.c
 ./a.out
 ```
 
+Multiple step compilation
+```
+cd thesis
+gcc -c src/util.c
+gcc -c thesis/tree.c
+gcc tree.o util.o -o tree
+./tree
+```
 #### Current
 
 * To generate commitment tree from given aggregation tree.
