@@ -114,10 +114,10 @@ int main ()
 		
 	}
 
-	printTree(queue, front); 
-	// printTree(queue,back); while( N > 0)
 	printf("\n Number of nodes in tree = %d\n",countTree(root));
 	printf("\n front = %d  back = %d N = %d\n", front, back, N);
+	printTree(queue, front); 
+	// printTree(queue,back); while( N > 0)
 	// free(root->arr);
 	
 	top = createDataStr(queue, front);

@@ -26,7 +26,10 @@ struct vertical
 struct commitmentTreeNode
 {
 	int height;
-	struct node* ptr;	 
+	struct node* ptrToAggregationNode;
+	struct commitmentTreeNode* leftChild;
+	struct commitmentTreeNode* rightChild;	 
+	struct commitmentTreeNode* parent;	 
 };
 
 int countTree (struct node*);
@@ -35,4 +38,4 @@ void printTree (struct node**, int);
 
 struct vertical* createDataStr (struct node**, int);
 struct vertical* findPrevious (struct vertical*, struct vertical*);
-void printDataStr(struct vertical*);
+void printDataStr (struct vertical*);
