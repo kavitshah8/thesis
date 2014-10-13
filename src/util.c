@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int countTree (struct node *head)
+int countTree (struct aggregationTreeNode *head)
 {
 	//count number of nodes in tree and return
 	int i, sum;
@@ -25,7 +25,7 @@ int countTree (struct node *head)
 	return sum;
 }
 
-int depthOfNode (struct node *head, struct node *ptr)
+int depthOfNode (struct aggregationTreeNode *head, struct aggregationTreeNode *ptr)
 {
 	int dep = 0;
 	
@@ -38,7 +38,7 @@ int depthOfNode (struct node *head, struct node *ptr)
 	return dep;
 }
 
-void printTree (struct node** arr, int total)
+void printTree (struct aggregationTreeNode** arr, int total)
 {
 	int i, temp, depth;
 	
@@ -68,7 +68,7 @@ void printTree (struct node** arr, int total)
 	}
 }
 
-struct verticalDataStr* createDataStr (struct node **queue, int nodes) 
+struct verticalDataStr* createDataStr (struct aggregationTreeNode **queue, int nodes) 
 {
 
 	int dep;
@@ -80,8 +80,8 @@ struct verticalDataStr* createDataStr (struct node **queue, int nodes)
 	
 	struct horizontalDataStr* temphorizontalDataStr;
 
-	struct node* ptr;
-	struct node* head; 
+	struct aggregationTreeNode* ptr;
+	struct aggregationTreeNode* head; 
 
 	front = 0;
 	head = queue[front];
