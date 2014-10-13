@@ -1,5 +1,6 @@
 #include "../lib/util.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int countTree (struct node *head)
 {

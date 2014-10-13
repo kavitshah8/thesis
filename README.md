@@ -5,7 +5,7 @@ Thesis
 Single step compilation
 ```
 cd thesis
-gcc tree.c ../src/util.c
+gcc main.c ../src/util.c
 ./a.out
 ```
 
@@ -13,9 +13,9 @@ Multiple step compilation
 ```
 cd thesis
 gcc -c src/util.c
-gcc -c thesis/tree.c
-gcc tree.o util.o -o tree
-./tree
+gcc -c thesis/main.c
+gcc main.o util.o -o main
+./main
 ```
 #### Current
 

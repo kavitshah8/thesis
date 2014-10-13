@@ -81,10 +81,7 @@ int main ()
 			}
 		}
 	
-		for (i = 0; i < iterator->num_children; i++)
-		{
-			middle++;
-		}
+		middle += iterator->num_children;
 
 		// malloc(0) should return NULL; 
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;

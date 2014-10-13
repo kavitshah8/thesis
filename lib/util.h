@@ -7,6 +7,7 @@ struct node
 	int num_children;
 	struct node* parent;
 	struct node** arr;
+  struct commitmentTreeNode* myForests;   //my forest comming  to me
 	// struct label* label;
 };
 
@@ -26,10 +27,13 @@ struct vertical
 struct commitmentTreeNode
 {
 	int height;
+  struct data* label;
+  struct signatureData* myforestsignatures;
 	struct node* ptrToAggregationNode;
 	struct commitmentTreeNode* leftChild;
 	struct commitmentTreeNode* rightChild;	 
 	struct commitmentTreeNode* parent;	 
+	struct commitmentTreeNode* nextTree; // this is my linked list
 };
 
 int countTree (struct node*);
