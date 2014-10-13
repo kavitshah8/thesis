@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "../lib/util.h"
+#include "../header_files/util.h"
 
 int main () 
 {
@@ -15,7 +15,7 @@ int main ()
 	struct node* iterator;
 	struct node* queue[10000];
 	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
-	struct vertical* top;
+	struct verticalDataStr* top;
 
 	// srand(time(NULL));
 

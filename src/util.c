@@ -1,4 +1,4 @@
-#include "../lib/util.h"
+#include "../header_files/util.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -68,16 +68,17 @@ void printTree (struct node** arr, int total)
 	}
 }
 
-struct vertical* createDataStr (struct node **queue, int nodes) {
+struct verticalDataStr* createDataStr (struct node **queue, int nodes) 
+{
 
 	int dep;
 	int front;
 	
-	struct vertical* top = NULL;
-	struct vertical* tempvertical;
-	struct vertical* mover;
+	struct verticalDataStr* top = NULL;
+	struct verticalDataStr* tempverticalDataStr;
+	struct verticalDataStr* mover;
 	
-	struct horizontal* temphorizontal;
+	struct horizontalDataStr* temphorizontalDataStr;
 
 	struct node* ptr;
 	struct node* head; 
@@ -95,10 +96,10 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 		
 		if (top == NULL)
 		{
-				top = (struct vertical*)malloc(sizeof(struct vertical));
+				top = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
 				top->depth = dep;
 				top->next = NULL;
-				top->list = (struct horizontal*)malloc(sizeof(struct horizontal));
+				top->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
 				top->list->ptr = ptr;
 				top->list->next = NULL;
 				continue;
@@ -107,13 +108,13 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 		{
 			if (top->depth < dep)
 			{
-				tempvertical = (struct vertical*)malloc(sizeof(struct vertical));
-				tempvertical->depth = dep;
-				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal));
-				tempvertical->list->ptr = ptr;
-				tempvertical->list->next = NULL;
-				tempvertical->next = top;
-				top = tempvertical;
+				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
+				tempverticalDataStr->depth = dep;
+				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list->ptr = ptr;
+				tempverticalDataStr->list->next = NULL;
+				tempverticalDataStr->next = top;
+				top = tempverticalDataStr;
 				continue;
 			}
 			mover = top;
@@ -125,47 +126,47 @@ struct vertical* createDataStr (struct node **queue, int nodes) {
 			}
 			if (!mover)
 			{
-				tempvertical = (struct vertical*)malloc(sizeof(struct vertical));
-				tempvertical->depth = dep;
-				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal));
-				tempvertical->list->ptr = ptr;
-				tempvertical->list->next = NULL;
+				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
+				tempverticalDataStr->depth = dep;
+				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list->ptr = ptr;
+				tempverticalDataStr->list->next = NULL;
 
-				//insert tempvertical a end of vertical link list
-				tempvertical->next = mover->next;
-				mover->next = tempvertical;
+				//insert tempverticalDataStr a end of verticalDataStr link list
+				tempverticalDataStr->next = mover->next;
+				mover->next = tempverticalDataStr;
 			}
 			else if (mover->depth == dep)
 			{
-				temphorizontal = (struct horizontal*)malloc(sizeof(struct horizontal));
-				temphorizontal->ptr = ptr;
-				temphorizontal->next = mover->list;
-				mover->list = temphorizontal;
+				temphorizontalDataStr = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				temphorizontalDataStr->ptr = ptr;
+				temphorizontalDataStr->next = mover->list;
+				mover->list = temphorizontalDataStr;
 
 			}
 			else
 			{	
-				struct vertical* previous;
+				struct verticalDataStr* previous;
 				//mover->depth < dep
-				tempvertical = (struct vertical*)malloc(sizeof(struct vertical));
-				tempvertical->depth = dep;
-				tempvertical->list = (struct horizontal*)malloc(sizeof(struct horizontal));
-				tempvertical->list->ptr = ptr;
-				tempvertical->list->next = NULL;
+				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
+				tempverticalDataStr->depth = dep;
+				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list->ptr = ptr;
+				tempverticalDataStr->list->next = NULL;
 
-				//insert tempvertical infrot of mover in vertical link list
-				tempvertical->next = mover;
+				//insert tempverticalDataStr infrot of mover in verticalDataStr link list
+				tempverticalDataStr->next = mover;
 				previous = findPrevious(top, mover);				
-				previous->next = tempvertical;
+				previous->next = tempverticalDataStr;
 			}
 		}
 	}
 	return top;
 }
 
-struct vertical* findPrevious (struct vertical* head, struct vertical* target)
+struct verticalDataStr* findPrevious (struct verticalDataStr* head, struct verticalDataStr* target)
 {
-	struct vertical* walker;
+	struct verticalDataStr* walker;
 
 	walker = head;
 	
@@ -176,9 +177,9 @@ struct vertical* findPrevious (struct vertical* head, struct vertical* target)
 	return walker;
 }
 
-void printDataStr (struct vertical* top)
+void printDataStr (struct verticalDataStr* top)
 {
-	struct horizontal* temp;
+	struct horizontalDataStr* temp;
 
 	printf("\n\nPrinting createDataStr : \n\n");
 

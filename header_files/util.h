@@ -11,17 +11,17 @@ struct node
 	// struct label* label;
 };
 
-struct horizontal 
+struct horizontalDataStr 
 { 
 	struct node* ptr;
-	struct horizontal* next;
+	struct horizontalDataStr* next;
 };
 
-struct vertical 
+struct verticalDataStr 
 {
 	int depth;
-	struct vertical* next;
-	struct horizontal* list;
+	struct verticalDataStr* next;
+	struct horizontalDataStr* list;
 };
 
 struct commitmentTreeNode
@@ -40,6 +40,6 @@ int countTree (struct node*);
 int depthOfNode (struct node*, struct node*);
 void printTree (struct node**, int);
 
-struct vertical* createDataStr (struct node**, int);
-struct vertical* findPrevious (struct vertical*, struct vertical*);
-void printDataStr (struct vertical*);
+struct verticalDataStr* createDataStr (struct node**, int);
+struct verticalDataStr* findPrevious (struct verticalDataStr*, struct verticalDataStr*);
+void printDataStr (struct verticalDataStr*);
