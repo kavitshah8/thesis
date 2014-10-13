@@ -2,27 +2,25 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "../lib/util.h"
+#include "../header_files/util.h"
 
 int main () 
 {
 	
 	int N, NN; // NN is total number of nodes in the aggregation tree
-						// N is the toal number of remaining nodes in the aggregation tree generation
+			   // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
-	int front, back;
+	int front, back, middle;
 	struct node* root;
 	struct node* iterator;
-	struct vertex* commitmentTree;
-	struct vertical* top;
 	struct node* queue[10000];
-	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );=======
-
+	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
+	struct verticalDataStr* top;
 
 	// srand(time(NULL));
 
 	N = NN = 20;
-	front =	back = 0;
+	front =	back = middle = 0;
 
 	// Handling the root seperately 
 	root = iterator = queue[back] = (struct node*)malloc(sizeof(struct node));
@@ -36,7 +34,7 @@ int main ()
 	while (front < NN)
 	{
 	
-		if (back < NN)
+		if (middle < NN)
 		{
 			iterator->num_children = rand() % 4;
 		}
@@ -73,11 +71,17 @@ int main ()
 				}
 				if (!sum)
 				{
-					iterator->num_children = 1;					
+					if (middle < NN)
+					{
+						iterator->num_children = 1;							
+					}
+
 				} 
 			}
 		}
-		
+	
+		middle += iterator->num_children;
+
 		// malloc(0) should return NULL; 
 		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
 		
@@ -106,10 +110,10 @@ int main ()
 		
 	}
 
-	printTree(queue, front); 
-	// printTree(queue,back); while( N > 0)
 	printf("\n Number of nodes in tree = %d\n",countTree(root));
 	printf("\n front = %d  back = %d N = %d\n", front, back, N);
+	printTree(queue, front); 
+	// printTree(queue,back); while( N > 0)
 	// free(root->arr);
 	
 	top = createDataStr(queue, front);

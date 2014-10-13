@@ -1,6 +1,22 @@
 Thesis
 =====
 
+#### To simulte the protocol 
+Single step compilation
+```
+cd thesis
+gcc main.c ../src/util.c
+./a.out
+```
+
+Multiple step compilation
+```
+cd thesis
+gcc -c src/util.c
+gcc -c thesis/main.c
+gcc main.o util.o -o main
+./main
+```
 #### Current
 
 * To generate commitment tree from given aggregation tree.
