@@ -21,6 +21,7 @@ gcc main.o util.o -o main
 
 * To generate commitment tree from given aggregation tree.
 * To control the way back works, and make sure you do not generate more than N children.
+* printDataStr second last row shows error
 
 #### Future
 
