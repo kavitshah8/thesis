@@ -1,7 +1,7 @@
 Thesis
 =====
 
-#### Execute files
+#### To simulte the protocol 
 Single step compilation
 ```
 cd thesis
