@@ -6,9 +6,14 @@
 
 int main () 
 {
-	
+	int MM;
+	srand(time(NULL));
+
+	for (MM = 0; MM < 5; MM++)
+	{
+
 	int N, NN; // NN is total number of nodes in the aggregation tree
-			   // N is the toal number of remaining nodes in the aggregation tree generation
+			   		// N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
 	int front, back, middle;
 	struct aggregationTreeNode* root;
@@ -20,7 +25,7 @@ int main ()
 	// srand(time(NULL));
 
 	N = NN = 20;
-	front =	back = middle = 0;
+	front =	back = 0;
 
 	// Handling the root seperately 
 	root = iterator = queue[back] = (struct aggregationTreeNode*)malloc(sizeof(struct aggregationTreeNode));
@@ -31,18 +36,19 @@ int main ()
 	N--;	
 
 	// while( N > 0 )
-	while (front < NN)
+	// while (back < NN)
+	while(front < NN)
 	{
 	
-		if (middle < NN)
-		{
-			iterator->num_children = rand() % 4;
-		}
-		else
-		{
-			iterator->num_children = 0;	
-		}
+		iterator->num_children = rand() % 4;
 
+		if (N < iterator->num_children)
+		{
+			while (N < iterator->num_children)
+			{
+				iterator->num_children = rand() % 4;
+			}
+		}
 
 		// Gives you a tree
 		if (iterator == root && iterator->num_children == 0)
@@ -72,17 +78,18 @@ int main ()
 				}
 				if (!sum)
 				{
-					if (middle < NN)
+					iterator->num_children = 1;
+					if (N < iterator->num_children)
 					{
-						iterator->num_children = 1;							
-					}
-
+						while (N < iterator->num_children)
+						{
+							iterator->num_children = rand() % 4;
+						}
+					}								
 				} 
 			}
 		}
 	
-		middle += iterator->num_children;
-
 		// malloc(0) should return NULL; 
 		iterator->arr = (struct aggregationTreeNode**)malloc( sizeof(struct aggregationTreeNode*) * iterator->num_children ) ;
 		
@@ -105,21 +112,33 @@ int main ()
 			break;
 		}
 		
-		// printf("%p\n", queue[front]);
 		front++;
 		iterator = queue[front];
 		
 	}
 
-	printf("\n Number of nodes in tree = %d\n",countTree(root));
-	printf("\n front = %d  back = %d N = %d\n", front, back, N);
-	printTree(queue, front); 
-	// printTree(queue,back); while( N > 0)
+	printf("\nNumber of nodes in tree = %d\n",countTree(root));
+
+	if (front == back)
+	{
+		if (front == NN) 
+		printf("front == back == NN :) \n");
+	}
+
+	printf("\nfront = %d  back = %d N = %d\n", front, back, N);
+	
+	printTree(queue, back); 
 	// free(root->arr);
 	
-	top = createDataStr(queue, front);
+	top = createDataStr(queue, back);
+
 	printDataStr(top);
+
 	printf("\n");
 
+	}
+	
+	printf("%d times OK\n",MM);
+	
 	return 0;
 }
