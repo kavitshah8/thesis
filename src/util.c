@@ -59,11 +59,11 @@ void printTree (struct aggregationTreeNode** arr, int total)
 	
 		if (depth == 0)
 		{
-			printf("Node's id = %d depth = %d num_children = %d parent = NULL || ", arr[i]->id, arr[i]->depth, arr[i]->num_children );
+			printf("id = %d, depth = %d, num_children = %d, parent = NULL || ", arr[i]->id, arr[i]->depth, arr[i]->num_children );
 		}
 		else
 		{
-			printf("Node's id = %d depth = %d num_children = %d parent's_id = %d || ", arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
+			printf("id = %d, depth = %d, num_children = %d, parent's_id = %d || ", arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
 		}
 	}
 }
