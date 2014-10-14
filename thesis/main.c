@@ -115,10 +115,8 @@ int main ()
 	printf("front = %d  back = %d N = %d\n\n", front, back, N);
 
 	if (front == back)
-	{
 		if (front == NODES) 
-		printf("front == back == NODES :) \n\n");
-	}
+			printf("front == back == NODES :) \n\n");
 	
 	printf("Traversing tree using DFS-post order\n\n");
 	printTree(root); 
