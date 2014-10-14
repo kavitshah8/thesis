@@ -38,10 +38,7 @@ int main ()
 
 		if (N < iterator->num_children)
 		{
-			while (N < iterator->num_children)
-			{
-				iterator->num_children = rand() % 4;
-			}
+			iterator->num_children = rand() % N;
 		}
 
 		// Gives you a tree
@@ -75,10 +72,7 @@ int main ()
 					iterator->num_children = 1;
 					if (N < iterator->num_children)
 					{
-						while (N < iterator->num_children)
-						{
-							iterator->num_children = rand() % 4;
-						}
+						iterator->num_children = rand() % N;
 					}								
 				} 
 			}
