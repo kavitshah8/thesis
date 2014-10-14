@@ -4,7 +4,8 @@
 #include <math.h>
 #include "../header_files/util.h"
 
-# define NODES 20
+#define NODES 20
+#define DIVISOR 4
 
 int main () 
 {
@@ -34,7 +35,7 @@ int main ()
 	while(front < NODES)
 	{
 	
-		iterator->num_children = rand() % 4;
+		iterator->num_children = rand() % DIVISOR;
 
 		if (N < iterator->num_children)
 		{
