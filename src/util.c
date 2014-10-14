@@ -38,34 +38,27 @@ int depthOfNode (struct aggregationTreeNode *head, struct aggregationTreeNode *p
 	return dep;
 }
 
-void printTree (struct aggregationTreeNode** arr, int total)
+void printTree (struct aggregationTreeNode* iterator)
 {
-	int i, temp, depth;
+	int i = 0;
 	
-	printf("\n\nPrinting aggregationTree : \n\n");
-
-	depth = arr[0]->depth;
-	
-	for (i=0; i < total; i++)
+	if (iterator != NULL)
 	{
-	
-		temp = arr[i]->depth;
-	
-		if (temp != depth)
+		for (i = 0; i < iterator->num_children; i++)
 		{
-			depth = temp;
-			printf("\n \n");
+			printTree(iterator->arr[i]);
 		}
-	
-		if (depth == 0)
+
+		if (iterator->depth == 0)
 		{
-			printf("id = %d, depth = %d, num_children = %d, parent = NULL || ", arr[i]->id, arr[i]->depth, arr[i]->num_children );
+			printf("id = %d, depth = %d, num_children = %d, parent = NULL\n", iterator->id, iterator->depth, iterator->num_children );
 		}
 		else
 		{
-			printf("id = %d, depth = %d, num_children = %d, parent's_id = %d || ", arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
+			printf("id = %d, depth = %d, num_children = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->num_children, iterator->parent->id );
 		}
-	}
+
+	}	
 }
 
 struct verticalDataStr* createDataStr (struct aggregationTreeNode **queue, int nodes) 
@@ -186,12 +179,17 @@ void printDataStr (struct verticalDataStr* top)
 	while (top != NULL)
 	{
 		temp = top->list;
+		
+		printf("depth = %d\n", temp->ptr->depth);
+
 		while (temp != NULL)
 		{
-			printf("depth = %d num_children = %d \t",temp->ptr->depth, temp->ptr->num_children);
+			printf("id = %d, num_children = %d ||",temp->ptr->id, temp->ptr->num_children);
 			temp = temp->next;
 		}
+
 		printf("\n\n");
+		
 		top = top->next;
 	}
 }

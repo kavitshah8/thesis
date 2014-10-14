@@ -4,27 +4,23 @@
 #include <math.h>
 #include "../header_files/util.h"
 
+# define NODES 20
+
 int main () 
 {
-	int MM;
-	srand(time(NULL));
 
-	for (MM = 0; MM < 5; MM++)
-	{
-
-	int N, NN; // NN is total number of nodes in the aggregation tree
-			   		// N is the toal number of remaining nodes in the aggregation tree generation
+	int N; // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
-	int front, back, middle;
+	int front, back;
 	struct aggregationTreeNode* root;
 	struct aggregationTreeNode* iterator;
 	struct aggregationTreeNode* queue[10000];
 	//queue = (struct aggregationTreeNode**)malloc(sizeof(struct aggregationTreeNode*) * (N+1) );
 	struct verticalDataStr* top;
 
-	// srand(time(NULL));
+	srand(time(NULL));
 
-	N = NN = 20;
+	N = NODES;
 	front =	back = 0;
 
 	// Handling the root seperately 
@@ -35,9 +31,7 @@ int main ()
 	back++;
 	N--;	
 
-	// while( N > 0 )
-	// while (back < NN)
-	while(front < NN)
+	while(front < NODES)
 	{
 	
 		iterator->num_children = rand() % 4;
@@ -118,27 +112,24 @@ int main ()
 	}
 
 	printf("\nNumber of nodes in tree = %d\n",countTree(root));
+	printf("front = %d  back = %d N = %d\n\n", front, back, N);
 
 	if (front == back)
 	{
-		if (front == NN) 
-		printf("front == back == NN :) \n");
+		if (front == NODES) 
+		printf("front == back == NODES :) \n\n");
 	}
-
-	printf("\nfront = %d  back = %d N = %d\n", front, back, N);
 	
-	printTree(queue, back); 
+	printf("Traversing tree using DFS-post order\n\n");
+	printTree(root); 
 	// free(root->arr);
 	
-	top = createDataStr(queue, back);
+	top = createDataStr(queue, NODES);
 
 	printDataStr(top);
 
 	printf("\n");
 
-	}
-	
-	printf("%d times OK\n",MM);
 	
 	return 0;
 }

@@ -37,7 +37,7 @@ struct commitmentTreeNode
 
 int countTree (struct aggregationTreeNode*);
 int depthOfNode (struct aggregationTreeNode*, struct aggregationTreeNode*);
-void printTree (struct aggregationTreeNode**, int);
+void printTree (struct aggregationTreeNode*);
 
 struct verticalDataStr* createDataStr (struct aggregationTreeNode**, int);
 struct verticalDataStr* findPrevious (struct verticalDataStr*, struct verticalDataStr*);
