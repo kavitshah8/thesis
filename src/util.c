@@ -43,6 +43,7 @@ void printTree (struct aggregationTreeNode* iterator)
 	{
 		for (i = 0; i < iterator->num_children; i++)
 		{
+			// try implementing without recurssion
 			printTree(iterator->arr[i]);
 		}
 

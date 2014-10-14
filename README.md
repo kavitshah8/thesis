@@ -27,6 +27,7 @@ gcc main.o util.o -o main
 
 * To simulate ACK, NACK trees from given commitment trees & run verification algorithm.
 * To create all possible commitment trees from given aggregation tree.
+* Try umplementing printTree without recurssion
 
 #### Misc
 * Change N, NN to global constant NODES
