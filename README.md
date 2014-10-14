@@ -35,3 +35,6 @@ gcc main.o util.o -o main
 
 * Development is done on kavitdev branch and after manual testing it is merged to master branch. Checkout kavitdev branch for latest version.
 
+#### Notes
+
+* Tree generation algorithm generates more nodes than you feed in, but that is fine as far as you have a random tree.
