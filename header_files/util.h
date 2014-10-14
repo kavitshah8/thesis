@@ -7,8 +7,8 @@ struct aggregationTreeNode
 	int num_children;
 	struct aggregationTreeNode* parent;
 	struct aggregationTreeNode** arr;
-  struct commitmentTreeNode* myForests;   //my forest comming  to me
-	// struct label* label;
+  struct commitmentTreeNode* myForestsIn;   //my forest comming to me
+  struct commitmentTreeNode* myForestsOut;  //my forest going out of me
 };
 
 struct horizontalDataStr 
