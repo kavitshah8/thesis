@@ -4,12 +4,9 @@
 
 int countTree (struct aggregationTreeNode *head)
 {
-	//count number of nodes in tree and return
 	int i, sum;
 	int num_children;
 
-	// printf("smiale\n");
-	// printf("%d\n",num_children);
 	sum = 1;
 	
 	if (!head)
