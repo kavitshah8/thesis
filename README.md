@@ -20,17 +20,9 @@ gcc main.o util.o -o main
 #### Current
 
 * To generate commitment tree from given aggregation tree.
-* To control the way back works, and make sure you do not generate more than N children.
-* printDataStr second last row shows error
-
-#### Future
-
 * To simulate ACK, NACK trees from given commitment trees & run verification algorithm.
 * To create all possible commitment trees from given aggregation tree.
-* Try umplementing printTree without recurssion
-
-#### Misc
-* Change N, NN to global constant NODES
+* Try implementing printTree without recurssion
 
 #### Development
 
