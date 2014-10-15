@@ -4,12 +4,11 @@
 #include <math.h>
 #include "../header_files/util.h"
 
-#define NODES 10
-#define DIVISOR 4
-
 int main () 
 {
 
+	int const NODES = 10;
+	int const DIVISOR = 4;	
 	int N; // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
 	int front, back;
