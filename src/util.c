@@ -192,7 +192,7 @@ void printDataStr (struct verticalDataStr* vdsMover)
 	}
 }
 
-void createCommitmentTree(struct verticalDataStr* vdsMover)
+void createCommitmentTree (struct verticalDataStr* vdsMover)
 {
 	int i, j;
 

@@ -43,5 +43,5 @@ struct verticalDataStr* createDataStr (struct aggregationTreeNode**, int);
 struct verticalDataStr* findPrevious (struct verticalDataStr*, struct verticalDataStr*);
 void printDataStr (struct verticalDataStr*);
 
-void createCommitmentTree(struct verticalDataStr*);
-int countForest(struct commitmentTreeNode*);
+void createCommitmentTree (struct verticalDataStr*);
+int countForest (struct commitmentTreeNode*);

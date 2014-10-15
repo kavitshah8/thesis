@@ -31,7 +31,7 @@ int main ()
 	back++;
 	N--;	
 
-	while(front < NODES)
+	while (front < NODES)
 	{
 	
 		iterator->num_children = rand() % DIVISOR;
