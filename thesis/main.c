@@ -120,7 +120,9 @@ int main ()
 	top = createDataStr(queue, NODES);
 
 	printDataStr(top);
-
+	
+	createCommitmentTree(top);
+	
 	printf("\n");
 
 	

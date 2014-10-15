@@ -201,8 +201,6 @@ void createCommitmentTree(struct verticalDataStr* vdsMover)
 	struct commitmentTreeNode* myChildForest;
 	struct commitmentTreeNode* moverPtr;
 	
-	moverPtr = ctnPtr;
-	
 	while (vdsMover != NULL)
 	{
 		hdsMover = vdsMover->list;
@@ -215,8 +213,8 @@ void createCommitmentTree(struct verticalDataStr* vdsMover)
 			ctnPtr->nextTree = NULL;
 			ctnPtr->parent = NULL;
 			ctnPtr->ptrToAggregationNode = hdsMover->ptr;
-
 			ctnPtr->ptrToAggregationNode->myForests = ctnPtr; 
+			moverPtr = ctnPtr;
 
 			// for each of its children
 			// for (i=0; i < hdsMover->ptr->num_children; i++) 
@@ -224,7 +222,8 @@ void createCommitmentTree(struct verticalDataStr* vdsMover)
 			{
 				myChildForest = ctnPtr->ptrToAggregationNode->arr[i]->myForests;
 				moverPtr->nextTree = myChildForest;
-				moverPtr = myChildForest;
+				moverPtr = moverPtr->nextTree;
+			//	moverPtr = myChildForest;
 			}
 
 			printf("id = %d, num_children = %d ||",hdsMover->ptr->id, hdsMover->ptr->num_children);
