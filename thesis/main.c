@@ -4,7 +4,7 @@
 #include <math.h>
 #include "../header_files/util.h"
 
-#define NODES 20
+#define NODES 10
 #define DIVISOR 4
 
 int main () 
@@ -19,7 +19,7 @@ int main ()
 	//queue = (struct aggregationTreeNode**)malloc(sizeof(struct aggregationTreeNode*) * (N+1) );
 	struct verticalDataStr* top;
 
-	srand(time(NULL));
+	// srand(time(NULL));
 
 	N = NODES;
 	front =	back = 0;

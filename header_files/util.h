@@ -44,3 +44,4 @@ struct verticalDataStr* findPrevious (struct verticalDataStr*, struct verticalDa
 void printDataStr (struct verticalDataStr*);
 
 void createCommitmentTree(struct verticalDataStr*);
+int countForest(struct commitmentTreeNode*);
