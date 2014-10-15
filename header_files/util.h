@@ -7,8 +7,8 @@ struct aggregationTreeNode
 	int num_children;
 	struct aggregationTreeNode* parent;
 	struct aggregationTreeNode** arr;
-  struct commitmentTreeNode* myForestsIn;   //my forest comming to me
-  struct commitmentTreeNode* myForestsOut;  //my forest going out of me
+  struct commitmentTreeNode* myForests;   //my forest comming to me
+  // struct commitmentTreeNode* myForestsOut;  //my forest going out of me
 };
 
 struct horizontalDataStr 
@@ -42,3 +42,5 @@ void printTree (struct aggregationTreeNode*);
 struct verticalDataStr* createDataStr (struct aggregationTreeNode**, int);
 struct verticalDataStr* findPrevious (struct verticalDataStr*, struct verticalDataStr*);
 void printDataStr (struct verticalDataStr*);
+
+void createCommitmentTree(struct verticalDataStr*);

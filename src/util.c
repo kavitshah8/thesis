@@ -168,26 +168,68 @@ struct verticalDataStr* findPrevious (struct verticalDataStr* head, struct verti
 	return walker;
 }
 
-void printDataStr (struct verticalDataStr* top)
+void printDataStr (struct verticalDataStr* vdsMover)
 {
-	struct horizontalDataStr* temp;
+	struct horizontalDataStr* hdsMover;
 
 	printf("\n\nPrinting createDataStr : \n\n");
 
-	while (top != NULL)
+	while (vdsMover != NULL)
 	{
-		temp = top->list;
+		hdsMover = vdsMover->list;
 		
-		printf("depth = %d\n", temp->ptr->depth);
+		printf("depth = %d\n", hdsMover->ptr->depth);
 
-		while (temp != NULL)
+		while (hdsMover != NULL)
 		{
-			printf("id = %d, num_children = %d ||",temp->ptr->id, temp->ptr->num_children);
-			temp = temp->next;
+			printf("id = %d, num_children = %d ||",hdsMover->ptr->id, hdsMover->ptr->num_children);
+			hdsMover = hdsMover->next;
 		}
 
 		printf("\n\n");
 		
-		top = top->next;
+		vdsMover = vdsMover->next;
+	}
+}
+
+void createCommitmentTree(struct verticalDataStr* vdsMover)
+{
+	int i, j;
+
+	struct horizontalDataStr* hdsMover;
+	struct commitmentTreeNode* ctnPtr;
+	struct commitmentTreeNode* myChildForest;
+	struct commitmentTreeNode* moverPtr;
+	
+	moverPtr = ctnPtr;
+	
+	while (vdsMover != NULL)
+	{
+		hdsMover = vdsMover->list;
+		while (hdsMover != NULL)
+		{
+			// malloc 
+			ctnPtr = (struct commitmentTreeNode*)malloc(sizeof(struct commitmentTreeNode));
+			ctnPtr->leftChild = NULL;
+			ctnPtr->rightChild = NULL;
+			ctnPtr->nextTree = NULL;
+			ctnPtr->parent = NULL;
+			ctnPtr->ptrToAggregationNode = hdsMover->ptr;
+
+			ctnPtr->ptrToAggregationNode->myForests = ctnPtr; 
+
+			// for each of its children
+			// for (i=0; i < hdsMover->ptr->num_children; i++) 
+			for (i = 0; i < ctnPtr->ptrToAggregationNode->num_children; i++)
+			{
+				myChildForest = ctnPtr->ptrToAggregationNode->arr[i]->myForests;
+				moverPtr->nextTree = myChildForest;
+				moverPtr = myChildForest;
+			}
+
+			printf("id = %d, num_children = %d ||",hdsMover->ptr->id, hdsMover->ptr->num_children);
+			hdsMover = hdsMover->next;
+		}
+		vdsMover = vdsMover->next;
 	}
 }
