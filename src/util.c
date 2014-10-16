@@ -221,11 +221,14 @@ void createCommitmentTree (struct verticalDataStr* vdsMover)
 			{
 				myChildForest = ctnPtr->ptrToAggregationNode->arr[i]->myForests;
 				moverPtr->nextTree = myChildForest;
+				while (moverPtr->nextTree != NULL)
+				{
+					moverPtr = moverPtr->nextTree;					
+				}
 				moverPtr = moverPtr->nextTree;
 			//	moverPtr = myChildForest;
 			}
 
-			// printf("id = %d, num_children = %d ||",hdsMover->ptr->id, hdsMover->ptr->num_children);
 			hdsMover = hdsMover->next;
 		}
 		
