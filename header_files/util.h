@@ -37,7 +37,7 @@ struct commitmentTreeNode
 	int height;
   struct label* labelData;
   struct signatureData* myforestsignatures;
-	struct aggregationTreeNode* ptrToAggregationNode;
+	struct aggregationTreeNode* ptrToAggregationTreeNode;
 	struct commitmentTreeNode* leftChild;
 	struct commitmentTreeNode* rightChild;	 
 	struct commitmentTreeNode* parent;	 
