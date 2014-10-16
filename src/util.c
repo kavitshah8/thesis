@@ -195,7 +195,6 @@ void printDataStr (struct verticalDataStr* vdsMover)
 void createCommitmentTree (struct verticalDataStr* vdsMover)
 {
 	int i, j;
-
 	struct horizontalDataStr* hdsMover;
 	struct commitmentTreeNode* ctnPtr;
 	struct commitmentTreeNode* myChildForest;
@@ -203,28 +202,31 @@ void createCommitmentTree (struct verticalDataStr* vdsMover)
 	
 	while (vdsMover != NULL)
 	{
+
 		hdsMover = vdsMover->list;
+
 		while (hdsMover != NULL)
 		{
-			// malloc 
-			ctnPtr = (struct commitmentTreeNode*)malloc(sizeof(struct commitmentTreeNode));
+			ctnPtr = (struct commitmentTreeNode*)malloc(sizeof(struct commitmentTreeNode)); 
 			ctnPtr->leftChild = NULL;
 			ctnPtr->rightChild = NULL;
 			ctnPtr->nextTree = NULL;
 			ctnPtr->parent = NULL;
 			ctnPtr->ptrToAggregationTreeNode = hdsMover->ptr;
+			ctnPtr->id = hdsMover->ptr->id;
 			ctnPtr->ptrToAggregationTreeNode->myForests = ctnPtr; 
 			moverPtr = ctnPtr;
 			
-			// for (i=0; i < hdsMover->ptr->num_children; i++) 
-			for (i = 0; i < ctnPtr->ptrToAggregationTreeNode->num_children; i++)
+			for (i = 0; i < hdsMover->ptr->num_children; i++)
 			{
-				myChildForest = ctnPtr->ptrToAggregationTreeNode->arr[i]->myForests;
-				moverPtr->nextTree = myChildForest;
+
+				moverPtr->nextTree = hdsMover->ptr->arr[i]->myForests;
+
 				while (moverPtr->nextTree != NULL)
 				{
 					moverPtr = moverPtr->nextTree;					
 				}
+
 			}
 
 			hdsMover = hdsMover->next;
