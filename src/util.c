@@ -225,8 +225,6 @@ void createCommitmentTree (struct verticalDataStr* vdsMover)
 				{
 					moverPtr = moverPtr->nextTree;					
 				}
-				moverPtr = moverPtr->nextTree;
-			//	moverPtr = myChildForest;
 			}
 
 			hdsMover = hdsMover->next;
