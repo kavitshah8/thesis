@@ -24,9 +24,18 @@ struct verticalDataStr
 	struct horizontalDataStr* list;
 };
 
+struct label
+{	
+	int count;
+	int value;
+	int commitment;
+};
+
 struct commitmentTreeNode
 {
-  struct data* label;
+	int id;
+	int height;
+  struct label* labelData;
   struct signatureData* myforestsignatures;
 	struct aggregationTreeNode* ptrToAggregationNode;
 	struct commitmentTreeNode* leftChild;
