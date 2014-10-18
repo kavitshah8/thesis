@@ -25,6 +25,13 @@ int main ()
 
 	// Handling the root seperately 
 	root = iterator = queue[back] = (struct aggregationTreeNode*)malloc(sizeof(struct aggregationTreeNode));
+	
+	if (root == NULL)
+	{
+		printf("Memory Allocation Error\n");
+		exit(1);
+	}
+
 	iterator->id = back;
 	iterator->depth = 0;
 	iterator->parent = NULL;
@@ -80,18 +87,30 @@ int main ()
 	
 		// malloc(0) should return NULL; 
 		iterator->arr = (struct aggregationTreeNode**)malloc( sizeof(struct aggregationTreeNode*) * iterator->num_children ) ;
+
+		if (iterator->arr == NULL)
+		{
+			printf("Memory Allocation Error\n");
+			exit(1);
+		}
 		
 		for (i=0; i < iterator->num_children; i++)
 		{
 			iterator->arr[i] = (struct aggregationTreeNode*)malloc( sizeof(struct aggregationTreeNode) ) ;
-			iterator->arr[i]->id = back;
-			iterator->arr[i]->depth = iterator->depth + 1;
-			iterator->arr[i]->parent = iterator;
-			iterator->arr[i]->num_children = 0;
-			iterator->arr[i]->arr = NULL;
-			queue[back] = iterator->arr[i];
-			back++;
-			N--;
+
+			if (iterator->arr[i] == NULL )
+			{
+				printf("Memory Allocation Error\n");
+				exit(1);
+			}
+				iterator->arr[i]->id = back;
+				iterator->arr[i]->depth = iterator->depth + 1;
+				iterator->arr[i]->parent = iterator;
+				iterator->arr[i]->num_children = 0;
+				iterator->arr[i]->arr = NULL;
+				queue[back] = iterator->arr[i];
+				back++;
+				N--;				
 		}				
 		
 		if (front > back)
