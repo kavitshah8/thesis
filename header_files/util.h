@@ -39,7 +39,7 @@ typedef struct commitmentTreeNode
 	atn* ptrToAggregationTreeNode;
 	struct commitmentTreeNode* leftChild;
 	struct commitmentTreeNode* rightChild;	 
-	struct commitmentTreeNode* parent;	 
+	struct commitmentTreeNode* parentInctn;	 
 	struct commitmentTreeNode* nextTree; // this is my linked list
 } ctn;
 

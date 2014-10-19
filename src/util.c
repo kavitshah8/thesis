@@ -217,7 +217,7 @@ ctn* createCommitmentTree (vds *vdsMover)
 			ctnPtr->leftChild = NULL;
 			ctnPtr->rightChild = NULL;
 			ctnPtr->nextTree = NULL;
-			ctnPtr->parent = NULL;
+			ctnPtr->parentInctn = NULL;
 			ctnPtr->ptrToAggregationTreeNode = hdsMover->ptr;
 			ctnPtr->id = hdsMover->ptr->id;
 			ctnPtr->ptrToAggregationTreeNode->myForests = ctnPtr; 
