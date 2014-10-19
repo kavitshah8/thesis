@@ -69,7 +69,7 @@ struct verticalDataStr* createDataStr (struct aggregationTreeNode **queue, int n
 	struct verticalDataStr* tempverticalDataStr;
 	struct verticalDataStr* mover;
 	
-	struct horizontalDataStr* temphorizontalDataStr;
+	hds* temphorizontalDataStr;
 
 	struct aggregationTreeNode* ptr;
 	struct aggregationTreeNode* head; 
@@ -90,7 +90,7 @@ struct verticalDataStr* createDataStr (struct aggregationTreeNode **queue, int n
 				top = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
 				top->depth = dep;
 				top->next = NULL;
-				top->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				top->list = (hds*)malloc(sizeof(hds));
 				top->list->ptr = ptr;
 				top->list->next = NULL;
 				continue;
@@ -101,7 +101,7 @@ struct verticalDataStr* createDataStr (struct aggregationTreeNode **queue, int n
 			{
 				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
 				tempverticalDataStr->depth = dep;
-				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list = (hds*)malloc(sizeof(hds));
 				tempverticalDataStr->list->ptr = ptr;
 				tempverticalDataStr->list->next = NULL;
 				tempverticalDataStr->next = top;
@@ -119,7 +119,7 @@ struct verticalDataStr* createDataStr (struct aggregationTreeNode **queue, int n
 			{
 				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
 				tempverticalDataStr->depth = dep;
-				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list = (hds*)malloc(sizeof(hds));
 				tempverticalDataStr->list->ptr = ptr;
 				tempverticalDataStr->list->next = NULL;
 
@@ -129,7 +129,7 @@ struct verticalDataStr* createDataStr (struct aggregationTreeNode **queue, int n
 			}
 			else if (mover->depth == dep)
 			{
-				temphorizontalDataStr = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				temphorizontalDataStr = (hds*)malloc(sizeof(hds));
 				temphorizontalDataStr->ptr = ptr;
 				temphorizontalDataStr->next = mover->list;
 				mover->list = temphorizontalDataStr;
@@ -141,7 +141,7 @@ struct verticalDataStr* createDataStr (struct aggregationTreeNode **queue, int n
 				//mover->depth < dep
 				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
 				tempverticalDataStr->depth = dep;
-				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list = (hds*)malloc(sizeof(hds));
 				tempverticalDataStr->list->ptr = ptr;
 				tempverticalDataStr->list->next = NULL;
 
@@ -170,7 +170,7 @@ struct verticalDataStr* findPrevious (struct verticalDataStr* head, struct verti
 
 void printDataStr (struct verticalDataStr* vdsMover)
 {
-	struct horizontalDataStr* hdsMover;
+	hds* hdsMover;
 
 	printf("\n\nPrinting createDataStr : \n\n");
 
@@ -195,7 +195,7 @@ void printDataStr (struct verticalDataStr* vdsMover)
 struct commitmentTreeNode* createCommitmentTree (struct verticalDataStr* vdsMover)
 {
 	int i, j;
-	struct horizontalDataStr* hdsMover;
+	hds* hdsMover;
 	struct commitmentTreeNode* ctnPtr;
 	struct commitmentTreeNode* myChildForest;
 	struct commitmentTreeNode* moverPtr;

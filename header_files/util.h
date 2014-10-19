@@ -11,11 +11,11 @@ struct aggregationTreeNode
   // struct commitmentTreeNode* myForestsOut;  //my forest going out of me
 };
 
-struct horizontalDataStr 
+typedef struct horizontalDataStr 
 { 
 	struct aggregationTreeNode* ptr;
 	struct horizontalDataStr* next;
-};
+} hds;
 
 struct verticalDataStr 
 {
