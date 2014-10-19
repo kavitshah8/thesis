@@ -42,7 +42,7 @@ typedef struct commitmentTreeNode
 	struct commitmentTreeNode* rightChild;	 
 	struct commitmentTreeNode* parent;	 
 	struct commitmentTreeNode* nextTree; // this is my linked list
-} CTN;
+} ctn;
 
 int countTree (atn*);
 int depthOfNode (atn*, atn*);
@@ -55,5 +55,5 @@ void printDataStr (vds*);
 struct commitmentTreeNode* createCommitmentTree (vds*);
 int countForest (struct commitmentTreeNode*);
 void printLinkedList (struct commitmentTreeNode*);
-CTN* sortLinkedList (CTN*);
-CTN* switchLinkedListElements (CTN*, CTN*);
+ctn* sortLinkedList (ctn*);
+ctn* switchLinkedListElements (ctn*, ctn*);

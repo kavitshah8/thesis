@@ -17,7 +17,7 @@ int main ()
 	atn* queue[10000];
 	//queue = (atn**)malloc(sizeof(atn*) * (N+1) );
 	vds* top;
-	struct commitmentTreeNode* head;
+	ctn* head;
 
 	srand(time(NULL));
 

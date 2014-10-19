@@ -192,13 +192,13 @@ void printDataStr (vds* vdsMover)
 	}
 }
 
-struct commitmentTreeNode* createCommitmentTree (vds* vdsMover)
+ctn* createCommitmentTree (vds* vdsMover)
 {
 	int i, j;
 	hds* hdsMover;
-	struct commitmentTreeNode* ctnPtr;
-	struct commitmentTreeNode* myChildForest;
-	struct commitmentTreeNode* moverPtr;
+	ctn* ctnPtr;
+	ctn* myChildForest;
+	ctn* moverPtr;
 	
 	while (vdsMover != NULL)
 	{
@@ -206,7 +206,7 @@ struct commitmentTreeNode* createCommitmentTree (vds* vdsMover)
 
 		while (hdsMover != NULL)
 		{
-			ctnPtr = (struct commitmentTreeNode*)malloc(sizeof(struct commitmentTreeNode)); 
+			ctnPtr = (ctn*)malloc(sizeof(ctn)); 
 			
 			if (ctnPtr == NULL)
 			{
@@ -245,7 +245,7 @@ struct commitmentTreeNode* createCommitmentTree (vds* vdsMover)
 	return ctnPtr;
 }
 
-int countForest (struct commitmentTreeNode* ctnPtr)
+int countForest (ctn* ctnPtr)
 {
 	int sum = 0;
 	
@@ -258,7 +258,7 @@ int countForest (struct commitmentTreeNode* ctnPtr)
 	return sum;
 }
 
-void printLinkedList(struct commitmentTreeNode* head)
+void printLinkedList(ctn* head)
 {
 	while(head != NULL)
 	{
@@ -267,12 +267,12 @@ void printLinkedList(struct commitmentTreeNode* head)
 	}	
 }
 
-CTN *sortLinkedList( CTN *start )
+ctn *sortLinkedList( ctn *start )
 {
-    CTN *p, *q, *top;
+    ctn *p, *q, *top;
     int changed = 1;
 
-    if( (top = (CTN*)malloc(sizeof(CTN))) == NULL) {
+    if( (top = (ctn*)malloc(sizeof(ctn))) == NULL) {
         printf("Memory Allocation error.\n" );
         exit(1);
     }
@@ -301,7 +301,7 @@ CTN *sortLinkedList( CTN *start )
     return p;
 }
 
-CTN *switchLinkedListElements( CTN *l1, CTN *l2 )
+ctn *switchLinkedListElements( ctn *l1, ctn *l2 )
 {
     l1->nextTree = l2->nextTree;
     l2->nextTree = l1;
