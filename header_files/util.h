@@ -1,6 +1,6 @@
 #pragma once
 
-struct aggregationTreeNode 
+typedef struct aggregationTreeNode 
 {
 	int id;
 	int depth;  // depth is to describe aggregationTreeNode property; HEIGHT is used to describe tree property
@@ -9,11 +9,11 @@ struct aggregationTreeNode
 	struct aggregationTreeNode** arr;
   struct commitmentTreeNode* myForests;   //my forest comming to me
   // struct commitmentTreeNode* myForestsOut;  //my forest going out of me
-};
+} atn;
 
 typedef struct horizontalDataStr 
 { 
-	struct aggregationTreeNode* ptr;
+	atn* ptr;
 	struct horizontalDataStr* next;
 } hds;
 
@@ -37,18 +37,18 @@ typedef struct commitmentTreeNode
 	int height;
   struct label* labelData;
   struct signatureData* myforestsignatures;
-	struct aggregationTreeNode* ptrToAggregationTreeNode;
+	atn* ptrToAggregationTreeNode;
 	struct commitmentTreeNode* leftChild;
 	struct commitmentTreeNode* rightChild;	 
 	struct commitmentTreeNode* parent;	 
 	struct commitmentTreeNode* nextTree; // this is my linked list
 } CTN;
 
-int countTree (struct aggregationTreeNode*);
-int depthOfNode (struct aggregationTreeNode*, struct aggregationTreeNode*);
-void printTree (struct aggregationTreeNode*);
+int countTree (atn*);
+int depthOfNode (atn*, atn*);
+void printTree (atn*);
 
-vds* createDataStr (struct aggregationTreeNode**, int);
+vds* createDataStr (atn**, int);
 vds* findPrevious (vds*, vds*);
 void printDataStr (vds*);
 

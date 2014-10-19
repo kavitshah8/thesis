@@ -12,10 +12,10 @@ int main ()
 	int N; // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
 	int front, back;
-	struct aggregationTreeNode* root;
-	struct aggregationTreeNode* iterator;
-	struct aggregationTreeNode* queue[10000];
-	//queue = (struct aggregationTreeNode**)malloc(sizeof(struct aggregationTreeNode*) * (N+1) );
+	atn* root;
+	atn* iterator;
+	atn* queue[10000];
+	//queue = (atn**)malloc(sizeof(atn*) * (N+1) );
 	vds* top;
 	struct commitmentTreeNode* head;
 
@@ -25,7 +25,7 @@ int main ()
 	front =	back = 0;
 
 	// Handling the root seperately 
-	root = iterator = queue[back] = (struct aggregationTreeNode*)malloc(sizeof(struct aggregationTreeNode));
+	root = iterator = queue[back] = (atn*)malloc(sizeof(atn));
 	
 	if (root == NULL)
 	{
@@ -87,7 +87,7 @@ int main ()
 		}
 	
 		// malloc(0) should return NULL; 
-		iterator->arr = (struct aggregationTreeNode**)malloc( sizeof(struct aggregationTreeNode*) * iterator->num_children ) ;
+		iterator->arr = (atn**)malloc( sizeof(atn*) * iterator->num_children ) ;
 
 		if (iterator->arr == NULL)
 		{
@@ -97,7 +97,7 @@ int main ()
 		
 		for (i=0; i < iterator->num_children; i++)
 		{
-			iterator->arr[i] = (struct aggregationTreeNode*)malloc( sizeof(struct aggregationTreeNode) ) ;
+			iterator->arr[i] = (atn*)malloc( sizeof(atn) ) ;
 
 			if (iterator->arr[i] == NULL )
 			{
