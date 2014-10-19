@@ -17,12 +17,12 @@ typedef struct horizontalDataStr
 	struct horizontalDataStr* next;
 } hds;
 
-struct verticalDataStr 
+typedef struct verticalDataStr 
 {
 	int depth;
 	struct verticalDataStr* next;
 	struct horizontalDataStr* list;
-};
+} vds;
 
 struct label
 {	
@@ -48,11 +48,11 @@ int countTree (struct aggregationTreeNode*);
 int depthOfNode (struct aggregationTreeNode*, struct aggregationTreeNode*);
 void printTree (struct aggregationTreeNode*);
 
-struct verticalDataStr* createDataStr (struct aggregationTreeNode**, int);
-struct verticalDataStr* findPrevious (struct verticalDataStr*, struct verticalDataStr*);
-void printDataStr (struct verticalDataStr*);
+vds* createDataStr (struct aggregationTreeNode**, int);
+vds* findPrevious (vds*, vds*);
+void printDataStr (vds*);
 
-struct commitmentTreeNode* createCommitmentTree (struct verticalDataStr*);
+struct commitmentTreeNode* createCommitmentTree (vds*);
 int countForest (struct commitmentTreeNode*);
 void printLinkedList (struct commitmentTreeNode*);
 CTN* sortLinkedList (CTN*);

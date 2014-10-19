@@ -16,7 +16,7 @@ int main ()
 	struct aggregationTreeNode* iterator;
 	struct aggregationTreeNode* queue[10000];
 	//queue = (struct aggregationTreeNode**)malloc(sizeof(struct aggregationTreeNode*) * (N+1) );
-	struct verticalDataStr* top;
+	vds* top;
 	struct commitmentTreeNode* head;
 
 	srand(time(NULL));
