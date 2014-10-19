@@ -143,6 +143,7 @@ int main ()
 	head = createCommitmentTree(top);
 	printf("Unsorted LinkedList:\n");
 	printLinkedList(head);
+	
 	head = sortLinkedList(head);
 	printf("Sorted LinkedList:\n");
 	printLinkedList(head);

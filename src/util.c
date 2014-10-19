@@ -267,38 +267,37 @@ void printLinkedList(ctn *head)
 	}	
 }
 
-ctn *sortLinkedList(ctn *start)
+ctn *sortLinkedList(ctn *top)
 {
-    ctn *p, *q, *top;
-    int changed = 1;
-
-    if( (top = (ctn*)malloc(sizeof(ctn))) == NULL) {
-        printf("Memory Allocation error.\n" );
-        exit(1);
-    }
-
-    top->nextTree = start;
-    if( start != NULL && start->nextTree != NULL ) {
-
-        while(changed) {
-            changed = 0;
-            q = top;
-            p = top->nextTree;
-            while( p->nextTree != NULL ) {
-                if( p->id > p->nextTree->id ) {
-                    q->nextTree = switchLinkedListElements( p, p->nextTree );
-                    changed = 1;
-                }
-                q = p;
-                if( p->nextTree != NULL )
-                    p = p->nextTree;
-            }
-        }
-    }
-
-    p = top->nextTree;
-    free(top);
-    return p;
+		ctn *p, *q, *prev;
+		int changed = 1;
+			
+	//if( top != NULL && top->nextTree != NULL ) {
+		while(changed) 
+		{
+			changed = 0;
+			prev=NULL;
+			p = top;
+			while( p->nextTree != NULL ) 
+			{
+				if( p->id > p->nextTree->id ) 
+				{
+					if(prev)
+					{
+					   prev->nextTree = switchLinkedListElements( p, p->nextTree );
+					}
+					else
+					{
+						top=switchLinkedListElements( p, p->nextTree );
+					}
+					changed = 1;
+				}
+				prev=p;
+				p=p->nextTree;
+			}
+		}
+	//}
+return top;
 }
 
 ctn *switchLinkedListElements(ctn *l1, ctn *l2)
