@@ -54,3 +54,4 @@ void printDataStr (struct verticalDataStr*);
 
 struct commitmentTreeNode* createCommitmentTree (struct verticalDataStr*);
 int countForest (struct commitmentTreeNode*);
+void printLinkedList(struct commitmentTreeNode*);

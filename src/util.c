@@ -257,3 +257,12 @@ int countForest (struct commitmentTreeNode* ctnPtr)
 
 	return sum;
 }
+
+void printLinkedList(struct commitmentTreeNode* head)
+{
+	while(head != NULL)
+	{
+		printf("%d\n",head->id);
+		head = head->nextTree;
+	}	
+}

@@ -141,6 +141,7 @@ int main ()
 	printDataStr(top);
 	
 	head = createCommitmentTree(top);
+	printLinkedList(head);
 	
 	printf("\n");
 
