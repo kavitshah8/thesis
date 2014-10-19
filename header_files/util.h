@@ -8,7 +8,6 @@ typedef struct aggregationTreeNode
 	struct aggregationTreeNode* parent;
 	struct aggregationTreeNode** arr;
   struct commitmentTreeNode* myForests;   //my forest comming to me
-  // struct commitmentTreeNode* myForestsOut;  //my forest going out of me
 } atn;
 
 typedef struct horizontalDataStr 
@@ -52,7 +51,7 @@ vds* createDataStr (atn**, int);
 vds* findPrevious (vds*, vds*);
 void printDataStr (vds*);
 
-struct commitmentTreeNode* createCommitmentTree (vds*);
+ctn* createCommitmentTree (vds*);
 int countForest (struct commitmentTreeNode*);
 void printLinkedList (struct commitmentTreeNode*);
 ctn* sortLinkedList (ctn*);

@@ -35,7 +35,7 @@ int depthOfNode (atn *head, atn *ptr)
 	return dep;
 }
 
-void printTree (atn* iterator)
+void printTree (atn *iterator)
 {
 	int i = 0;
 	
@@ -65,14 +65,14 @@ vds* createDataStr (atn **queue, int nodes)
 	int dep;
 	int front;
 	
-	vds* top = NULL;
-	vds* tempverticalDataStr;
-	vds* mover;
+	vds *top = NULL;
+	vds *tempverticalDataStr;
+	vds *mover;
 	
-	hds* temphorizontalDataStr;
+	hds *temphorizontalDataStr;
 
-	atn* ptr;
-	atn* head; 
+	atn *ptr;
+	atn *head; 
 
 	front = 0;
 	head = queue[front];
@@ -155,9 +155,9 @@ vds* createDataStr (atn **queue, int nodes)
 	return top;
 }
 
-vds* findPrevious (vds* head, vds* target)
+vds* findPrevious (vds *head, vds *target)
 {
-	vds* walker;
+	vds *walker;
 
 	walker = head;
 	
@@ -168,9 +168,9 @@ vds* findPrevious (vds* head, vds* target)
 	return walker;
 }
 
-void printDataStr (vds* vdsMover)
+void printDataStr (vds *vdsMover)
 {
-	hds* hdsMover;
+	hds *hdsMover;
 
 	printf("\n\nPrinting createDataStr : \n\n");
 
@@ -192,13 +192,13 @@ void printDataStr (vds* vdsMover)
 	}
 }
 
-ctn* createCommitmentTree (vds* vdsMover)
+ctn* createCommitmentTree (vds *vdsMover)
 {
 	int i, j;
-	hds* hdsMover;
-	ctn* ctnPtr;
-	ctn* myChildForest;
-	ctn* moverPtr;
+	hds *hdsMover;
+	ctn *ctnPtr;
+	ctn *myChildForest;
+	ctn *moverPtr;
 	
 	while (vdsMover != NULL)
 	{
@@ -258,7 +258,7 @@ int countForest (ctn* ctnPtr)
 	return sum;
 }
 
-void printLinkedList(ctn* head)
+void printLinkedList(ctn *head)
 {
 	while(head != NULL)
 	{
@@ -267,7 +267,7 @@ void printLinkedList(ctn* head)
 	}	
 }
 
-ctn *sortLinkedList( ctn *start )
+ctn *sortLinkedList(ctn *start)
 {
     ctn *p, *q, *top;
     int changed = 1;
@@ -297,11 +297,11 @@ ctn *sortLinkedList( ctn *start )
     }
 
     p = top->nextTree;
-    free( top );
+    free(top);
     return p;
 }
 
-ctn *switchLinkedListElements( ctn *l1, ctn *l2 )
+ctn *switchLinkedListElements(ctn *l1, ctn *l2)
 {
     l1->nextTree = l2->nextTree;
     l2->nextTree = l1;
