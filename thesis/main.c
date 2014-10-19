@@ -7,7 +7,7 @@
 int main () 
 {
 
-	int const NODES = 15;
+	int const NODES = 10;
 	int const DIVISOR = 4;	
 	int N; // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
@@ -19,7 +19,7 @@ int main ()
 	struct verticalDataStr* top;
 	struct commitmentTreeNode* head;
 
-	// srand(time(NULL));
+	srand(time(NULL));
 
 	N = NODES;
 	front =	back = 0;
@@ -141,8 +141,12 @@ int main ()
 	printDataStr(top);
 	
 	head = createCommitmentTree(top);
+	printf("Unsorted LinkedList:\n");
 	printLinkedList(head);
-
+	head = sortLinkedList(head);
+	printf("Sorted LinkedList:\n");
+	printLinkedList(head);
+	
 	printf("\n");
 
 	

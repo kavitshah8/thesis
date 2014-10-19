@@ -266,3 +266,44 @@ void printLinkedList(struct commitmentTreeNode* head)
 		head = head->nextTree;
 	}	
 }
+
+CTN *sortLinkedList( CTN *start )
+{
+    CTN *p, *q, *top;
+    int changed = 1;
+
+    if( (top = (CTN*)malloc(sizeof(CTN))) == NULL) {
+        printf("Memory Allocation error.\n" );
+        exit(1);
+    }
+
+    top->nextTree = start;
+    if( start != NULL && start->nextTree != NULL ) {
+
+        while(changed) {
+            changed = 0;
+            q = top;
+            p = top->nextTree;
+            while( p->nextTree != NULL ) {
+                if( p->id > p->nextTree->id ) {
+                    q->nextTree = switchLinkedListElements( p, p->nextTree );
+                    changed = 1;
+                }
+                q = p;
+                if( p->nextTree != NULL )
+                    p = p->nextTree;
+            }
+        }
+    }
+
+    p = top->nextTree;
+    free( top );
+    return p;
+}
+
+CTN *switchLinkedListElements( CTN *l1, CTN *l2 )
+{
+    l1->nextTree = l2->nextTree;
+    l2->nextTree = l1;
+    return l2;
+}

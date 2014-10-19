@@ -31,7 +31,7 @@ struct label
 	int commitment;
 };
 
-struct commitmentTreeNode
+typedef struct commitmentTreeNode
 {
 	int id;
 	int height;
@@ -42,7 +42,7 @@ struct commitmentTreeNode
 	struct commitmentTreeNode* rightChild;	 
 	struct commitmentTreeNode* parent;	 
 	struct commitmentTreeNode* nextTree; // this is my linked list
-};
+} CTN;
 
 int countTree (struct aggregationTreeNode*);
 int depthOfNode (struct aggregationTreeNode*, struct aggregationTreeNode*);
@@ -54,4 +54,6 @@ void printDataStr (struct verticalDataStr*);
 
 struct commitmentTreeNode* createCommitmentTree (struct verticalDataStr*);
 int countForest (struct commitmentTreeNode*);
-void printLinkedList(struct commitmentTreeNode*);
+void printLinkedList (struct commitmentTreeNode*);
+CTN* sortLinkedList (CTN*);
+CTN* switchLinkedListElements (CTN*, CTN*);
