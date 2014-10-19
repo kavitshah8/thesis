@@ -202,12 +202,18 @@ void createCommitmentTree (struct verticalDataStr* vdsMover)
 	
 	while (vdsMover != NULL)
 	{
-
 		hdsMover = vdsMover->list;
 
 		while (hdsMover != NULL)
 		{
 			ctnPtr = (struct commitmentTreeNode*)malloc(sizeof(struct commitmentTreeNode)); 
+			
+			if (ctnPtr == NULL)
+			{
+				printf("Memory Allocation Error\n");
+				exit(1);				
+			}
+			
 			ctnPtr->leftChild = NULL;
 			ctnPtr->rightChild = NULL;
 			ctnPtr->nextTree = NULL;
