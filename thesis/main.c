@@ -17,6 +17,7 @@ int main ()
 	struct aggregationTreeNode* queue[10000];
 	//queue = (struct aggregationTreeNode**)malloc(sizeof(struct aggregationTreeNode*) * (N+1) );
 	struct verticalDataStr* top;
+	struct commitmentTreeNode* head;
 
 	// srand(time(NULL));
 
@@ -139,7 +140,7 @@ int main ()
 
 	printDataStr(top);
 	
-	createCommitmentTree(top);
+	head = createCommitmentTree(top);
 	
 	printf("\n");
 

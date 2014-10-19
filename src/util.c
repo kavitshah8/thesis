@@ -241,6 +241,8 @@ void createCommitmentTree (struct verticalDataStr* vdsMover)
 		vdsMover = vdsMover->next;
 	}
 	printf("\n node_id = %d nodes in a forest = %d \n", ctnPtr->ptrToAggregationTreeNode->id, countForest(ctnPtr));
+
+	return ctnPtr;
 }
 
 int countForest (struct commitmentTreeNode* ctnPtr)
