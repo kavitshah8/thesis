@@ -229,12 +229,10 @@ ctn* createCommitmentTree (vds *vdsMover)
 			
 			if (hdsMover->ptr->num_children != 0)
 			{
-
+				printf("hdsMover->ptr->num_children = %d\n",hdsMover->ptr->num_children);
 				for (i = 0; i < hdsMover->ptr->num_children; i++)
 				{
-
 					moverPtr->nextTree = hdsMover->ptr->arr[i]->myForests;
-
 					while (moverPtr->nextTree != NULL)
 					{
 						moverPtr = moverPtr->nextTree;					
@@ -244,23 +242,32 @@ ctn* createCommitmentTree (vds *vdsMover)
 				hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
 				moverPtr = hdsMover->ptr->myForests;
 
-				// while (moverPtr->nextTree != NULL)
-				// {
-				// 	if (moverPtr->height != moverPtr->nextTree->height)
-				// 	{
-				// 		moverPtr = moverPtr->nextTree;
-				// 	}
-				// 	else
-				// 	{
-				// 		// aggregator = (ctn*)malloc(sizeof(ctn));
-				// 		// aggregator->leftChild = moverPtr;
-				// 		// aggregator->rightChild = moverPtr->nextTree;
-				// 		// aggregator->height = moverPtr->height + moverPtr->nextTree->height;
-				// 		// aggregator->parentInctn = NULL;
-				// 		// // aggregator->ptrToAggregationTreeNode = ? ;
-				// 		// moverPtr->parentInctn = moverPtr->nextTree->parentInctn = aggregator;
-				// 	}
-				// }
+				while (moverPtr->nextTree != NULL)
+				{
+					// printf("Inifnite\n");
+					if (moverPtr->height != moverPtr->nextTree->height)
+					{
+						moverPtr = moverPtr->nextTree;
+					}
+					else
+					{
+						aggregator = (ctn*)malloc(sizeof(ctn));
+						aggregator->leftChild = moverPtr;
+						aggregator->rightChild = moverPtr->nextTree;
+						aggregator->height = moverPtr->height + moverPtr->nextTree->height;
+						aggregator->parentInctn = NULL;
+						aggregator->nextTree = moverPtr->nextTree->nextTree;
+						// aggregator->ptrToAggregationTreeNode = ? ;
+						moverPtr->parentInctn = moverPtr->nextTree->parentInctn = aggregator;
+						// removes from the LL
+						moverPtr->nextTree = moverPtr->nextTree->nextTree = NULL;
+						// Inserts aggregator to the LL
+						moverPtr = aggregator;
+						// sort new LL
+						hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
+						moverPtr = hdsMover->ptr->myForests;
+					}
+				}
 				
 				hdsMover = hdsMover->next;
 
