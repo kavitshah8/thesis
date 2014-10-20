@@ -1,7 +1,3 @@
-<div align="center">
-	<img src="http://notredamebus.com/wp-content/uploads/2012/01/Purdue_Boilermakers.jpg" height="350" alt="Purdue" title="Purdue">
-</div>
-
 Thesis
 =====
 
