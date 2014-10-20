@@ -141,11 +141,11 @@ int main ()
 	printDataStr(top);
 	
 	head = createCommitmentTree(top);
-	printf("Unsorted LinkedList:\n");
+	printf("Unsorted LinkedList by their Height:\n");
 	printLinkedList(head);
 	
 	head = sortLinkedList(head);
-	printf("Sorted LinkedList:\n");
+	printf("Sorted LinkedList by their Height:\n");
 	printLinkedList(head);
 	
 	printf("\n");

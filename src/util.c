@@ -194,12 +194,14 @@ void printDataStr (vds *vdsMover)
 
 ctn* createCommitmentTree (vds *vdsMover)
 {
-	int i, j;
+	int i, j, height;
 	hds *hdsMover;
 	ctn *ctnPtr;
 	ctn *myChildForest;
 	ctn *moverPtr;
 	
+	height = 0;
+
 	while (vdsMover != NULL)
 	{
 		hdsMover = vdsMover->list;
@@ -218,6 +220,7 @@ ctn* createCommitmentTree (vds *vdsMover)
 			ctnPtr->rightChild = NULL;
 			ctnPtr->nextTree = NULL;
 			ctnPtr->parentInctn = NULL;
+			ctnPtr->height = height;
 			ctnPtr->ptrToAggregationTreeNode = hdsMover->ptr;
 			ctnPtr->id = hdsMover->ptr->id;
 			hdsMover->ptr->myForests = ctnPtr; 
@@ -239,8 +242,8 @@ ctn* createCommitmentTree (vds *vdsMover)
 		}
 		
 		vdsMover = vdsMover->next;
+		height++;
 	}
-	printf("\n node_id = %d nodes in a forest = %d \n", ctnPtr->ptrToAggregationTreeNode->id, countForest(ctnPtr));
 
 	return ctnPtr;
 }
@@ -262,7 +265,7 @@ void printLinkedList(ctn *head)
 {
 	while(head != NULL)
 	{
-		printf("%d\n",head->id);
+		printf("%d\n",head->height);
 		head = head->nextTree;
 	}	
 }
@@ -283,7 +286,7 @@ ctn *sortLinkedList(ctn *top)
       p = top;
       while(p->nextTree != NULL)
       {
-      	if(p->id > p->nextTree->id)
+      	if(p->height > p->nextTree->height)
         {
         	if(prev)
           {
