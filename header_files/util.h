@@ -1,45 +1,58 @@
 #pragma once
 
-struct node 
+typedef struct aggregationTreeNode 
 {
 	int id;
-	int depth;
+	int depth;  // depth is to describe aggregationTreeNode property; HEIGHT is used to describe tree property
 	int num_children;
-	struct node* parent;
-	struct node** arr;
-  struct commitmentTreeNode* myForests;   //my forest comming  to me
-	// struct label* label;
-};
+	struct aggregationTreeNode* parent;
+	struct aggregationTreeNode** arr;
+  struct commitmentTreeNode* myForests;   //my forest comming to me
+} atn;
 
-struct horizontalDataStr 
+typedef struct horizontalDataStr 
 { 
-	struct node* ptr;
+	atn* ptr;
 	struct horizontalDataStr* next;
-};
+} hds;
 
-struct verticalDataStr 
+typedef struct verticalDataStr 
 {
 	int depth;
 	struct verticalDataStr* next;
 	struct horizontalDataStr* list;
+} vds;
+
+struct label
+{	
+	int count;
+	int value;
+	int commitment;
 };
 
-struct commitmentTreeNode
+typedef struct commitmentTreeNode
 {
+	int id;
 	int height;
-  struct data* label;
+  struct label* labelData;
   struct signatureData* myforestsignatures;
-	struct node* ptrToAggregationNode;
+	atn* ptrToAggregationTreeNode;
 	struct commitmentTreeNode* leftChild;
 	struct commitmentTreeNode* rightChild;	 
-	struct commitmentTreeNode* parent;	 
+	struct commitmentTreeNode* parentInctn;	 
 	struct commitmentTreeNode* nextTree; // this is my linked list
-};
+} ctn;
 
-int countTree (struct node*);
-int depthOfNode (struct node*, struct node*);
-void printTree (struct node**, int);
+int countTree (atn*);
+int depthOfNode (atn*, atn*);
+void printTree (atn*);
 
-struct verticalDataStr* createDataStr (struct node**, int);
-struct verticalDataStr* findPrevious (struct verticalDataStr*, struct verticalDataStr*);
-void printDataStr (struct verticalDataStr*);
+vds* createDataStr (atn**, int);
+vds* findPrevious (vds*, vds*);
+void printDataStr (vds*);
+
+ctn* createCommitmentTree (vds*);
+int countForest (struct commitmentTreeNode*);
+void printLinkedList (struct commitmentTreeNode*);
+ctn* sortLinkedList (ctn*);
+ctn* switchLinkedListElements (ctn*, ctn*);

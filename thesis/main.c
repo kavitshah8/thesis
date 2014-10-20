@@ -6,41 +6,47 @@
 
 int main () 
 {
-	
-	int N, NN; // NN is total number of nodes in the aggregation tree
-			   // N is the toal number of remaining nodes in the aggregation tree generation
+
+	int const NODES = 10;
+	int const DIVISOR = 4;	
+	int N; // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
-	int front, back, middle;
-	struct node* root;
-	struct node* iterator;
-	struct node* queue[10000];
-	//queue = (struct node**)malloc(sizeof(struct node*) * (N+1) );
-	struct verticalDataStr* top;
+	int front, back;
+	atn* root;
+	atn* iterator;
+	atn* queue[10000];
+	//queue = (atn**)malloc(sizeof(atn*) * (N+1) );
+	vds* top;
+	ctn* head;
 
-	// srand(time(NULL));
+	srand(time(NULL));
 
-	N = NN = 20;
-	front =	back = middle = 0;
+	N = NODES;
+	front =	back = 0;
 
 	// Handling the root seperately 
-	root = iterator = queue[back] = (struct node*)malloc(sizeof(struct node));
+	root = iterator = queue[back] = (atn*)malloc(sizeof(atn));
+	
+	if (root == NULL)
+	{
+		printf("Memory Allocation Error\n");
+		exit(1);
+	}
+
 	iterator->id = back;
 	iterator->depth = 0;
 	iterator->parent = NULL;
 	back++;
 	N--;	
 
-	// while( N > 0 )
-	while (front < NN)
+	while (front < NODES)
 	{
 	
-		if (middle < NN)
+		iterator->num_children = rand() % DIVISOR;
+
+		if (N < iterator->num_children)
 		{
-			iterator->num_children = rand() % 4;
-		}
-		else
-		{
-			iterator->num_children = 0;	
+			iterator->num_children = rand() % (N+1);
 		}
 
 		// Gives you a tree
@@ -71,31 +77,41 @@ int main ()
 				}
 				if (!sum)
 				{
-					if (middle < NN)
+					iterator->num_children = 1;
+					if (N < iterator->num_children)
 					{
-						iterator->num_children = 1;							
-					}
-
+						iterator->num_children = rand() % (N+1);
+					}								
 				} 
 			}
 		}
 	
-		middle += iterator->num_children;
-
 		// malloc(0) should return NULL; 
-		iterator->arr = (struct node**)malloc( sizeof(struct node*) * iterator->num_children ) ;
+		iterator->arr = (atn**)malloc( sizeof(atn*) * iterator->num_children ) ;
+
+		if (iterator->arr == NULL)
+		{
+			printf("Memory Allocation Error\n");
+			exit(1);
+		}
 		
 		for (i=0; i < iterator->num_children; i++)
 		{
-			iterator->arr[i] = (struct node*)malloc( sizeof(struct node) ) ;
-			iterator->arr[i]->id = back;
-			iterator->arr[i]->depth = iterator->depth + 1;
-			iterator->arr[i]->parent = iterator;
-			iterator->arr[i]->num_children = 0;
-			iterator->arr[i]->arr = NULL;
-			queue[back] = iterator->arr[i];
-			back++;
-			N--;
+			iterator->arr[i] = (atn*)malloc( sizeof(atn) ) ;
+
+			if (iterator->arr[i] == NULL )
+			{
+				printf("Memory Allocation Error\n");
+				exit(1);
+			}
+				iterator->arr[i]->id = back;
+				iterator->arr[i]->depth = iterator->depth + 1;
+				iterator->arr[i]->parent = iterator;
+				iterator->arr[i]->num_children = 0;
+				iterator->arr[i]->arr = NULL;
+				queue[back] = iterator->arr[i];
+				back++;
+				N--;				
 		}				
 		
 		if (front > back)
@@ -104,21 +120,36 @@ int main ()
 			break;
 		}
 		
-		// printf("%p\n", queue[front]);
 		front++;
 		iterator = queue[front];
 		
 	}
 
-	printf("\n Number of nodes in tree = %d\n",countTree(root));
-	printf("\n front = %d  back = %d N = %d\n", front, back, N);
-	printTree(queue, front); 
-	// printTree(queue,back); while( N > 0)
+	printf("\nNumber of nodes in tree = %d\n",countTree(root));
+	printf("front = %d  back = %d N = %d\n\n", front, back, N);
+
+	if (front == back)
+		if (front == NODES) 
+			printf("front == back == NODES :) \n\n");
+	
+	printf("Traversing tree using DFS-post order\n\n");
+	printTree(root); 
 	// free(root->arr);
 	
-	top = createDataStr(queue, front);
+	top = createDataStr(queue, NODES);
+
 	printDataStr(top);
+	
+	head = createCommitmentTree(top);
+	printf("Unsorted LinkedList:\n");
+	printLinkedList(head);
+	
+	head = sortLinkedList(head);
+	printf("Sorted LinkedList:\n");
+	printLinkedList(head);
+	
 	printf("\n");
 
+	
 	return 0;
 }

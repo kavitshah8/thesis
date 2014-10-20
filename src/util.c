@@ -2,14 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int countTree (struct node *head)
+int countTree (atn *head)
 {
-	//count number of nodes in tree and return
 	int i, sum;
 	int num_children;
 
-	// printf("smiale\n");
-	// printf("%d\n",num_children);
 	sum = 1;
 	
 	if (!head)
@@ -25,7 +22,7 @@ int countTree (struct node *head)
 	return sum;
 }
 
-int depthOfNode (struct node *head, struct node *ptr)
+int depthOfNode (atn *head, atn *ptr)
 {
 	int dep = 0;
 	
@@ -38,50 +35,44 @@ int depthOfNode (struct node *head, struct node *ptr)
 	return dep;
 }
 
-void printTree (struct node** arr, int total)
+void printTree (atn *iterator)
 {
-	int i, temp, depth;
+	int i = 0;
 	
-	printf("\n\nPrinting aggregationTree : \n\n");
-
-	depth = arr[0]->depth;
-	
-	for (i=0; i < total; i++)
+	if (iterator != NULL)
 	{
-	
-		temp = arr[i]->depth;
-	
-		if (temp != depth)
+		for (i = 0; i < iterator->num_children; i++)
 		{
-			depth = temp;
-			printf("\n \n");
+			// try implementing without recurssion
+			printTree(iterator->arr[i]);
 		}
-	
-		if (depth == 0)
+
+		if (iterator->depth == 0)
 		{
-			printf("Node's id = %d depth = %d num_children = %d parent = NULL || ", arr[i]->id, arr[i]->depth, arr[i]->num_children );
+			printf("id = %d, depth = %d, num_children = %d, parent = NULL\n", iterator->id, iterator->depth, iterator->num_children );
 		}
 		else
 		{
-			printf("Node's id = %d depth = %d num_children = %d parent's_id = %d || ", arr[i]->id, arr[i]->depth, arr[i]->num_children, arr[i]->parent->id );
+			printf("id = %d, depth = %d, num_children = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->num_children, iterator->parent->id );
 		}
-	}
+
+	}	
 }
 
-struct verticalDataStr* createDataStr (struct node **queue, int nodes) 
+vds* createDataStr (atn **queue, int nodes) 
 {
 
 	int dep;
 	int front;
 	
-	struct verticalDataStr* top = NULL;
-	struct verticalDataStr* tempverticalDataStr;
-	struct verticalDataStr* mover;
+	vds *top = NULL;
+	vds *tempverticalDataStr;
+	vds *mover;
 	
-	struct horizontalDataStr* temphorizontalDataStr;
+	hds *temphorizontalDataStr;
 
-	struct node* ptr;
-	struct node* head; 
+	atn *ptr;
+	atn *head; 
 
 	front = 0;
 	head = queue[front];
@@ -96,10 +87,10 @@ struct verticalDataStr* createDataStr (struct node **queue, int nodes)
 		
 		if (top == NULL)
 		{
-				top = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
+				top = (vds*)malloc(sizeof(vds));
 				top->depth = dep;
 				top->next = NULL;
-				top->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				top->list = (hds*)malloc(sizeof(hds));
 				top->list->ptr = ptr;
 				top->list->next = NULL;
 				continue;
@@ -108,9 +99,9 @@ struct verticalDataStr* createDataStr (struct node **queue, int nodes)
 		{
 			if (top->depth < dep)
 			{
-				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
+				tempverticalDataStr = (vds*)malloc(sizeof(vds));
 				tempverticalDataStr->depth = dep;
-				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list = (hds*)malloc(sizeof(hds));
 				tempverticalDataStr->list->ptr = ptr;
 				tempverticalDataStr->list->next = NULL;
 				tempverticalDataStr->next = top;
@@ -126,9 +117,9 @@ struct verticalDataStr* createDataStr (struct node **queue, int nodes)
 			}
 			if (!mover)
 			{
-				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
+				tempverticalDataStr = (vds*)malloc(sizeof(vds));
 				tempverticalDataStr->depth = dep;
-				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list = (hds*)malloc(sizeof(hds));
 				tempverticalDataStr->list->ptr = ptr;
 				tempverticalDataStr->list->next = NULL;
 
@@ -138,7 +129,7 @@ struct verticalDataStr* createDataStr (struct node **queue, int nodes)
 			}
 			else if (mover->depth == dep)
 			{
-				temphorizontalDataStr = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				temphorizontalDataStr = (hds*)malloc(sizeof(hds));
 				temphorizontalDataStr->ptr = ptr;
 				temphorizontalDataStr->next = mover->list;
 				mover->list = temphorizontalDataStr;
@@ -146,11 +137,11 @@ struct verticalDataStr* createDataStr (struct node **queue, int nodes)
 			}
 			else
 			{	
-				struct verticalDataStr* previous;
+				vds* previous;
 				//mover->depth < dep
-				tempverticalDataStr = (struct verticalDataStr*)malloc(sizeof(struct verticalDataStr));
+				tempverticalDataStr = (vds*)malloc(sizeof(vds));
 				tempverticalDataStr->depth = dep;
-				tempverticalDataStr->list = (struct horizontalDataStr*)malloc(sizeof(struct horizontalDataStr));
+				tempverticalDataStr->list = (hds*)malloc(sizeof(hds));
 				tempverticalDataStr->list->ptr = ptr;
 				tempverticalDataStr->list->next = NULL;
 
@@ -164,9 +155,9 @@ struct verticalDataStr* createDataStr (struct node **queue, int nodes)
 	return top;
 }
 
-struct verticalDataStr* findPrevious (struct verticalDataStr* head, struct verticalDataStr* target)
+vds* findPrevious (vds *head, vds *target)
 {
-	struct verticalDataStr* walker;
+	vds *walker;
 
 	walker = head;
 	
@@ -177,21 +168,150 @@ struct verticalDataStr* findPrevious (struct verticalDataStr* head, struct verti
 	return walker;
 }
 
-void printDataStr (struct verticalDataStr* top)
+void printDataStr (vds *vdsMover)
 {
-	struct horizontalDataStr* temp;
+	hds *hdsMover;
 
 	printf("\n\nPrinting createDataStr : \n\n");
 
-	while (top != NULL)
+	while (vdsMover != NULL)
 	{
-		temp = top->list;
-		while (temp != NULL)
+		hdsMover = vdsMover->list;
+		
+		printf("depth = %d\n", hdsMover->ptr->depth);
+
+		while (hdsMover != NULL)
 		{
-			printf("depth = %d num_children = %d \t",temp->ptr->depth, temp->ptr->num_children);
-			temp = temp->next;
+			printf("id = %d, num_children = %d ||",hdsMover->ptr->id, hdsMover->ptr->num_children);
+			hdsMover = hdsMover->next;
 		}
+
 		printf("\n\n");
-		top = top->next;
+		
+		vdsMover = vdsMover->next;
 	}
+}
+
+ctn* createCommitmentTree (vds *vdsMover)
+{
+	int i, j;
+	hds *hdsMover;
+	ctn *ctnPtr;
+	ctn *myChildForest;
+	ctn *moverPtr;
+	
+	while (vdsMover != NULL)
+	{
+		hdsMover = vdsMover->list;
+
+		while (hdsMover != NULL)
+		{
+			ctnPtr = (ctn*)malloc(sizeof(ctn)); 
+			
+			if (ctnPtr == NULL)
+			{
+				printf("Memory Allocation Error\n");
+				exit(1);				
+			}
+			
+			ctnPtr->leftChild = NULL;
+			ctnPtr->rightChild = NULL;
+			ctnPtr->nextTree = NULL;
+			ctnPtr->parentInctn = NULL;
+			ctnPtr->ptrToAggregationTreeNode = hdsMover->ptr;
+			ctnPtr->id = hdsMover->ptr->id;
+			hdsMover->ptr->myForests = ctnPtr; 
+			moverPtr = ctnPtr;
+			
+			for (i = 0; i < hdsMover->ptr->num_children; i++)
+			{
+
+				moverPtr->nextTree = hdsMover->ptr->arr[i]->myForests;
+
+				while (moverPtr->nextTree != NULL)
+				{
+					moverPtr = moverPtr->nextTree;					
+				}
+
+			}
+
+			hdsMover = hdsMover->next;
+		}
+		
+		vdsMover = vdsMover->next;
+	}
+	printf("\n node_id = %d nodes in a forest = %d \n", ctnPtr->ptrToAggregationTreeNode->id, countForest(ctnPtr));
+
+	return ctnPtr;
+}
+
+int countForest (ctn* ctnPtr)
+{
+	int sum = 0;
+	
+	while (ctnPtr != NULL)
+	{
+		sum++;
+		ctnPtr = ctnPtr->nextTree;
+	}
+
+	return sum;
+}
+
+void printLinkedList(ctn *head)
+{
+	while(head != NULL)
+	{
+		printf("%d\n",head->id);
+		head = head->nextTree;
+	}	
+}
+
+ctn *sortLinkedList(ctn *top)
+{
+  ctn *p, *prev;
+  int changed;
+          
+  changed = 1;
+
+  if( top != NULL && top->nextTree != NULL ) 
+  {
+    while(changed)
+    {
+      changed = 0;
+  		prev = NULL;
+      p = top;
+      while(p->nextTree != NULL)
+      {
+      	if(p->id > p->nextTree->id)
+        {
+        	if(prev)
+          {
+          	prev->nextTree = switchLinkedListElements( p, p->nextTree );
+            prev = prev->nextTree;
+          }
+          else
+          {
+          	top = switchLinkedListElements( p, p->nextTree );
+            prev = top;
+          }
+         	changed = 1;
+        }
+        else
+        {
+        	prev = p;
+          p = p->nextTree;
+        }
+      }
+    }
+  }
+	
+	return top;
+}
+
+ctn *switchLinkedListElements(ctn *l1, ctn *l2)
+{
+    l1->nextTree = l2->nextTree;
+    l2->nextTree = l1;
+    return l2;
 }
