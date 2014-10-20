@@ -269,7 +269,7 @@ void printLinkedList(ctn *head)
 
 ctn *sortLinkedList(ctn *top)
 {
-		ctn *p, *q, *prev;
+		ctn *p, *prev;
 		int changed = 1;
 			
 	//if( top != NULL && top->nextTree != NULL ) {
