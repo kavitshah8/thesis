@@ -19,7 +19,7 @@ int main ()
 	vds* top;
 	ctn* head;
 
-	srand(time(NULL));
+	// srand(time(NULL));
 
 	N = NODES;
 	front =	back = 0;
@@ -141,12 +141,12 @@ int main ()
 	printDataStr(top);
 	
 	head = createCommitmentTree(top);
-	printf("Unsorted LinkedList by their Height:\n");
-	printLinkedList(head);
+	// printf("Unsorted LinkedList by their Height:\n");
+	// printLinkedList(head);
 	
-	head = sortLinkedList(head);
-	printf("Sorted LinkedList by their Height:\n");
-	printLinkedList(head);
+	// head = sortLinkedList(head);
+	// printf("Sorted LinkedList by their Height:\n");
+	// printLinkedList(head);
 	
 	printf("\n");
 

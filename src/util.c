@@ -235,9 +235,10 @@ ctn* createCommitmentTree (vds *vdsMover)
 				{
 					moverPtr = moverPtr->nextTree;					
 				}
-
 			}
 
+			hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
+			
 			hdsMover = hdsMover->next;
 		}
 		
@@ -263,6 +264,7 @@ int countForest (ctn* ctnPtr)
 
 void printLinkedList(ctn *head)
 {
+	printf("Printing a LL:\n");
 	while(head != NULL)
 	{
 		printf("%d\n",head->height);
