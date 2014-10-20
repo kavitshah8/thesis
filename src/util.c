@@ -199,6 +199,7 @@ ctn* createCommitmentTree (vds *vdsMover)
 	ctn *ctnPtr;
 	ctn *myChildForest;
 	ctn *moverPtr;
+	ctn *aggregator;
 	
 	height = 0;
 
@@ -226,20 +227,48 @@ ctn* createCommitmentTree (vds *vdsMover)
 			hdsMover->ptr->myForests = ctnPtr; 
 			moverPtr = ctnPtr;
 			
-			for (i = 0; i < hdsMover->ptr->num_children; i++)
+			if (hdsMover->ptr->num_children != 0)
 			{
 
-				moverPtr->nextTree = hdsMover->ptr->arr[i]->myForests;
-
-				while (moverPtr->nextTree != NULL)
+				for (i = 0; i < hdsMover->ptr->num_children; i++)
 				{
-					moverPtr = moverPtr->nextTree;					
-				}
-			}
 
-			hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
-			
-			hdsMover = hdsMover->next;
+					moverPtr->nextTree = hdsMover->ptr->arr[i]->myForests;
+
+					while (moverPtr->nextTree != NULL)
+					{
+						moverPtr = moverPtr->nextTree;					
+					}
+				}
+
+				hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
+				moverPtr = hdsMover->ptr->myForests;
+
+				// while (moverPtr->nextTree != NULL)
+				// {
+				// 	if (moverPtr->height != moverPtr->nextTree->height)
+				// 	{
+				// 		moverPtr = moverPtr->nextTree;
+				// 	}
+				// 	else
+				// 	{
+				// 		// aggregator = (ctn*)malloc(sizeof(ctn));
+				// 		// aggregator->leftChild = moverPtr;
+				// 		// aggregator->rightChild = moverPtr->nextTree;
+				// 		// aggregator->height = moverPtr->height + moverPtr->nextTree->height;
+				// 		// aggregator->parentInctn = NULL;
+				// 		// // aggregator->ptrToAggregationTreeNode = ? ;
+				// 		// moverPtr->parentInctn = moverPtr->nextTree->parentInctn = aggregator;
+				// 	}
+				// }
+				
+				hdsMover = hdsMover->next;
+
+			}
+			else
+			{
+				hdsMover = hdsMover->next;
+			}
 		}
 		
 		vdsMover = vdsMover->next;
