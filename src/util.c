@@ -194,15 +194,15 @@ void printDataStr (vds *vdsMover)
 
 ctn* createCommitmentTree (vds *vdsMover)
 {
-	int i, j, height;
+	int i, j;
+	int const HEIGHT = 0;
+
 	hds *hdsMover;
 	ctn *ctnPtr;
 	ctn *myChildForest;
 	ctn *moverPtr;
 	ctn *aggregator;
 	
-	height = 0;
-
 	while (vdsMover != NULL)
 	{
 		hdsMover = vdsMover->list;
@@ -219,7 +219,7 @@ ctn* createCommitmentTree (vds *vdsMover)
 			
 			// hdsMover->ptr points to the node in aggregation tree which you are processing
 			ctnPtr->id = hdsMover->ptr->id;
-			ctnPtr->height = 0;
+			ctnPtr->height = HEIGHT;
 			// ctnPtr->height = height;
 			ctnPtr->ptrToAggregationTreeNode = hdsMover->ptr;
 			ctnPtr->leftChild = NULL;
@@ -256,7 +256,7 @@ ctn* createCommitmentTree (vds *vdsMover)
 					{
 						aggregator = (ctn*)malloc(sizeof(ctn));
 						// aggregator->id = ?;
-						aggregator->height = moverPtr->height + moverPtr->nextTree->height;
+						aggregator->height = moverPtr->height + 1;
 						// aggregator->ptrToAggregationTreeNode = ? ;
 						aggregator->leftChild = moverPtr;
 						aggregator->rightChild = moverPtr->nextTree;
@@ -285,7 +285,6 @@ ctn* createCommitmentTree (vds *vdsMover)
 		}
 		
 		vdsMover = vdsMover->next;
-		height++;
 	}
 
 	return ctnPtr;

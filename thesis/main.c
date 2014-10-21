@@ -9,7 +9,7 @@ int main ()
 
 	// random tree generation algorithm in breadth first search fashion
 
-	int const NODES = 20;
+	int const NODES = 10;
 	int const DIVISOR = 4;	
 	int N; // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
