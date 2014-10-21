@@ -220,7 +220,6 @@ ctn* createCommitmentTree (vds *vdsMover)
 			// hdsMover->ptr points to the node in aggregation tree which you are processing
 			ctnPtr->id = hdsMover->ptr->id;
 			ctnPtr->height = HEIGHT;
-			// ctnPtr->height = height;
 			ctnPtr->ptrToAggregationTreeNode = hdsMover->ptr;
 			ctnPtr->leftChild = NULL;
 			ctnPtr->rightChild = NULL;
@@ -303,7 +302,7 @@ int countForest (ctn* ctnPtr)
 	return sum;
 }
 
-void printLinkedList(ctn *head)
+void printLinkedList (ctn *head)
 {
 	printf("Printing a LL:\n");
 	while(head != NULL)
@@ -313,32 +312,34 @@ void printLinkedList(ctn *head)
 	}	
 }
 
-ctn *sortLinkedList(ctn *top)
+ctn *sortLinkedList (ctn *top)
 {
   ctn *p, *prev;
   int changed;
           
   changed = 1;
 
-  if( top != NULL && top->nextTree != NULL ) 
+  if (top != NULL && top->nextTree != NULL) 
   {
-    while(changed)
+    while (changed)
     {
       changed = 0;
   		prev = NULL;
       p = top;
-      while(p->nextTree != NULL)
+      
+      while (p->nextTree != NULL)
       {
-      	if(p->height > p->nextTree->height)
+      
+      	if (p->height > p->nextTree->height)
         {
-        	if(prev)
+         	if (prev)
           {
-          	prev->nextTree = switchLinkedListElements( p, p->nextTree );
+          	prev->nextTree = switchLinkedListElements(p, p->nextTree);
             prev = prev->nextTree;
           }
           else
           {
-          	top = switchLinkedListElements( p, p->nextTree );
+          	top = switchLinkedListElements(p, p->nextTree);
             prev = top;
           }
          	changed = 1;
@@ -355,9 +356,9 @@ ctn *sortLinkedList(ctn *top)
 	return top;
 }
 
-ctn *switchLinkedListElements(ctn *l1, ctn *l2)
+ctn *switchLinkedListElements (ctn *l1, ctn *l2)
 {
-    l1->nextTree = l2->nextTree;
-    l2->nextTree = l1;
-    return l2;
+  l1->nextTree = l2->nextTree;
+  l2->nextTree = l1;
+  return l2;
 }
