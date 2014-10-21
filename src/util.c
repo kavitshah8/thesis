@@ -282,12 +282,10 @@ atn* createCommitmentTree (vds *vdsMover)
 		
 		if (vdsMover->next == NULL)
 		{
-			root = vdsMover->list->ptr;
+			return vdsMover->list->ptr;
 		}
 		vdsMover = vdsMover->next;
 	}
-
-	return root;
 }
 
 int countForest (ctn* ctnPtr)
