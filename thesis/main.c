@@ -7,7 +7,7 @@
 int main () 
 {
 
-	int const NODES = 10;
+	int const NODES = 20;
 	int const DIVISOR = 4;	
 	int N; // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
@@ -19,7 +19,7 @@ int main ()
 	vds* top;
 	ctn* head;
 
-	// srand(time(NULL));
+	srand(time(NULL));
 
 	N = NODES;
 	front =	back = 0;
@@ -42,21 +42,21 @@ int main ()
 	while (front < NODES)
 	{
 	
-		iterator->num_children = rand() % DIVISOR;
+		iterator->numChildren = rand() % DIVISOR;
 
-		if (N < iterator->num_children)
+		if (N < iterator->numChildren)
 		{
-			iterator->num_children = rand() % (N+1);
+			iterator->numChildren = rand() % (N+1);
 		}
 
 		// Gives you a tree
-		if (iterator == root && iterator->num_children == 0)
+		if (iterator == root && iterator->numChildren == 0)
 		{
-			iterator->num_children = 1;
+			iterator->numChildren = 1;
 		}
 		else
 		{ // make sure left most child doesnot have 0 children and that make sure your tree does not break
-			if (iterator != root  && iterator->num_children == 0)
+			if (iterator != root  && iterator->numChildren == 0)
 			{
 				int dep = 1 + (iterator->parent->depth);
 				int sum = 0;
@@ -72,22 +72,22 @@ int main ()
 				}
 				while (tt < back)
 				{
-					sum += queue[tt]->num_children;
+					sum += queue[tt]->numChildren;
 					tt++;
 				}
 				if (!sum)
 				{
-					iterator->num_children = 1;
-					if (N < iterator->num_children)
+					iterator->numChildren = 1;
+					if (N < iterator->numChildren)
 					{
-						iterator->num_children = rand() % (N+1);
+						iterator->numChildren = rand() % (N+1);
 					}								
 				} 
 			}
 		}
 	
 		// malloc(0) should return NULL; 
-		iterator->arr = (atn**)malloc( sizeof(atn*) * iterator->num_children ) ;
+		iterator->arr = (atn**)malloc( sizeof(atn*) * iterator->numChildren ) ;
 
 		if (iterator->arr == NULL)
 		{
@@ -95,7 +95,7 @@ int main ()
 			exit(1);
 		}
 		
-		for (i=0; i < iterator->num_children; i++)
+		for (i=0; i < iterator->numChildren; i++)
 		{
 			iterator->arr[i] = (atn*)malloc( sizeof(atn) ) ;
 
@@ -107,7 +107,7 @@ int main ()
 				iterator->arr[i]->id = back;
 				iterator->arr[i]->depth = iterator->depth + 1;
 				iterator->arr[i]->parent = iterator;
-				iterator->arr[i]->num_children = 0;
+				iterator->arr[i]->numChildren = 0;
 				iterator->arr[i]->arr = NULL;
 				queue[back] = iterator->arr[i];
 				back++;

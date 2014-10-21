@@ -4,7 +4,7 @@ typedef struct aggregationTreeNode
 {
 	int id;
 	int depth;  // depth is to describe aggregationTreeNode property; HEIGHT is used to describe tree property
-	int num_children;
+	int numChildren;
 	struct aggregationTreeNode* parent;
 	struct aggregationTreeNode** arr;
   struct commitmentTreeNode* myForests;   //my forest comming to me

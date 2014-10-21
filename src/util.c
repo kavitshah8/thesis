@@ -5,16 +5,16 @@
 int countTree (atn *head)
 {
 	int i, sum;
-	int num_children;
+	int numChildren;
 
 	sum = 1;
 	
 	if (!head)
 		return 0;
 
-	num_children = head->num_children;
+	numChildren = head->numChildren;
 
-	for ( i=0; i < num_children; i++)
+	for ( i=0; i < numChildren; i++)
 	{
 		sum += countTree(head->arr[i]);
 	}
@@ -41,7 +41,7 @@ void printTree (atn *iterator)
 	
 	if (iterator != NULL)
 	{
-		for (i = 0; i < iterator->num_children; i++)
+		for (i = 0; i < iterator->numChildren; i++)
 		{
 			// try implementing without recurssion
 			printTree(iterator->arr[i]);
@@ -49,11 +49,11 @@ void printTree (atn *iterator)
 
 		if (iterator->depth == 0)
 		{
-			printf("id = %d, depth = %d, num_children = %d, parent = NULL\n", iterator->id, iterator->depth, iterator->num_children );
+			printf("id = %d, depth = %d, numChildren = %d, parent = NULL\n", iterator->id, iterator->depth, iterator->numChildren );
 		}
 		else
 		{
-			printf("id = %d, depth = %d, num_children = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->num_children, iterator->parent->id );
+			printf("id = %d, depth = %d, numChildren = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->numChildren, iterator->parent->id );
 		}
 
 	}	
@@ -182,7 +182,7 @@ void printDataStr (vds *vdsMover)
 
 		while (hdsMover != NULL)
 		{
-			printf("id = %d, num_children = %d ||",hdsMover->ptr->id, hdsMover->ptr->num_children);
+			printf("id = %d, numChildren = %d ||",hdsMover->ptr->id, hdsMover->ptr->numChildren);
 			hdsMover = hdsMover->next;
 		}
 
@@ -227,10 +227,10 @@ ctn* createCommitmentTree (vds *vdsMover)
 			hdsMover->ptr->myForests = ctnPtr; 
 			moverPtr = ctnPtr;
 			
-			if (hdsMover->ptr->num_children != 0)
+			if (hdsMover->ptr->numChildren != 0)
 			{
-				printf("hdsMover->ptr->num_children = %d\n",hdsMover->ptr->num_children);
-				for (i = 0; i < hdsMover->ptr->num_children; i++)
+				// Attach all my children to myforest
+				for (i = 0; i < hdsMover->ptr->numChildren; i++)
 				{
 					moverPtr->nextTree = hdsMover->ptr->arr[i]->myForests;
 					while (moverPtr->nextTree != NULL)
@@ -244,7 +244,6 @@ ctn* createCommitmentTree (vds *vdsMover)
 
 				while (moverPtr->nextTree != NULL)
 				{
-					// printf("Inifnite\n");
 					if (moverPtr->height != moverPtr->nextTree->height)
 					{
 						moverPtr = moverPtr->nextTree;
