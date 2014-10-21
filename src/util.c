@@ -264,7 +264,8 @@ ctn* createCommitmentTree (vds *vdsMover)
 
 						// sets parents & removes from the LL
 						moverPtr->parentInctn = moverPtr->nextTree->parentInctn = aggregator;
-						moverPtr->nextTree = moverPtr->nextTree->nextTree = NULL;
+						moverPtr->nextTree = NULL;
+						moverPtr->nextTree->nextTree = NULL;
 						
 						// Inserts aggregator to the LL
 						moverPtr = aggregator;
@@ -274,13 +275,8 @@ ctn* createCommitmentTree (vds *vdsMover)
 					}
 				}
 				
-				hdsMover = hdsMover->next;
-
 			}
-			else
-			{
-				hdsMover = hdsMover->next;
-			}
+			hdsMover = hdsMover->next;
 		}
 		
 		vdsMover = vdsMover->next;
