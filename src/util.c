@@ -217,13 +217,16 @@ ctn* createCommitmentTree (vds *vdsMover)
 				exit(1);				
 			}
 			
+			// hdsMover->ptr points to the node in aggregation tree which you are processing
+			ctnPtr->id = hdsMover->ptr->id;
+			ctnPtr->height = 0;
+			// ctnPtr->height = height;
+			ctnPtr->ptrToAggregationTreeNode = hdsMover->ptr;
 			ctnPtr->leftChild = NULL;
 			ctnPtr->rightChild = NULL;
 			ctnPtr->nextTree = NULL;
 			ctnPtr->parentInctn = NULL;
-			ctnPtr->height = height;
-			ctnPtr->ptrToAggregationTreeNode = hdsMover->ptr;
-			ctnPtr->id = hdsMover->ptr->id;
+
 			hdsMover->ptr->myForests = ctnPtr; 
 			moverPtr = ctnPtr;
 			
@@ -233,6 +236,7 @@ ctn* createCommitmentTree (vds *vdsMover)
 				for (i = 0; i < hdsMover->ptr->numChildren; i++)
 				{
 					moverPtr->nextTree = hdsMover->ptr->arr[i]->myForests;
+
 					while (moverPtr->nextTree != NULL)
 					{
 						moverPtr = moverPtr->nextTree;					
@@ -251,15 +255,18 @@ ctn* createCommitmentTree (vds *vdsMover)
 					else
 					{
 						aggregator = (ctn*)malloc(sizeof(ctn));
+						// aggregator->id = ?;
+						aggregator->height = moverPtr->height + moverPtr->nextTree->height;
+						// aggregator->ptrToAggregationTreeNode = ? ;
 						aggregator->leftChild = moverPtr;
 						aggregator->rightChild = moverPtr->nextTree;
-						aggregator->height = moverPtr->height + moverPtr->nextTree->height;
 						aggregator->parentInctn = NULL;
 						aggregator->nextTree = moverPtr->nextTree->nextTree;
-						// aggregator->ptrToAggregationTreeNode = ? ;
+
+						// sets parents & removes from the LL
 						moverPtr->parentInctn = moverPtr->nextTree->parentInctn = aggregator;
-						// removes from the LL
 						moverPtr->nextTree = moverPtr->nextTree->nextTree = NULL;
+						
 						// Inserts aggregator to the LL
 						moverPtr = aggregator;
 						// sort new LL
