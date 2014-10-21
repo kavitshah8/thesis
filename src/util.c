@@ -192,7 +192,7 @@ void printDataStr (vds *vdsMover)
 	}
 }
 
-ctn* createCommitmentTree (vds *vdsMover)
+atn* createCommitmentTree (vds *vdsMover)
 {
 	int i, j;
 	int const HEIGHT = 0;
@@ -202,6 +202,7 @@ ctn* createCommitmentTree (vds *vdsMover)
 	ctn *myChildForest;
 	ctn *moverPtr;
 	ctn *aggregator;
+	atn *root;
 	
 	while (vdsMover != NULL)
 	{
@@ -279,10 +280,14 @@ ctn* createCommitmentTree (vds *vdsMover)
 			hdsMover = hdsMover->next;
 		}
 		
+		if (vdsMover->next == NULL)
+		{
+			root = vdsMover->list->ptr;
+		}
 		vdsMover = vdsMover->next;
 	}
 
-	return ctnPtr;
+	return root;
 }
 
 int countForest (ctn* ctnPtr)

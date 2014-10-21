@@ -51,7 +51,7 @@ vds* createDataStr (atn**, int);
 vds* findPrevious (vds*, vds*);
 void printDataStr (vds*);
 
-ctn* createCommitmentTree (vds*);
+atn* createCommitmentTree (vds*);
 int countForest (struct commitmentTreeNode*);
 void printLinkedList (struct commitmentTreeNode*);
 ctn* sortLinkedList (ctn*);

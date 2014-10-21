@@ -142,7 +142,7 @@ int main ()
 
 	printDataStr(top);
 	
-	head = createCommitmentTree(top);
+	root = createCommitmentTree(top);
 	// printf("Unsorted LinkedList by their Height:\n");
 	// printLinkedList(head);
 	
