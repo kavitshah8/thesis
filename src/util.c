@@ -202,7 +202,12 @@ atn* createCommitmentTree (vds *vdsMover)
 	ctn *myChildForest;
 	ctn *moverPtr;
 	ctn *aggregator;
+	ctn *prev;
 	atn *root;
+	
+	hdsMover = NULL;
+	ctnPtr = myChildForest = moverPtr = aggregator = prev = NULL;
+	root = NULL;
 	
 	while (vdsMover != NULL)
 	{
@@ -270,7 +275,10 @@ atn* createCommitmentTree (vds *vdsMover)
 						
 						// Inserts aggregator to the LL
 						// moverPtr = aggregator;
-						hdsMover->ptr->myForests = aggregator;
+						if (hdsMover->ptr->myForests == moverPtr)
+							hdsMover->ptr->myForests = aggregator;
+						else if (hdsMover->ptr->myForests != moverPtr)
+							while 
 						// sort new LL
 						hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
 						moverPtr = hdsMover->ptr->myForests;
