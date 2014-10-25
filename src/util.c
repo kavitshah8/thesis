@@ -269,7 +269,8 @@ atn* createCommitmentTree (vds *vdsMover)
 						moverPtr->nextTree = NULL;
 						
 						// Inserts aggregator to the LL
-						moverPtr = aggregator;
+						// moverPtr = aggregator;
+						hdsMover->ptr->myForests = aggregator;
 						// sort new LL
 						hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
 						moverPtr = hdsMover->ptr->myForests;
@@ -360,4 +361,24 @@ ctn *switchLinkedListElements (ctn *l1, ctn *l2)
   l1->nextTree = l2->nextTree;
   l2->nextTree = l1;
   return l2;
+}
+
+void printCommitmentTree (atn* root)
+{
+	ctn *mover;
+
+	mover = root->myForests;
+	
+	while (mover)
+	{
+
+		if (mover->leftChild)
+		{
+			printf("height = %d",mover->height);
+			// Do binary traversal
+		}
+
+		printf("Going to next forest\n");
+		mover = mover->nextTree;		
+	}
 }
