@@ -57,3 +57,4 @@ void printLinkedList (struct commitmentTreeNode*);
 ctn* sortLinkedList (ctn*);
 ctn* switchLinkedListElements (ctn*, ctn*);
 void printCommitmentTree (atn*);
+void MorrisTraversal (ctn *root);

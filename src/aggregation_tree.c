@@ -14,7 +14,7 @@ int countTree (atn *head)
 
 	numChildren = head->numChildren;
 
-	for ( i=0; i < numChildren; i++)
+	for (i=0; i < numChildren; i++)
 	{
 		sum += countTree(head->arr[i]);
 	}
@@ -37,7 +37,8 @@ int depthOfNode (atn *head, atn *ptr)
 
 void printTree (atn *iterator)
 {
-	int i = 0;
+	int i;
+	i = 0;
 	
 	if (iterator != NULL)
 	{

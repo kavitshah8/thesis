@@ -203,19 +203,60 @@ void printCommitmentTree (atn* root)
 
 	mover = root->myForests;
 	
-	printf("Printing a commitment tree\n");
+	printf("Printing a commitment Forest\n");
 
 	while (mover)
 	{
-		printf("height = %d\n",mover->height);
-		printf("Going to next forest\n");
-		mover = mover->nextTree;		
-
-		if (mover->leftChild)
+		if (!mover->height)
 		{
-			// printf("height = %d",mover->height);
-			// Do binary traversal
+			printf("height = %d\n",mover->height);
 		}
-
+		else
+		{
+			MorrisTraversal(mover);
+		}
+		mover = mover->nextTree;		
 	}
+}
+
+void MorrisTraversal (ctn *root)
+{
+  ctn *current, *pre;
+ 
+  if (root == NULL)
+     return; 
+ 
+  current = root;
+
+  while (current != NULL)
+  {                 
+    if (current->leftChild == NULL)
+    {
+      printf(" %d ", current->height);
+      current = current->rightChild;      
+    }    
+    else
+    {
+      /* Find the inorder predecessor of current */
+      pre = current->leftChild;
+      while (pre->rightChild != NULL && pre->rightChild != current)
+        pre = pre->rightChild;
+ 
+      /* Make current as rightChild child of its inorder predecessor */
+      if (pre->rightChild == NULL)
+      {
+        pre->rightChild = current;
+        current = current->leftChild;
+      }
+             
+      /* Revert the changes made in if part to restore the original 
+        tree i.e., fix the rightChild child of predecssor */   
+      else 
+      {
+        pre->rightChild = NULL;
+        printf(" %d ",current->height);
+        current = current->rightChild;      
+      } /* End of if condition pre->rightChild == NULL */
+    } /* End of if condition current->leftChild == NULL*/
+  } /* End of while */
 }
