@@ -13,7 +13,7 @@ int main ()
 	int i, j;
 	int front, back;
 	int const DIVISOR = 4;	
-	int const NODES = 255;
+	int const NODES = 254;
 	atn* root;
 	atn* iterator;
 	atn* queue[10000];
