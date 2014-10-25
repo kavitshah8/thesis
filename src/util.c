@@ -2,63 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int countTree (atn *head)
-{
-	int i, sum;
-	int numChildren;
-
-	sum = 1;
-	
-	if (!head)
-		return 0;
-
-	numChildren = head->numChildren;
-
-	for ( i=0; i < numChildren; i++)
-	{
-		sum += countTree(head->arr[i]);
-	}
-	
-	return sum;
-}
-
-int depthOfNode (atn *head, atn *ptr)
-{
-	int dep = 0;
-	
-	while (ptr != head)
-	{
-		ptr = ptr->parent;
-		dep++;
-	}
-	
-	return dep;
-}
-
-void printTree (atn *iterator)
-{
-	int i = 0;
-	
-	if (iterator != NULL)
-	{
-		for (i = 0; i < iterator->numChildren; i++)
-		{
-			// try implementing without recurssion
-			printTree(iterator->arr[i]);
-		}
-
-		if (iterator->depth == 0)
-		{
-			printf("id = %d, depth = %d, numChildren = %d, parent = NULL\n", iterator->id, iterator->depth, iterator->numChildren );
-		}
-		else
-		{
-			printf("id = %d, depth = %d, numChildren = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->numChildren, iterator->parent->id );
-		}
-
-	}	
-}
-
 vds* createDataStr (atn **queue, int nodes) 
 {
 
@@ -198,17 +141,17 @@ atn* createCommitmentTree (vds *vdsMover)
 	int const HEIGHT = 0;
 
 	hds *hdsMover;
+	atn *root;
 	ctn *ctnPtr;
 	ctn *myChildForest;
 	ctn *moverPtr;
 	ctn *aggregator;
 	ctn *prev;
-	atn *root;
 	
 	hdsMover = NULL;
-	ctnPtr = myChildForest = moverPtr = aggregator = prev = NULL;
 	root = NULL;
-	
+	ctnPtr = myChildForest = moverPtr = aggregator = prev = NULL;
+
 	while (vdsMover != NULL)
 	{
 		hdsMover = vdsMover->list;
@@ -233,6 +176,7 @@ atn* createCommitmentTree (vds *vdsMover)
 			ctnPtr->parentInctn = NULL;
 
 			hdsMover->ptr->myForests = ctnPtr; 
+			
 			moverPtr = ctnPtr;
 			
 			if (hdsMover->ptr->numChildren != 0)
@@ -242,6 +186,7 @@ atn* createCommitmentTree (vds *vdsMover)
 				{
 					moverPtr->nextTree = hdsMover->ptr->arr[i]->myForests;
 
+					// Might not need the following loop (?)
 					while (moverPtr->nextTree != NULL)
 					{
 						moverPtr = moverPtr->nextTree;					
@@ -251,10 +196,12 @@ atn* createCommitmentTree (vds *vdsMover)
 				hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
 				moverPtr = hdsMover->ptr->myForests;
 
+				// Huffman coding
 				while (moverPtr->nextTree != NULL)
 				{
 					if (moverPtr->height != moverPtr->nextTree->height)
 					{
+						prev = moverPtr;
 						moverPtr = moverPtr->nextTree;
 					}
 					else
@@ -273,12 +220,24 @@ atn* createCommitmentTree (vds *vdsMover)
 						moverPtr->nextTree->nextTree = NULL;
 						moverPtr->nextTree = NULL;
 						
-						// Inserts aggregator to the LL
+						// Inserts aggregator to the LL (?)
 						// moverPtr = aggregator;
 						if (hdsMover->ptr->myForests == moverPtr)
+						{	
 							hdsMover->ptr->myForests = aggregator;
-						else if (hdsMover->ptr->myForests != moverPtr)
-							while 
+						}
+						else
+						{
+							// prev = hdsMover->ptr->myForests->nextTree;	
+							// prev = hdsMover->ptr->myForests;	
+							
+							while(prev->nextTree != moverPtr)
+							{
+								prev = prev->nextTree;	
+							}
+							prev->nextTree = aggregator;
+						}
+
 						// sort new LL
 						hdsMover->ptr->myForests = sortLinkedList(hdsMover->ptr->myForests);
 						moverPtr = hdsMover->ptr->myForests;
@@ -377,16 +336,19 @@ void printCommitmentTree (atn* root)
 
 	mover = root->myForests;
 	
+	printf("Printing a commitment tree\n");
+
 	while (mover)
 	{
+		printf("height = %d\n",mover->height);
+		printf("Going to next forest\n");
+		mover = mover->nextTree;		
 
 		if (mover->leftChild)
 		{
-			printf("height = %d",mover->height);
+			// printf("height = %d",mover->height);
 			// Do binary traversal
 		}
 
-		printf("Going to next forest\n");
-		mover = mover->nextTree;		
 	}
 }
