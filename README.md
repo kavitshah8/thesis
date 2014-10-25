@@ -1,8 +1,9 @@
 Thesis
 =====
 
-#### To simulte the protocol run following commands from the root of the project directory
+#### To simulte the protocol 
 ```
+cd thesis
 make comile
 make
 ```
