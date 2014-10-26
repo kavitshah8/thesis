@@ -112,9 +112,10 @@ void createAggregationTree (atn *root, atn **queue)
 
 	printf("front = %d  back = %d N = %d\n\n", front, back, N);
 
-	if (front == back)
-		if (front == NODES) 
-			printf("front == back == NODES :) \n\n");
+	if (front == back && front == NODES)
+	{
+		printf("front == back == NODES :) \n\n");		
+	}
 
 }
 
