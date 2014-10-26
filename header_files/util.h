@@ -1,5 +1,8 @@
 #pragma once
 
+#define NODES 15
+#define DIVISOR 4	
+
 typedef struct aggregationTreeNode 
 {
 	int id;
@@ -43,6 +46,7 @@ typedef struct commitmentTreeNode
 	struct commitmentTreeNode* nextTree; // this is my linked list
 } ctn;
 
+void createAggregationTree (atn*, atn**);
 int countTree (atn*);
 int depthOfNode (atn*, atn*);
 void printTree (atn*);
