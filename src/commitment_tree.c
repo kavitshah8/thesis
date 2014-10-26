@@ -88,15 +88,12 @@ atn* createCommitmentTree (vds *vdsMover)
 						moverPtr->nextTree = NULL;
 						
 						// Inserts aggregator to the LL (?)
-						// moverPtr = aggregator;
 						if (hdsMover->ptr->myForests == moverPtr)
 						{	
 							hdsMover->ptr->myForests = aggregator;
 						}
 						else
 						{
-							// prev = hdsMover->ptr->myForests->nextTree;	
-							// prev = hdsMover->ptr->myForests;	
 							
 							while(prev->nextTree != moverPtr)
 							{
