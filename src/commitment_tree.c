@@ -202,7 +202,7 @@ void printCommitmentTree (atn* root)
 	
 	printf("Printing a commitment Forest\n");
 
-	while (mover)
+	while (mover != NULL)
 	{
 		if (!mover->height)
 		{
@@ -236,8 +236,11 @@ void MorrisTraversal (ctn *root)
     {
       /* Find the inorder predecessor of current */
       pre = current->leftChild;
+      
       while (pre->rightChild != NULL && pre->rightChild != current)
+      {
         pre = pre->rightChild;
+      }
  
       /* Make current as rightChild child of its inorder predecessor */
       if (pre->rightChild == NULL)
@@ -253,7 +256,7 @@ void MorrisTraversal (ctn *root)
         pre->rightChild = NULL;
         printf(" %d ",current->height);
         current = current->rightChild;      
-      } /* End of if condition pre->rightChild == NULL */
-    } /* End of if condition current->leftChild == NULL*/
-  } /* End of while */
+      } 
+    } 
+  } 
 }
