@@ -157,13 +157,22 @@ void printTree (atn *iterator)
 	i = 0;
 	
 	if (iterator != NULL)
-	{	
+	{
 		for (i = 0; i < iterator->numChildren; i++)
+		{
+			// try implementing without recurssion
 			printTree(iterator->arr[i]);
+		}
+
 		if (iterator->depth == 0)
+		{
 			printf("id = %d, depth = %d, numChildren = %d, parent = NULL\n", iterator->id, iterator->depth, iterator->numChildren );
+		}
 		else
+		{
 			printf("id = %d, depth = %d, numChildren = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->numChildren, iterator->parent->id );
+		}
+
 	}	
 }
 
