@@ -67,7 +67,6 @@ atn* createCommitmentTree (vds *vdsMover)
 				{
 					if (moverPtr->height != moverPtr->nextTree->height)
 					{
-						prev = moverPtr;
 						moverPtr = moverPtr->nextTree;
 					}
 					else
@@ -93,7 +92,8 @@ atn* createCommitmentTree (vds *vdsMover)
 						}
 						else
 						{
-							
+							prev = hdsMover->ptr->myForests;
+							 	
 							while(prev->nextTree != moverPtr)
 							{
 								prev = prev->nextTree;	
