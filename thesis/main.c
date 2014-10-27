@@ -7,11 +7,17 @@
 int main () 
 {
 
+	int t;
+
 	atn *root;
 	atn *queue[10000];
 
 	vds *top;
 	ctn *head;
+
+	t = time(NULL);
+	srand(t);
+	printf("Seed to the random function = %d \n\n",t);
 
 	root = (atn*)malloc(sizeof(atn));
 

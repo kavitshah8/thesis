@@ -11,8 +11,6 @@ void createAggregationTree (atn *root, atn **queue)
 	int front, back;
 	atn* iterator;
 	
-	srand(time(NULL));
-
 	N = NODES;
 	front =	back = 0;
 
