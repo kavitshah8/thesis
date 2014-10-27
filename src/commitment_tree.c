@@ -5,7 +5,6 @@
 atn* createCommitmentTree (vds *vdsMover)
 {
 	int i, j;
-	int const HEIGHT = 0;
 
 	hds *hdsMover;
 	atn *root;

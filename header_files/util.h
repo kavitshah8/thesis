@@ -2,6 +2,7 @@
 
 #define NODES 15
 #define DIVISOR 4	
+#define HEIGHT 0
 
 typedef struct aggregationTreeNode 
 {
