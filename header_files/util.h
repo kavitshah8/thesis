@@ -1,10 +1,14 @@
 #pragma once
 
+#define NODES 15
+#define DIVISOR 4	
+#define HEIGHT 0
+
 typedef struct aggregationTreeNode 
 {
 	int id;
 	int depth;  // depth is to describe aggregationTreeNode property; HEIGHT is used to describe tree property
-	int num_children;
+	int numChildren;
 	struct aggregationTreeNode* parent;
 	struct aggregationTreeNode** arr;
   struct commitmentTreeNode* myForests;   //my forest comming to me
@@ -43,6 +47,7 @@ typedef struct commitmentTreeNode
 	struct commitmentTreeNode* nextTree; // this is my linked list
 } ctn;
 
+void createAggregationTree (atn*, atn**);
 int countTree (atn*);
 int depthOfNode (atn*, atn*);
 void printTree (atn*);
@@ -51,8 +56,10 @@ vds* createDataStr (atn**, int);
 vds* findPrevious (vds*, vds*);
 void printDataStr (vds*);
 
-ctn* createCommitmentTree (vds*);
+atn* createCommitmentTree (vds*);
 int countForest (struct commitmentTreeNode*);
 void printLinkedList (struct commitmentTreeNode*);
 ctn* sortLinkedList (ctn*);
 ctn* switchLinkedListElements (ctn*, ctn*);
+void printCommitmentTree (atn*);
+void MorrisTraversal (ctn *root);

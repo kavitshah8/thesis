@@ -9,6 +9,11 @@
 *.o
 *.out
 
+
+#compiled files
+main
+compile
+	
 # User-specific files
 *.suo
 *.user
