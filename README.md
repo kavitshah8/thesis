@@ -4,8 +4,8 @@ Thesis
 #### To simulte the protocol 
 ```
 cd thesis
-make comile
 make
+./main
 ```
 #### Current
 

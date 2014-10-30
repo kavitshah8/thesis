@@ -1,9 +1,5 @@
 CC = gcc
 
-exec:
-	./main
-	compile
-
 compile: \
-src/* thesis/* 
+src/* thesis/* header_files/*
 	$(CC) src/* thesis/* -o main
