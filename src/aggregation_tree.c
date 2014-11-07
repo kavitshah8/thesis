@@ -4,7 +4,7 @@
 
 void createAggregationTree (atn *root, atn **queue)
 {
-	// random tree generation algorithm in breadth first search fashion
+	// pseudo random tree generation algorithm in breadth first search fashion
 
 	int N; // N is the toal number of remaining nodes in the aggregation tree generation
 	int i, j;
