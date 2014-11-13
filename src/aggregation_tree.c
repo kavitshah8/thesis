@@ -172,6 +172,7 @@ void printTree (atn *iterator)
 			printf("id = %d, depth = %d, numChildren = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->numChildren, iterator->parent->id );
 		}
 
-	}	
+	}
+
 }
 

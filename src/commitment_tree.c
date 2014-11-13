@@ -137,7 +137,7 @@ void printLinkedList (ctn *head)
 	printf("Printing a LL:\n");
 	while(head != NULL)
 	{
-		printf("%d\n",head->height);
+		printf("%d\n", head->height);
 		head = head->nextTree;
 	}	
 }

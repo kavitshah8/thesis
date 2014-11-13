@@ -114,18 +114,24 @@ vds* findPrevious (vds *head, vds *target)
 void printDataStr (vds *vdsMover)
 {
 	hds *hdsMover;
+	FILE *outFile;
+
+	outFile = fopen("/home/kavit/thesis/output/data.txt","w");
 
 	printf("\n\nPrinting createDataStr : \n\n");
+	fprintf(outFile, "\n\nPrinting createDataStr : \n\n");
 
 	while (vdsMover != NULL)
 	{
 		hdsMover = vdsMover->list;
 		
 		printf("depth = %d\n", hdsMover->ptr->depth);
+		fprintf(outFile, "%d\n", hdsMover->ptr->depth);
 
 		while (hdsMover != NULL)
 		{
 			printf("id = %d, numChildren = %d ||",hdsMover->ptr->id, hdsMover->ptr->numChildren);
+			fprintf(outFile, "id = %d, numChildren = %d ||",hdsMover->ptr->id, hdsMover->ptr->numChildren);
 			hdsMover = hdsMover->next;
 		}
 
@@ -133,4 +139,5 @@ void printDataStr (vds *vdsMover)
 		
 		vdsMover = vdsMover->next;
 	}
+	fclose(outFile);
 }
