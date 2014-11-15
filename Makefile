@@ -1,4 +1,4 @@
-CC = gcc
+CC = g++ -O3 
 
 compile: \
 src/* thesis/* header_files/* 

@@ -51,6 +51,8 @@ void createAggregationTree (atn*, atn**);
 int countTree (atn*);
 int depthOfNode (atn*, atn*);
 void printTree (atn*);
+void printAggregationTree (atn *iterator);
+
 
 vds* createDataStr (atn**, int);
 vds* findPrevious (vds*, vds*);
