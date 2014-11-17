@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stack>
+using namespace std;
 
 void createAggregationTree (atn *root, atn **queue)
 {
@@ -80,7 +81,7 @@ void createAggregationTree (atn *root, atn **queue)
 			exit(1);
 		}
 		
-		for (i=0; i < iterator->numChildren; i++)
+		for (i = 0; i < iterator->numChildren; i++)
 		{
 			iterator->arr[i] = (atn*)malloc( sizeof(atn) ) ;
 
@@ -119,7 +120,7 @@ void createAggregationTree (atn *root, atn **queue)
 
 }
 
-int countTree (atn *head)
+int countDescendants (atn *head)
 {
 	int i, sum;
 	int numChildren;
@@ -131,9 +132,9 @@ int countTree (atn *head)
 
 	numChildren = head->numChildren;
 
-	for (i=0; i < numChildren; i++)
+	for (i = 0; i < numChildren; i++)
 	{
-		sum += countTree(head->arr[i]);
+		sum += countDescendants(head->arr[i]);
 	}
 	
 	return sum;
@@ -180,35 +181,39 @@ void printTree (atn *iterator)
 
 void printAggregationTree (atn *root)
 {	
-	int i, j;
-	std::stack<atn*> ms;
-	// ms.top = -1;
-
-	atn *temp  = root;
-
-	i = j = 0;
+	stack<atn*> ms;
+	
+	atn *temp = root;
 
   while(!(ms.empty()) || temp)
   {
     if(temp)
   	{
-    	j = 0;
+			temp->count = 0;
     	ms.push(temp);
-    	
-    	if (j < temp->numChildren)
-    	{
-	    	temp = temp->arr[i];	
-    		j++;
-    	}
 
-    }
-    else
-    {
-    	// temp = ms.pop();
-      // printf("%d  ", temp->value);
-			printf("id = %d, depth = %d, numChildren = %d, parent's_id = %d\n ", temp->id, temp->depth, temp->numChildren, temp->parent->id );
-    	j = 0;
-      // temp = temp->right;
+    	if (temp->count < temp->numChildren)
+    	{	
+	    	temp = temp->arr[temp->count];
+	    	ms.top()->count++;	
+    	}
+	    else
+	    {
+	    	temp = ms.top();
+
+				if (temp->depth == 0)
+				{
+					printf("id = %d, depth = %d, numChildren = %d, parent = NULL\n", temp->id, temp->depth, temp->numChildren );
+				}
+				else
+				{
+					printf("id = %d, depth = %d, numChildren = %d, parent's_id = %d\n ", temp->id, temp->depth, temp->numChildren, temp->parent->id );
+				}	    	
+
+				ms.pop();
+				temp = ms.top();
+	    }
+
     }
   }
 

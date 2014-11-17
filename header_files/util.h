@@ -9,6 +9,7 @@ typedef struct aggregationTreeNode
 	int id;
 	int depth;  // depth is to describe aggregationTreeNode property; HEIGHT is used to describe tree property
 	int numChildren;
+	int count; // this is to help traversing without recursion
 	struct aggregationTreeNode* parent;
 	struct aggregationTreeNode** arr;
   struct commitmentTreeNode* myForests;   //my forest comming to me
@@ -48,7 +49,7 @@ typedef struct commitmentTreeNode
 } ctn;
 
 void createAggregationTree (atn*, atn**);
-int countTree (atn*);
+int countDescendants (atn*);
 int depthOfNode (atn*, atn*);
 void printTree (atn*);
 void printAggregationTree (atn *iterator);

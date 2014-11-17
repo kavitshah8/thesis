@@ -2,13 +2,9 @@
 
 Printing createDataStr : 
 
-8
-id = 14, numChildren = 0 ||id = 13, numChildren = 0 ||id = 12, numChildren = 0 ||7
-id = 11, numChildren = 1 ||id = 10, numChildren = 1 ||id = 9, numChildren = 1 ||6
-id = 8, numChildren = 0 ||id = 7, numChildren = 2 ||id = 6, numChildren = 1 ||5
-id = 5, numChildren = 3 ||4
-id = 4, numChildren = 1 ||3
-id = 3, numChildren = 1 ||2
-id = 2, numChildren = 1 ||1
-id = 1, numChildren = 1 ||0
-id = 0, numChildren = 1 ||
+4
+id = 14, numChildren = 0 ||id = 13, numChildren = 0 ||3
+id = 12, numChildren = 0 ||id = 11, numChildren = 0 ||id = 10, numChildren = 0 ||id = 9, numChildren = 0 ||id = 8, numChildren = 0 ||id = 7, numChildren = 2 ||2
+id = 6, numChildren = 2 ||id = 5, numChildren = 3 ||id = 4, numChildren = 1 ||1
+id = 3, numChildren = 1 ||id = 2, numChildren = 1 ||id = 1, numChildren = 1 ||0
+id = 0, numChildren = 3 ||
