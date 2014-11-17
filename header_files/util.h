@@ -55,7 +55,7 @@ void printTree (atn*);
 void printAggregationTree (atn *iterator);
 
 
-vds* createDataStr (atn**, int);
+vds* createDataStr (atn**);
 vds* findPrevious (vds*, vds*);
 void printDataStr (vds*);
 

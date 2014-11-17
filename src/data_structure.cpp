@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-vds* createDataStr (atn **queue, int nodes) 
+vds* createDataStr (atn **queue) 
 {
 
 	int dep;
@@ -20,7 +20,7 @@ vds* createDataStr (atn **queue, int nodes)
 	front = 0;
 	head = queue[front];
 
-	while (front < nodes)
+	while (front < NODES)
 	{
 		// ptr will be pointing to aggregation tree
 		ptr = queue[front];

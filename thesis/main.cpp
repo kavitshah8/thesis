@@ -33,7 +33,7 @@ int main ()
 	// printTree(root); 
 	// printAggregationTree(root); 
 	
-	top = createDataStr(queue, NODES);
+	top = createDataStr(queue);
 	printDataStr(top);
 	
 	root = createCommitmentTree(top);
