@@ -140,11 +140,11 @@ int countDescendants (atn *head)
 	return sum;
 }
 
-int depthOfNode (atn *head, atn *ptr)
+int depthOfNode (atn *root, atn *ptr)
 {
 	int dep = 0;
 	
-	while (ptr != head)
+	while (ptr != root)
 	{
 		ptr = ptr->parent;
 		dep++;
@@ -153,10 +153,13 @@ int depthOfNode (atn *head, atn *ptr)
 	return dep;
 }
 
-void printTree (atn *iterator)
+void printTree (atn *root)
 {
 	int i;
+	atn *iterator;
+
 	i = 0;
+	iterator = root;
 	
 	if (iterator != NULL)
 	{
