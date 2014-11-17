@@ -120,21 +120,21 @@ void createAggregationTree (atn *root, atn **queue)
 
 }
 
-int countDescendants (atn *head)
+int countDescendants (atn *ptr)
 {
 	int i, sum;
 	int numChildren;
 
 	sum = 1;
 	
-	if (!head)
+	if (!ptr)
 		return 0;
 
-	numChildren = head->numChildren;
+	numChildren = ptr->numChildren;
 
 	for (i = 0; i < numChildren; i++)
 	{
-		sum += countDescendants(head->arr[i]);
+		sum += countDescendants(ptr->arr[i]);
 	}
 	
 	return sum;
@@ -160,7 +160,7 @@ void printTree (atn *root)
 
 	i = 0;
 	iterator = root;
-	
+
 	if (iterator != NULL)
 	{
 		for (i = 0; i < iterator->numChildren; i++)
