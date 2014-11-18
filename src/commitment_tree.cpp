@@ -1,6 +1,4 @@
 #include "../header_files/util.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 atn* createCommitmentTree (vds *vdsMover)
 {
@@ -94,7 +92,7 @@ atn* createCommitmentTree (vds *vdsMover)
 						{
 							prev = hdsMover->ptr->myForests;
 							 	
-							while(prev->nextTree != moverPtr)
+							while (prev->nextTree != moverPtr)
 							{
 								prev = prev->nextTree;	
 							}
@@ -135,7 +133,8 @@ int countForest (ctn* ctnPtr)
 void printLinkedList (ctn *head)
 {
 	printf("Printing a LL:\n");
-	while(head != NULL)
+	
+	while (head != NULL)
 	{
 		printf("%d\n", head->height);
 		head = head->nextTree;

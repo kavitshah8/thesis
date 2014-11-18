@@ -1,3 +1,10 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stack>
+
+using namespace std;
+
 #pragma once
 
 #define NODES 15

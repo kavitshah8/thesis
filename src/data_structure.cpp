@@ -1,6 +1,4 @@
 #include "../header_files/util.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 vds* createDataStr (atn **queue) 
 {

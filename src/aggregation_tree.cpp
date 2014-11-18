@@ -1,9 +1,4 @@
 #include "../header_files/util.h"
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stack>
-using namespace std;
 
 void createAggregationTree (atn *root, atn **queue)
 {
