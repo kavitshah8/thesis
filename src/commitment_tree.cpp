@@ -130,11 +130,8 @@ int countForest (ctn* ctnPtr)
 	return sum;
 }
 
-void printLinkedList (ctn *head)
+void printLinkedList (ctn *head, FILE *outFile)
 {
-	FILE *outFile;
-
-	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
 
 	printf("Printing a LL:\n");
 	fprintf(outFile,"Printing a LL:\n");
@@ -198,13 +195,11 @@ ctn *switchLinkedListElements (ctn *l1, ctn *l2)
   return l2;
 }
 
-void printCommitmentTree (atn* root)
+void printCommitmentTree (atn* root, FILE *outFile)
 {
 	ctn *mover;
-	FILE *outFile;
 
 	mover = root->myForests;
-	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
 
 	printf("Printing a commitment Forest\n");
 	fprintf(outFile,"Printing a commitment Forest\n");
@@ -218,25 +213,21 @@ void printCommitmentTree (atn* root)
 		}
 		else
 		{
-			MorrisTraversal(mover);
+			MorrisTraversal(mover, outFile);
 		}
 		mover = mover->nextTree;		
 	}
 
-	fclose(outFile);
-
 }
 
-void MorrisTraversal (ctn *root)
+void MorrisTraversal (ctn *root, FILE *outFile)
 {
   ctn *current, *pre;
- 	FILE *outFile;
 
   if (root == NULL)
     return; 
  
   current = root;
-	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
 
   while (current != NULL)
   {                 
@@ -274,7 +265,5 @@ void MorrisTraversal (ctn *root)
       } 
     } 
   } 
-
-  fclose(outFile);
 
 }

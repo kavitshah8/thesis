@@ -109,12 +109,9 @@ vds* findPrevious (vds *head, vds *target)
 	return walker;
 }
 
-void printDataStr (vds *vdsMover)
+void printDataStr (vds *vdsMover, FILE *outFile)
 {
 	hds *hdsMover;
-	FILE *outFile;
-
-	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
 
 	printf("\n\nPrinting createDataStr : \n\n");
 	fprintf(outFile, "\n\nPrinting createDataStr : \n\n");
@@ -138,5 +135,4 @@ void printDataStr (vds *vdsMover)
 		
 		vdsMover = vdsMover->next;
 	}
-	fclose(outFile);
 }

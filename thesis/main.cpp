@@ -34,13 +34,13 @@ int main ()
 	
 	printf("Traversing tree using DFS-post order\n\n");
 	fprintf(outFile, "Traversing tree using DFS-post order\n\n");
-	printAggregationTree(root); 
+	printAggregationTree(root, outFile); 
 	
 	top = createDataStr(queue);
-	printDataStr(top);
+	printDataStr(top, outFile);
 	
 	root = createCommitmentTree(top);
-	printCommitmentTree(root);
+	printCommitmentTree(root, outFile);
 	printf("\n");
 
 	fclose(outFile);

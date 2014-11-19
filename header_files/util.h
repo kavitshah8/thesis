@@ -58,18 +58,18 @@ typedef struct commitmentTreeNode
 void createAggregationTree (atn*, atn**);
 int countDescendants (atn*);
 int depthOfNode (atn*, atn*);
-void printAggregationTree (atn*);
+void printAggregationTree (atn*, FILE*);
 void printAggregationTreeIteratively (atn *iterator);
 
 
 vds* createDataStr (atn**);
 vds* findPrevious (vds*, vds*);
-void printDataStr (vds*);
+void printDataStr (vds*, FILE*);
 
 atn* createCommitmentTree (vds*);
 int countForest (struct commitmentTreeNode*);
-void printLinkedList (struct commitmentTreeNode*);
+void printLinkedList (struct commitmentTreeNode*, FILE*);
 ctn* sortLinkedList (ctn*);
 ctn* switchLinkedListElements (ctn*, ctn*);
-void printCommitmentTree (atn*);
-void MorrisTraversal (ctn *root);
+void printCommitmentTree (atn*, FILE*);
+void MorrisTraversal (ctn *root, FILE*);
