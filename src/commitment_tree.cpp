@@ -132,11 +132,17 @@ int countForest (ctn* ctnPtr)
 
 void printLinkedList (ctn *head)
 {
+	FILE *outFile;
+
+	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
+
 	printf("Printing a LL:\n");
+	fprintf(outFile,"Printing a LL:\n");
 	
 	while (head != NULL)
 	{
 		printf("%d\n", head->height);
+		fprintf(outFile, "%d\n", head->height);
 		head = head->nextTree;
 	}	
 }
@@ -201,6 +207,7 @@ void printCommitmentTree (atn* root)
 	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
 
 	printf("Printing a commitment Forest\n");
+	fprintf(outFile,"Printing a commitment Forest\n");
 
 	while (mover != NULL)
 	{
