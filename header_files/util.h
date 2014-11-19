@@ -58,8 +58,8 @@ typedef struct commitmentTreeNode
 void createAggregationTree (atn*, atn**);
 int countDescendants (atn*);
 int depthOfNode (atn*, atn*);
-void printTree (atn*);
-void printAggregationTree (atn *iterator);
+void printAggregationTree (atn*);
+void printAggregationTreeIteratively (atn *iterator);
 
 
 vds* createDataStr (atn**);

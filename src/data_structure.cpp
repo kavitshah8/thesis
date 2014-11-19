@@ -114,7 +114,7 @@ void printDataStr (vds *vdsMover)
 	hds *hdsMover;
 	FILE *outFile;
 
-	outFile = fopen("/home/kavit/thesis/output/data.txt","w");
+	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
 
 	printf("\n\nPrinting createDataStr : \n\n");
 	fprintf(outFile, "\n\nPrinting createDataStr : \n\n");
@@ -124,7 +124,7 @@ void printDataStr (vds *vdsMover)
 		hdsMover = vdsMover->list;
 		
 		printf("depth = %d\n", hdsMover->ptr->depth);
-		fprintf(outFile, "%d\n", hdsMover->ptr->depth);
+		fprintf(outFile, "depth = %d\n", hdsMover->ptr->depth);
 
 		while (hdsMover != NULL)
 		{
@@ -134,6 +134,7 @@ void printDataStr (vds *vdsMover)
 		}
 
 		printf("\n\n");
+		fprintf(outFile, "\n\n");
 		
 		vdsMover = vdsMover->next;
 	}

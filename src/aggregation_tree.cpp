@@ -148,12 +148,15 @@ int depthOfNode (atn *root, atn *ptr)
 	return dep;
 }
 
-void printTree (atn *root)
+void printAggregationTree (atn *root)
 {
 	int i;
 	atn *iterator;
+	FILE *outFile;
 
 	i = 0;
+	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
+
 	iterator = root;
 
 	if (iterator != NULL)
@@ -161,23 +164,25 @@ void printTree (atn *root)
 		for (i = 0; i < iterator->numChildren; i++)
 		{
 			// try implementing without recurssion
-			printTree(iterator->arr[i]);
+			printAggregationTree(iterator->arr[i]);
 		}
 
 		if (iterator->depth == 0)
 		{
 			printf("id = %d, depth = %d, numChildren = %d, parent = NULL\n", iterator->id, iterator->depth, iterator->numChildren );
+			fprintf(outFile, "id = %d, depth = %d, numChildren = %d, parent = NULL\n", iterator->id, iterator->depth, iterator->numChildren);
 		}
 		else
 		{
 			printf("id = %d, depth = %d, numChildren = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->numChildren, iterator->parent->id );
+			fprintf(outFile, "id = %d, depth = %d, numChildren = %d, parent's_id = %d\n ", iterator->id, iterator->depth, iterator->numChildren, iterator->parent->id );
 		}
-
 	}
+	fclose(outFile);
 
 }
 
-void printAggregationTree (atn *root)
+void printAggregationTreeIteratively (atn *root)
 {	
 	stack<atn*> ms;
 	

@@ -195,16 +195,19 @@ ctn *switchLinkedListElements (ctn *l1, ctn *l2)
 void printCommitmentTree (atn* root)
 {
 	ctn *mover;
+	FILE *outFile;
 
 	mover = root->myForests;
-	
+	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
+
 	printf("Printing a commitment Forest\n");
 
 	while (mover != NULL)
 	{
 		if (!mover->height)
 		{
-			printf("height = %d\n",mover->height);
+			printf("height = %d\n", mover->height);
+			fprintf(outFile,"height = %d\n", mover->height);
 		}
 		else
 		{
@@ -212,22 +215,28 @@ void printCommitmentTree (atn* root)
 		}
 		mover = mover->nextTree;		
 	}
+
+	fclose(outFile);
+
 }
 
 void MorrisTraversal (ctn *root)
 {
   ctn *current, *pre;
- 
+ 	FILE *outFile;
+
   if (root == NULL)
-     return; 
+    return; 
  
   current = root;
+	outFile = fopen("/home/kavit/thesis/output/data.txt","a");
 
   while (current != NULL)
   {                 
     if (current->leftChild == NULL)
     {
       printf(" %d ", current->height);
+      fprintf(outFile, " %d ", current->height);
       current = current->rightChild;      
     }    
     else
@@ -253,8 +262,12 @@ void MorrisTraversal (ctn *root)
       {
         pre->rightChild = NULL;
         printf(" %d ",current->height);
+        fprintf(outFile, " %d ",current->height);
         current = current->rightChild;      
       } 
     } 
   } 
+
+  fclose(outFile);
+
 }

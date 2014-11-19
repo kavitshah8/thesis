@@ -26,11 +26,11 @@ int main ()
 	createAggregationTree(root, queue);
 	printf("\nNumber of nodes in tree = %d\n\n",countDescendants(root));
 	printf("Traversing tree using DFS-post order\n\n");
-	// printTree(root); 
 	// printAggregationTree(root); 
+	// printAggregationTreeIteratively(root); 
 	
 	top = createDataStr(queue);
-	printDataStr(top);
+	// printDataStr(top);
 	
 	root = createCommitmentTree(top);
 	printCommitmentTree(root);
